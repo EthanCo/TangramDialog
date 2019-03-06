@@ -8,22 +8,27 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btn_dialog1"
+        android:id="@+id/btn_dialog_center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="普通对话框" />
 
     <Button
-        android:id="@+id/btn_dialog_2"
+        android:id="@+id/btn_dialog_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="顶部对话框" />
 
-
     <Button
-        android:id="@+id/btn_dialog_3"
+        android:id="@+id/btn_dialog_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="底部对话框" />
+
+    <Button
+        android:id="@+id/btn_dialog_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="输入对话框" />
 
 </LinearLayout>

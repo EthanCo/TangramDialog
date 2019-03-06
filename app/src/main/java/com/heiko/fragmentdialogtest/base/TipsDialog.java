@@ -1,14 +1,18 @@
 package com.heiko.fragmentdialogtest.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +32,11 @@ public class TipsDialog extends BaseDialog {
     private TextView btnPositive;
     private TextView btnNeutral;
     private ImageView imgTips;
+    private EditText etTips;
+
+    public EditText getInputEditText() {
+        return etTips;
+    }
 
     @Nullable
     @Override
@@ -39,6 +48,7 @@ public class TipsDialog extends BaseDialog {
         btnNegative = root.findViewById(R.id.btn_negative);
         btnPositive = root.findViewById(R.id.btn_positive);
         btnNeutral = root.findViewById(R.id.btn_neutral);
+        etTips = root.findViewById(R.id.et_tips);
 
         Log.i("TipsDialog", "builder:" + builder);
         if (TextUtils.isEmpty(builder.title)) {
@@ -54,6 +64,14 @@ public class TipsDialog extends BaseDialog {
         if (builder.imgResId != 0) {
             imgTips.setVisibility(View.VISIBLE);
             imgTips.setImageResource(builder.imgResId);
+        }
+        if (builder.inputCallback == null) {
+            etTips.setVisibility(View.GONE);
+        } else {
+            etTips.setVisibility(View.VISIBLE);
+            etTips.setHint(builder.inputHint == null ? "" : builder.inputHint);
+            etTips.setText(builder.inputPrefill == null ? "" : builder.inputPrefill);
+            etTips.addTextChangedListener(new DialogTextWatcher(TipsDialog.this, builder));
         }
         if (TextUtils.isEmpty(builder.negativeText) && TextUtils.isEmpty(builder.negativeText)) {
             root.findViewById(R.id.view_divider_button).setVisibility(View.INVISIBLE);
@@ -93,6 +111,7 @@ public class TipsDialog extends BaseDialog {
             btnPositive.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (checkEmptyInput()) return;
                     dismiss();
                     if (builder.onPositiveCallback != null) {
                         builder.onPositiveCallback.onClick(TipsDialog.this, DialogAction.POSITIVE);
@@ -105,6 +124,7 @@ public class TipsDialog extends BaseDialog {
             btnNegative.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (checkEmptyInput()) return;
                     dismiss();
                     if (builder.onNegativeCallback != null) {
                         builder.onPositiveCallback.onClick(TipsDialog.this, DialogAction.POSITIVE);
@@ -117,6 +137,7 @@ public class TipsDialog extends BaseDialog {
             btnNeutral.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (checkEmptyInput()) return;
                     dismiss();
                     if (builder.onNeutralCallback != null) {
                         builder.onNeutralCallback.onClick(TipsDialog.this, DialogAction.NEUTRAL);
@@ -127,18 +148,42 @@ public class TipsDialog extends BaseDialog {
         return root;
     }
 
-    public static class Builder extends BaseBuilder {
+    @Override
+    public void onStart() {
+        super.onStart();
 
-        public Builder() {
+        if (builder.inputCallback != null) {
+            DialogUtils.showKeyboard(this, builder);
+            if (etTips.getText().length() > 0) {
+                etTips.setSelection(etTips.getText().length());
+            }
+        }
+    }
+
+    @Override
+    public void dismiss() {
+        if (builder.inputCallback != null) {
+            DialogUtils.hideKeyboard(this, builder);
+        }
+        super.dismiss();
+    }
+
+    private boolean checkEmptyInput() {
+        return !builder.inputAllowEmpty && TextUtils.isEmpty(etTips.getText().toString());
+    }
+
+    public static class Builder extends BaseBuilder {
+        public Builder(Context context) {
             this.layoutId = R.layout.dialog_tip;
+            this.context = context;
         }
 
-        public Builder title(String title) {
+        public Builder title(CharSequence title) {
             this.title = title;
             return this;
         }
 
-        public Builder content(String content) {
+        public Builder content(CharSequence content) {
             this.content = content;
             return this;
         }
@@ -159,7 +204,7 @@ public class TipsDialog extends BaseDialog {
          * @param message
          * @return
          */
-        public Builder negativeText(String message) {
+        public Builder negativeText(CharSequence message) {
             this.negativeText = message;
             return this;
         }
@@ -170,7 +215,7 @@ public class TipsDialog extends BaseDialog {
          * @param message
          * @return
          */
-        public Builder neutralText(String message) {
+        public Builder neutralText(CharSequence message) {
             this.negativeText = message;
             return this;
         }
@@ -181,7 +226,7 @@ public class TipsDialog extends BaseDialog {
          * @param message
          * @return
          */
-        public Builder positiveText(String message) {
+        public Builder positiveText(CharSequence message) {
             this.positiveText = message;
             return this;
         }
@@ -231,9 +276,51 @@ public class TipsDialog extends BaseDialog {
             return this;
         }
 
-        public TipsDialog build() {
+        public Builder input(
+                @Nullable CharSequence hint,
+                @Nullable CharSequence prefill,
+                @NonNull InputCallback callback) {
+            return input(hint, prefill, true, callback);
+        }
+
+        public Builder input(
+                @Nullable CharSequence hint,
+                @Nullable CharSequence prefill,
+                boolean allowEmptyInput,
+                @NonNull InputCallback callback) {
+            this.inputHint = hint;
+            this.inputPrefill = prefill;
+            this.inputAllowEmpty = allowEmptyInput;
+            this.inputCallback = callback;
+            return this;
+        }
+
+        public Builder input(
+                @StringRes int hint,
+                @StringRes int prefill,
+                boolean allowEmptyInput,
+                @NonNull InputCallback callback) {
+            return input(
+                    hint == 0 ? null : this.context.getText(hint),
+                    prefill == 0 ? null : this.context.getText(prefill),
+                    allowEmptyInput,
+                    callback);
+        }
+
+        public Builder input(
+                @StringRes int hint, @StringRes int prefill, @NonNull InputCallback callback) {
+            return input(hint, prefill, true, callback);
+        }
+
+        public TipsDialog show() {
             TipsDialog dialog = new TipsDialog();
             dialog.builder = this;
+            if (this.context instanceof FragmentActivity) {
+                dialog.show((FragmentActivity) this.context);
+            } else {
+                throw new IllegalArgumentException("content must be FragmentActivity.");
+            }
+
             return dialog;
         }
     }

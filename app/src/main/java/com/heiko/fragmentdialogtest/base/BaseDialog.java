@@ -66,11 +66,11 @@ public class BaseDialog extends DialogFragment {
 
             //设置dialog宽度
             if (builder.width == 0) {
-                params.width = Utils.getScreenWidth(getContext()) - 2 * Utils.dp2px(getContext(), builder.margin);
+                params.width = DialogUtils.getScreenWidth(getContext()) - 2 * DialogUtils.dp2px(getContext(), builder.margin);
             } else if (builder.width < 0) {
                 params.width = builder.width;
             } else {
-                params.width = Utils.dp2px(getContext(), builder.width);
+                params.width = DialogUtils.dp2px(getContext(), builder.width);
             }
 
             //设置dialog高度
@@ -79,7 +79,7 @@ public class BaseDialog extends DialogFragment {
             } else if (builder.height < 0) {
                 params.height = builder.height;
             } else {
-                params.height = Utils.dp2px(getContext(), builder.height);
+                params.height = DialogUtils.dp2px(getContext(), builder.height);
             }
 
             //设置dialog动画
@@ -98,7 +98,7 @@ public class BaseDialog extends DialogFragment {
         setCancelable(builder.canceledOnTouchOutside);
     }
 
-    public BaseDialog show(FragmentManager manager) {
+    private BaseDialog show(FragmentManager manager) {
         super.show(manager, String.valueOf(System.currentTimeMillis()));
         return this;
     }

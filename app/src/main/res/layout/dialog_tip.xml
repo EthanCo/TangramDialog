@@ -43,6 +43,14 @@
         android:textSize="15sp"
         tools:text="Content" />
 
+    <EditText
+        android:id="@+id/et_tips"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" />
+
     <View
         android:id="@+id/view_divider_button"
         style="@style/line_horizontal"

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.heiko.fragmentdialogtest.base.BaseDialog;
 import com.heiko.fragmentdialogtest.base.DialogAction;
+import com.heiko.fragmentdialogtest.base.InputCallback;
 import com.heiko.fragmentdialogtest.base.SingleButtonCallback;
 import com.heiko.fragmentdialogtest.base.TipsDialog;
 
@@ -19,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.btn_dialog1).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_dialog_center).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TipsDialog dialog = new TipsDialog.Builder()
+                TipsDialog dialog = new TipsDialog.Builder(MainActivity.this)
                         .title("标题")
                         .content("这是具体内容")
                         .positiveText("确定")
@@ -49,15 +50,14 @@ public class MainActivity extends AppCompatActivity {
                         //.imgResId(R.mipmap.ic_launcher)
                         //.width(ViewGroup.LayoutParams.MATCH_PARENT)
                         //.height(WindowManager.LayoutParams.WRAP_CONTENT)
-                        .build();
-                dialog.show(MainActivity.this);
+                        .show();
             }
         });
 
-        findViewById(R.id.btn_dialog_2).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_dialog_top).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TipsDialog dialog = new TipsDialog.Builder()
+                TipsDialog dialog = new TipsDialog.Builder(MainActivity.this)
                         .title("标题")
                         .content("这是具体内容")
                         .positiveText("确定")
@@ -76,15 +76,14 @@ public class MainActivity extends AppCompatActivity {
                             }
                         })
                         .gravity(Gravity.TOP)
-                        .build();
-                dialog.show(MainActivity.this);
+                        .show();
             }
         });
 
-        findViewById(R.id.btn_dialog_3).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_dialog_bottom).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TipsDialog dialog = new TipsDialog.Builder()
+                TipsDialog dialog = new TipsDialog.Builder(MainActivity.this)
                         .title("标题")
                         .content("这是具体内容")
                         .positiveText("确定")
@@ -103,8 +102,38 @@ public class MainActivity extends AppCompatActivity {
                             }
                         })
                         .gravity(Gravity.BOTTOM)
-                        .build();
-                dialog.show(MainActivity.this);
+                        .show();
+            }
+        });
+
+        findViewById(R.id.btn_dialog_input).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TipsDialog dialog = new TipsDialog.Builder(MainActivity.this)
+                        .title("标题")
+                        .content("这是具体内容")
+                        .input("请输入", "预加载", false, new InputCallback() {
+                            @Override
+                            public void onInput(@NonNull BaseDialog dialog, CharSequence input) {
+                                Toast.makeText(MainActivity.this, input, Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .positiveText("确定")
+                        .negativeText("取消")
+                        .canceledOnTouchOutside(false)
+                        .onPositive(new SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull BaseDialog dialog, @NonNull DialogAction which) {
+                                Toast.makeText(MainActivity.this, "确定", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .onNegative(new SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull BaseDialog dialog, @NonNull DialogAction which) {
+                                Toast.makeText(MainActivity.this, "取消", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
             }
         });
     }
