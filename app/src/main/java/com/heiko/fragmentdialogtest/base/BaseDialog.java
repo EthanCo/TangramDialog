@@ -20,6 +20,7 @@ import android.view.WindowManager;
 public class BaseDialog extends DialogFragment {
     public static final String KEY_LAYOUT_RES_ID = "layoutResId";
     protected BaseBuilder builder;
+    protected View rootView;
 
     @Override
     public void onAttach(Context context) {
@@ -38,8 +39,8 @@ public class BaseDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         Log.i("DialogM", "builder:"+builder+" builder.layoutId:"+builder.layoutId);
-        View view = inflater.inflate(builder.layoutId, container, false);
-        return view;
+        rootView = inflater.inflate(builder.layoutId, container, false);
+        return rootView;
     }
 
     @Override

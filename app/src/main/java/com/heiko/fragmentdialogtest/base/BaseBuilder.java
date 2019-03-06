@@ -10,8 +10,10 @@ import android.view.Gravity;
 public class BaseBuilder {
     protected String title;
     protected String content;
+    protected int imgResId;
     protected int layoutId;
     protected String negativeText;
+    protected String neutralText;
     protected String positiveText;
     protected int gravity = Gravity.CENTER;
     protected int margin;
@@ -23,4 +25,5 @@ public class BaseBuilder {
     protected boolean canceledOnTouchOutside;
     protected SingleButtonCallback onPositiveCallback;
     protected SingleButtonCallback onNegativeCallback;
+    protected SingleButtonCallback onNeutralCallback;
 }

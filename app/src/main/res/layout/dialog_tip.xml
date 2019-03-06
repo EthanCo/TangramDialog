@@ -18,7 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_tips_title"
@@ -42,12 +43,13 @@
         android:textSize="15sp"
         tools:text="Content" />
 
-
     <View
+        android:id="@+id/view_divider_button"
         style="@style/line_horizontal"
         android:layout_marginTop="30dp" />
 
     <LinearLayout
+        android:id="@+id/layout_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
@@ -55,7 +57,7 @@
 
         <!--@color/text_gray-->
         <TextView
-            android:id="@+id/btn_cancel"
+            android:id="@+id/btn_negative"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -67,11 +69,27 @@
             tools:text="Cancel" />
 
         <View
-            android:id="@+id/view_verticalline"
+            android:id="@+id/view_vertical_line_1"
             style="@style/line_vertical" />
 
         <TextView
-            android:id="@+id/btn_confirm"
+            android:id="@+id/btn_neutral"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            tools:text="Info" />
+
+        <View
+            android:id="@+id/view_vertical_line_2"
+            style="@style/line_vertical" />
+
+        <TextView
+            android:id="@+id/btn_positive"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

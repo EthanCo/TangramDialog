@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.heiko.fragmentdialogtest.R;
@@ -23,10 +24,10 @@ public class TipsDialog extends BaseDialog {
 
     private TextView tvTipsTitle;
     private TextView tvTipsContent;
-    private TextView btnCancel;
-    private TextView btnConfirm;
-    private SingleButtonCallback onPositiveCallback;
-    private SingleButtonCallback onNegativeCallback;
+    private TextView btnNegative;
+    private TextView btnPositive;
+    private TextView btnNeutral;
+    private ImageView imgTips;
 
     @Nullable
     @Override
@@ -34,8 +35,10 @@ public class TipsDialog extends BaseDialog {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         tvTipsTitle = root.findViewById(R.id.tv_tips_title);
         tvTipsContent = root.findViewById(R.id.tv_tips_content);
-        btnCancel = root.findViewById(R.id.btn_cancel);
-        btnConfirm = root.findViewById(R.id.btn_confirm);
+        imgTips = root.findViewById(R.id.img_tips);
+        btnNegative = root.findViewById(R.id.btn_negative);
+        btnPositive = root.findViewById(R.id.btn_positive);
+        btnNeutral = root.findViewById(R.id.btn_neutral);
 
         Log.i("TipsDialog", "builder:" + builder);
         if (TextUtils.isEmpty(builder.title)) {
@@ -48,15 +51,33 @@ public class TipsDialog extends BaseDialog {
         } else {
             tvTipsContent.setText(builder.content);
         }
-        if (TextUtils.isEmpty(builder.negativeText)) {
-            btnCancel.setVisibility(View.GONE);
-        } else {
-            btnCancel.setText(builder.negativeText);
+        if (builder.imgResId != 0) {
+            imgTips.setVisibility(View.VISIBLE);
+            imgTips.setImageResource(builder.imgResId);
         }
-        if (TextUtils.isEmpty(builder.positiveText)) {
-            btnConfirm.setVisibility(View.GONE);
+        if (TextUtils.isEmpty(builder.negativeText) && TextUtils.isEmpty(builder.negativeText)) {
+            root.findViewById(R.id.view_divider_button).setVisibility(View.INVISIBLE);
+            root.findViewById(R.id.layout_button).setVisibility(View.GONE);
         } else {
-            btnConfirm.setText(builder.positiveText);
+            if (TextUtils.isEmpty(builder.negativeText)) {
+                btnNegative.setVisibility(View.GONE);
+            } else {
+                btnNegative.setText(builder.negativeText);
+            }
+            if (TextUtils.isEmpty(builder.neutralText)) {
+                root.findViewById(R.id.view_vertical_line_1).setVisibility(View.GONE);
+                btnNeutral.setVisibility(View.GONE);
+            } else {
+                root.findViewById(R.id.view_vertical_line_1).setVisibility(View.VISIBLE);
+                btnNeutral.setText(builder.neutralText);
+            }
+            if (TextUtils.isEmpty(builder.positiveText)) {
+                root.findViewById(R.id.view_vertical_line_2).setVisibility(View.GONE);
+                btnPositive.setVisibility(View.GONE);
+            } else {
+                root.findViewById(R.id.view_vertical_line_2).setVisibility(View.VISIBLE);
+                btnPositive.setText(builder.positiveText);
+            }
         }
         if (builder.animStyle == 0) {
             if (builder.gravity == Gravity.CENTER) {
@@ -67,28 +88,42 @@ public class TipsDialog extends BaseDialog {
                 builder.animStyle = R.style.BottomEnterStyle;
             }
         }
-        this.onPositiveCallback = builder.onPositiveCallback;
-        this.onNegativeCallback = builder.onNegativeCallback;
 
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-                if (onPositiveCallback != null) {
-                    onPositiveCallback.onClick(TipsDialog.this, DialogAction.POSITIVE);
+        if (btnPositive.getVisibility() == View.VISIBLE) {
+            btnPositive.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismiss();
+                    if (builder.onPositiveCallback != null) {
+                        builder.onPositiveCallback.onClick(TipsDialog.this, DialogAction.POSITIVE);
+                    }
                 }
-            }
-        });
+            });
+        }
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-                if (onNegativeCallback != null) {
-                    onPositiveCallback.onClick(TipsDialog.this, DialogAction.POSITIVE);
+        if (btnNegative.getVisibility() == View.VISIBLE) {
+            btnNegative.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismiss();
+                    if (builder.onNegativeCallback != null) {
+                        builder.onPositiveCallback.onClick(TipsDialog.this, DialogAction.POSITIVE);
+                    }
                 }
-            }
-        });
+            });
+        }
+
+        if (btnNeutral.getVisibility() == View.VISIBLE) {
+            btnNeutral.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismiss();
+                    if (builder.onNeutralCallback != null) {
+                        builder.onNeutralCallback.onClick(TipsDialog.this, DialogAction.NEUTRAL);
+                    }
+                }
+            });
+        }
         return root;
     }
 
@@ -108,16 +143,44 @@ public class TipsDialog extends BaseDialog {
             return this;
         }
 
+        public Builder imgResId(int imgResId) {
+            this.imgResId = imgResId;
+            return this;
+        }
+
         public Builder layoutId(int layoutId) {
             this.layoutId = layoutId;
             return this;
         }
 
+        /**
+         * 否定的按钮文字
+         *
+         * @param message
+         * @return
+         */
         public Builder negativeText(String message) {
             this.negativeText = message;
             return this;
         }
 
+        /**
+         * 中立的按钮文字
+         *
+         * @param message
+         * @return
+         */
+        public Builder neutralText(String message) {
+            this.negativeText = message;
+            return this;
+        }
+
+        /**
+         * 肯定的按钮文字
+         *
+         * @param message
+         * @return
+         */
         public Builder positiveText(String message) {
             this.positiveText = message;
             return this;
@@ -148,7 +211,12 @@ public class TipsDialog extends BaseDialog {
             return this;
         }
 
-        public Builder onNegative(SingleButtonCallback callback) {
+        public Builder onNeutral(@NonNull SingleButtonCallback callback) {
+            this.onNeutralCallback = callback;
+            return this;
+        }
+
+        public Builder onNegative(@NonNull SingleButtonCallback callback) {
             this.onNegativeCallback = callback;
             return this;
         }
