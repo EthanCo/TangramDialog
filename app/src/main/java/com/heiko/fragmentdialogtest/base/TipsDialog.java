@@ -1,4 +1,4 @@
-package com.heiko.fragmentdialogtest;
+package com.heiko.fragmentdialogtest.base;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,8 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.heiko.fragmentdialogtest.base.BaseDialog;
-import com.heiko.fragmentdialogtest.base.DialogAction;
+import com.heiko.fragmentdialogtest.R;
 
 /**
  * TipsDialog
@@ -26,10 +25,8 @@ public class TipsDialog extends BaseDialog {
     private TextView tvTipsContent;
     private TextView btnCancel;
     private TextView btnConfirm;
-    private Builder builder;
     private SingleButtonCallback onPositiveCallback;
     private SingleButtonCallback onNegativeCallback;
-    private boolean canceledOnTouchOutside;
 
     @Nullable
     @Override
@@ -51,33 +48,28 @@ public class TipsDialog extends BaseDialog {
         } else {
             tvTipsContent.setText(builder.content);
         }
-        if (TextUtils.isEmpty(builder.cancel)) {
+        if (TextUtils.isEmpty(builder.negativeText)) {
             btnCancel.setVisibility(View.GONE);
         } else {
-            btnCancel.setText(builder.cancel);
+            btnCancel.setText(builder.negativeText);
         }
-        if (TextUtils.isEmpty(builder.confirm)) {
+        if (TextUtils.isEmpty(builder.positiveText)) {
             btnConfirm.setVisibility(View.GONE);
         } else {
-            btnConfirm.setText(builder.confirm);
+            btnConfirm.setText(builder.positiveText);
         }
-        if (builder.animStyle != null) {
-            animStyle = builder.animStyle;
-        } else {
+        if (builder.animStyle == 0) {
             if (builder.gravity == Gravity.CENTER) {
-                animStyle = R.style.CenterDialogStyle;
+                builder.animStyle = R.style.CenterDialogStyle;
             } else if (builder.gravity == Gravity.TOP) {
-                animStyle = R.style.TopEnterStyle;
+                builder.animStyle = R.style.TopEnterStyle;
             } else if (builder.gravity == Gravity.BOTTOM) {
-                animStyle = R.style.BottomEnterStyle;
+                builder.animStyle = R.style.BottomEnterStyle;
             }
         }
-        this.canceledOnTouchOutside = builder.canceledOnTouchOutside;
-        this.margin = builder.margin;
-
         this.onPositiveCallback = builder.onPositiveCallback;
         this.onNegativeCallback = builder.onNegativeCallback;
-        this.outCancel = this.canceledOnTouchOutside;
+
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,18 +92,11 @@ public class TipsDialog extends BaseDialog {
         return root;
     }
 
-    public static class Builder {
-        private String title;
-        private String content;
-        private int layoutResId;
-        private String cancel;
-        private String confirm;
-        private int gravity = Gravity.CENTER;
-        private Integer animStyle;
-        private SingleButtonCallback onPositiveCallback;
-        private SingleButtonCallback onNegativeCallback;
-        private boolean canceledOnTouchOutside;
-        private int margin;
+    public static class Builder extends BaseBuilder {
+
+        public Builder() {
+            this.layoutId = R.layout.dialog_tip;
+        }
 
         public Builder title(String title) {
             this.title = title;
@@ -123,28 +108,38 @@ public class TipsDialog extends BaseDialog {
             return this;
         }
 
-        public Builder setLayoutResId(int layoutResId) {
-            this.layoutResId = layoutResId;
+        public Builder layoutId(int layoutId) {
+            this.layoutId = layoutId;
             return this;
         }
 
-        public Builder negativeText(String cancel) {
-            this.cancel = cancel;
+        public Builder negativeText(String message) {
+            this.negativeText = message;
             return this;
         }
 
-        public Builder positiveText(String confirm) {
-            this.confirm = confirm;
+        public Builder positiveText(String message) {
+            this.positiveText = message;
             return this;
         }
 
-        public Builder setGravity(int gravity) {
+        public Builder gravity(int gravity) {
             this.gravity = gravity;
             return this;
         }
 
-        public Builder setAnimStyle(int animStyle) {
+        public Builder animStyle(int animStyle) {
             this.animStyle = animStyle;
+            return this;
+        }
+
+        public Builder width(int width) {
+            this.width = width;
+            return this;
+        }
+
+        public Builder height(int height) {
+            this.height = height;
             return this;
         }
 
@@ -163,24 +158,15 @@ public class TipsDialog extends BaseDialog {
             return this;
         }
 
-        public Builder setMargin(int margin){
+        public Builder margin(int margin) {
             this.margin = margin;
             return this;
         }
 
         public TipsDialog build() {
-            TipsDialog tipsDialog = TipsDialog.newInstance(layoutResId);
-            tipsDialog.builder = this;
-            return tipsDialog;
+            TipsDialog dialog = new TipsDialog();
+            dialog.builder = this;
+            return dialog;
         }
-    }
-
-    public static TipsDialog newInstance(int layoutResId) {
-        TipsDialog dialog = new TipsDialog();
-        Bundle args = new Bundle();
-        args.putInt(KEY_LAYOUT_RES_ID, layoutResId);
-        dialog.setArguments(args);
-
-        return dialog;
     }
 }

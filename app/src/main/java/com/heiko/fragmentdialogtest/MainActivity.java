@@ -1,13 +1,17 @@
 package com.heiko.fragmentdialogtest;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.heiko.fragmentdialogtest.base.BaseDialog;
 import com.heiko.fragmentdialogtest.base.DialogAction;
+import com.heiko.fragmentdialogtest.base.SingleButtonCallback;
+import com.heiko.fragmentdialogtest.base.TipsDialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,18 +29,20 @@ public class MainActivity extends AppCompatActivity {
                         .positiveText("确定")
                         .negativeText("取消")
                         .canceledOnTouchOutside(false)
-                        .onPositive(new BaseDialog.SingleButtonCallback() {
+                        .onPositive(new SingleButtonCallback() {
                             @Override
                             public void onClick(@NonNull BaseDialog dialog, @NonNull DialogAction which) {
                                 Toast.makeText(MainActivity.this, "确定", Toast.LENGTH_SHORT).show();
                             }
                         })
-                        .onNegative(new BaseDialog.SingleButtonCallback() {
+                        .onNegative(new SingleButtonCallback() {
                             @Override
                             public void onClick(@NonNull BaseDialog dialog, @NonNull DialogAction which) {
                                 Toast.makeText(MainActivity.this, "取消", Toast.LENGTH_SHORT).show();
                             }
                         })
+                        .width(ViewGroup.LayoutParams.MATCH_PARENT)
+                        .height(WindowManager.LayoutParams.WRAP_CONTENT)
                         .build();
                 dialog.show(MainActivity.this);
             }
