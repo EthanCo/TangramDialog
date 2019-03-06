@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!--android:background="@drawable/shape_white_solid_4"-->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_primary_solid_height"
+        android:layout_marginBottom="30dp"
+        android:background="@color/colorPrimary" />
+    <!--android:background="@drawable/shape_yellow_solid_4"-->
+
+    <ImageView
+        android:id="@+id/img_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/tv_tips_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        tools:text="Title" />
+
+    <TextView
+        android:id="@+id/tv_tips_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:lineSpacingExtra="5dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:textColor="#333333"
+        android:textSize="15sp"
+        tools:text="Content" />
+
+
+    <View
+        style="@style/line_horizontal"
+        android:layout_marginTop="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:textColor="@color/text_gray"
+            android:textSize="16sp"
+            tools:text="Cancel" />
+
+        <View
+            android:id="@+id/view_verticalline"
+            style="@style/line_vertical" />
+
+        <TextView
+            android:id="@+id/btn_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            tools:text="OK" />
+    </LinearLayout>
+</LinearLayout>

@@ -22,4 +22,17 @@
         <item name="android:windowEnterAnimation">@anim/dialog_center_in</item>
         <item name="android:windowExitAnimation">@anim/dialog_center_out</item>
     </style>
+
+
+    <style name="line_horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/line_width</item>
+        <item name="android:background">@color/line_grey</item>
+    </style>
+
+    <style name="line_vertical">
+        <item name="android:layout_width">@dimen/line_width</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/line_grey</item>
+    </style>
 </resources>
