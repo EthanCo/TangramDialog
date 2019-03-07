@@ -1,1 +1,1 @@
-include ':app', ':tangramdialog'
+include ':sample', ':tangramdialog'

@@ -1,4 +1,4 @@
-package com.heiko.fragmentdialogtest;
+package com.tangramdialog.sample;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
