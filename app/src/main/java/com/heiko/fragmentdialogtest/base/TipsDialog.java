@@ -2,6 +2,7 @@ package com.heiko.fragmentdialogtest.base;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -51,15 +52,28 @@ public class TipsDialog extends BaseDialog {
         etTips = root.findViewById(R.id.et_tips);
 
         Log.i("TipsDialog", "builder:" + builder);
+        if (builder == null) return root;
         if (TextUtils.isEmpty(builder.title)) {
             tvTipsTitle.setVisibility(View.GONE);
         } else {
             tvTipsTitle.setText(builder.title);
+            if (builder.titleColor != null) {
+                tvTipsTitle.setTextColor(builder.titleColor);
+            }
+            if (builder.titleTextSize > 0) {
+                tvTipsTitle.setTextSize(builder.titleTextSize);
+            }
         }
         if (TextUtils.isEmpty(builder.content)) {
             tvTipsContent.setVisibility(View.GONE);
         } else {
             tvTipsContent.setText(builder.content);
+            if (builder.contentColor != null) {
+                tvTipsContent.setTextColor(builder.contentColor);
+            }
+            if (builder.contentTextSize > 0) {
+                tvTipsContent.setTextSize(builder.contentTextSize);
+            }
         }
         if (builder.imgResId != 0) {
             imgTips.setVisibility(View.VISIBLE);
@@ -183,8 +197,28 @@ public class TipsDialog extends BaseDialog {
             return this;
         }
 
+        public Builder titleColorRes(@ColorRes int colorRes) {
+            this.titleColor = DialogUtils.getColor(this.context, colorRes);
+            return this;
+        }
+
+        public Builder titleTextSize(float textSize){
+            this.titleTextSize = textSize;
+            return this;
+        }
+
         public Builder content(CharSequence content) {
             this.content = content;
+            return this;
+        }
+
+        public Builder contentColorRes(@ColorRes int colorRes) {
+            this.contentColor = DialogUtils.getColor(this.context, colorRes);
+            return this;
+        }
+
+        public Builder contentTextSize(float textSize){
+            this.contentTextSize = textSize;
             return this;
         }
 

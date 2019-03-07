@@ -11,7 +11,11 @@ import android.view.Gravity;
 public class BaseBuilder {
     protected Context context;
     protected CharSequence title;
+    protected Integer titleColor;
+    protected float titleTextSize;
     protected CharSequence content;
+    protected Integer contentColor;
+    protected float contentTextSize;
     protected int imgResId;
     protected int layoutId;
     protected CharSequence negativeText;
@@ -32,6 +36,6 @@ public class BaseBuilder {
     //input
     protected CharSequence inputHint;
     protected CharSequence inputPrefill;
-    protected boolean inputAllowEmpty;
+    protected boolean inputAllowEmpty = true;
     protected InputCallback inputCallback;
 }

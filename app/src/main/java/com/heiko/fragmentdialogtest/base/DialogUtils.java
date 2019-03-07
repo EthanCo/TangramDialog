@@ -2,8 +2,11 @@ package com.heiko.fragmentdialogtest.base;
 
 import android.content.Context;
 import android.os.IBinder;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.inputmethod.InputMethodManager;
 
@@ -36,21 +39,19 @@ public class DialogUtils {
         if (dialog.getInputEditText() == null) {
             return;
         }
-        dialog
-                .getInputEditText()
-                .post(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                dialog.getInputEditText().requestFocus();
-                                InputMethodManager imm =
-                                        (InputMethodManager)
-                                                builder.context.getSystemService(Context.INPUT_METHOD_SERVICE);
-                                if (imm != null) {
-                                    imm.showSoftInput(dialog.getInputEditText(), InputMethodManager.SHOW_IMPLICIT);
-                                }
-                            }
-                        });
+        dialog.getInputEditText()
+                .post(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog.getInputEditText().requestFocus();
+                        InputMethodManager imm =
+                                (InputMethodManager)
+                                        builder.context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                        if (imm != null) {
+                            imm.showSoftInput(dialog.getInputEditText(), InputMethodManager.SHOW_IMPLICIT);
+                        }
+                    }
+                });
     }
 
     public static void hideKeyboard(
@@ -67,12 +68,17 @@ public class DialogUtils {
             if (currentFocus != null) {
                 windowToken = currentFocus.getWindowToken();
             } else*/
-                if (dialog.getView() != null) {
+            if (dialog.getView() != null) {
                 windowToken = dialog.getView().getWindowToken();
             }
             if (windowToken != null) {
                 imm.hideSoftInputFromWindow(windowToken, 0);
             }
         }
+    }
+
+    @ColorInt
+    public static int getColor(Context context, @ColorRes int colorId) {
+        return ContextCompat.getColor(context, colorId);
     }
 }

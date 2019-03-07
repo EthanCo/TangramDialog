@@ -28,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
                         .content("这是具体内容")
                         .positiveText("确定")
                         .negativeText("取消")
+                        .titleColorRes(R.color.text_red)
+                        .titleTextSize(22)
+                        .contentColorRes(R.color.text_orange)
+                        .contentTextSize(10)
                         .canceledOnTouchOutside(false)
                         .onPositive(new SingleButtonCallback() {
                             @Override
