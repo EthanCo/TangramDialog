@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -80,9 +81,9 @@ public class TangramDialog extends BaseDialog {
             }
         }
         if (imgTips != null) {
-            if (builder.imgResId != 0) {
+            if (builder.imgRes != 0) {
                 imgTips.setVisibility(View.VISIBLE);
-                imgTips.setImageResource(builder.imgResId);
+                imgTips.setImageResource(builder.imgRes);
             }
         }
         if (etTips != null) {
@@ -116,10 +117,10 @@ public class TangramDialog extends BaseDialog {
                         @Override
                         public void onClick(View v) {
                             if (checkEmptyInput()) return;
-                            dismiss();
                             if (builder.onNegativeCallback != null) {
                                 builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.NEGATIVE);
                             }
+                            dismiss();
                         }
                     });
                 }
@@ -137,10 +138,10 @@ public class TangramDialog extends BaseDialog {
                         @Override
                         public void onClick(View v) {
                             if (checkEmptyInput()) return;
-                            dismiss();
                             if (builder.onNeutralCallback != null) {
                                 builder.onNeutralCallback.onClick(TangramDialog.this, DialogAction.NEUTRAL);
                             }
+                            dismiss();
                         }
                     });
                 }
@@ -158,10 +159,10 @@ public class TangramDialog extends BaseDialog {
                         @Override
                         public void onClick(View v) {
                             if (checkEmptyInput()) return;
-                            dismiss();
                             if (builder.onPositiveCallback != null) {
                                 builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.POSITIVE);
                             }
+                            dismiss();
                         }
                     });
                 }
@@ -234,8 +235,8 @@ public class TangramDialog extends BaseDialog {
             return this;
         }
 
-        public Builder imgResId(int imgResId) {
-            this.imgResId = imgResId;
+        public Builder imgRes(@DrawableRes int imgRes) {
+            this.imgRes = imgRes;
             return this;
         }
 

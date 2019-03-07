@@ -17,7 +17,7 @@ public class BaseBuilder {
     protected CharSequence content;
     protected Integer contentColor;
     protected float contentTextSize;
-    protected int imgResId;
+    protected int imgRes;
     protected int layoutId;
     protected CharSequence negativeText;
     protected CharSequence neutralText;
