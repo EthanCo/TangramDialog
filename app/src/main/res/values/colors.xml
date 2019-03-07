@@ -7,4 +7,9 @@
     <color name="text_red">#FFE6251B</color>
     <color name="text_orange">#FF6E2A</color>
     <color name="text_default">#6A6A6A</color>
+
+    <!--透明的对话框顶部条-->
+    <!--<color name="tangramColorPrimary">@android:color/transparent</color>-->
+    <!--设置自定义颜色的对话框顶部条-->
+    <color name="tangramColorPrimary">@color/colorPrimary</color>
 </resources>
