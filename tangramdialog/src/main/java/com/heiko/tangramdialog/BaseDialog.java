@@ -57,10 +57,20 @@ public class BaseDialog extends DialogFragment {
         Window window = getDialog().getWindow();
         if (window != null) {
             WindowManager.LayoutParams params = window.getAttributes();
-            params.dimAmount = builder.dimAmount;
+
+            if (builder.dimAmount != null) {
+                params.dimAmount = builder.dimAmount;
+            }
 
             //设置dialog显示位置
             params.gravity = builder.gravity;
+            if (builder.gravity==Gravity.CENTER && builder.margin == null) {
+                //如果是中心弹出，并没没有设置margin，默认margin设为8
+                builder.margin = 8;
+            }
+            if (builder.margin == null) {
+                builder.margin = 0;
+            }
 
             //设置dialog宽度
             if (builder.width == 0) {

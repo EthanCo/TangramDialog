@@ -3,7 +3,6 @@ package com.heiko.tangramdialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 
 /**
@@ -24,11 +23,11 @@ public class BaseBuilder {
     protected CharSequence neutralText;
     protected CharSequence positiveText;
     protected int gravity = Gravity.CENTER;
-    protected int margin;
+    protected Integer margin;
     protected int width;
     protected int height;
     protected int animStyle;
-    protected float dimAmount = 0.5f;//背景昏暗度
+    protected Float dimAmount;//背景昏暗度
     protected Drawable backgroundDrawable; //背景
     protected boolean canceledOnTouchOutside;
     protected View customView;

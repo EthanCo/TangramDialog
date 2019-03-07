@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
                         .customView(R.layout.dialog_custom)
-                        .canceledOnTouchOutside(false)
+                        .canceledOnTouchOutside(true)
                         .show();
                 View rootView = dialog.getRootView();
                 TextView tvTitle = rootView.findViewById(R.id.tv_title);
