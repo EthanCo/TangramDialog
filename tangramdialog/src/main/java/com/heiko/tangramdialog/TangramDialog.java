@@ -1,8 +1,10 @@
 package com.heiko.tangramdialog;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
+import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -200,7 +202,7 @@ public class TangramDialog extends BaseDialog {
             return this;
         }
 
-        public Builder titleTextSize(float textSize){
+        public Builder titleTextSize(float textSize) {
             this.titleTextSize = textSize;
             return this;
         }
@@ -215,7 +217,7 @@ public class TangramDialog extends BaseDialog {
             return this;
         }
 
-        public Builder contentTextSize(float textSize){
+        public Builder contentTextSize(float textSize) {
             this.contentTextSize = textSize;
             return this;
         }
@@ -305,6 +307,16 @@ public class TangramDialog extends BaseDialog {
 
         public Builder margin(int margin) {
             this.margin = margin;
+            return this;
+        }
+
+        public Builder dimAmount(@FloatRange(from = 0, to = 1) float dimAmount) {
+            this.dimAmount = dimAmount;
+            return this;
+        }
+
+        public Builder background(Drawable drawable){
+            this.backgroundDrawable = drawable;
             return this;
         }
 

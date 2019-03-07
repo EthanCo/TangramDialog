@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.heiko.tangramdialog.BaseDialog;
+import com.heiko.tangramdialog.ButtonCallback;
 import com.heiko.tangramdialog.DialogAction;
 import com.heiko.tangramdialog.InputCallback;
-import com.heiko.tangramdialog.ButtonCallback;
 import com.heiko.tangramdialog.TangramDialog;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                         //.titleTextSize(22)
                         //.contentColorRes(R.color.text_orange)
                         //.contentTextSize(10)
+                        //.background(new ColorDrawable(Color.BLUE))
                         .canceledOnTouchOutside(false)
                         .onPositive(new ButtonCallback() {
                             @Override
