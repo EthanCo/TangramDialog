@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_primary_solid_height"
         android:layout_marginBottom="30dp"
-        android:background="@color/colorPrimary" />
+        android:background="@color/tangramColorPrimary" />
     <!--android:background="@drawable/shape_yellow_solid_4"-->
 
     <ImageView

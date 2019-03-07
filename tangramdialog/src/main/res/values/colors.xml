@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="line_grey">#E1E1E1</color>
+    <color name="tangramLineGrey">#E1E1E1</color>
+    <color name="tangramColorPrimary">#008577</color>
 </resources>

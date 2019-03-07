@@ -22,14 +22,14 @@
     <!--横线样式-->
     <style name="TangramLineHorizontal">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/line_width</item>
-        <item name="android:background">@color/line_grey</item>
+        <item name="android:layout_height">@dimen/tangram_line_width</item>
+        <item name="android:background">@color/tangramLineGrey</item>
     </style>
 
     <!--竖线样式-->
     <style name="TangramLineVertical">
-        <item name="android:layout_width">@dimen/line_width</item>
+        <item name="android:layout_width">@dimen/tangram_line_width</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@color/line_grey</item>
+        <item name="android:background">@color/tangramLineGrey</item>
     </style>
 </resources>

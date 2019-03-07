@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="line_width">1px</dimen>
+    <dimen name="tangram_line_width">1px</dimen>
     <dimen name="dialog_primary_solid_height">6dp</dimen>
 </resources>
