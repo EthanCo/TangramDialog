@@ -5,13 +5,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.FloatRange;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,111 +53,119 @@ public class TangramDialog extends BaseDialog {
 
         Log.i("TipsDialog", "builder:" + builder);
         if (builder == null) return root;
-        if (TextUtils.isEmpty(builder.title)) {
-            tvTipsTitle.setVisibility(View.GONE);
-        } else {
-            tvTipsTitle.setText(builder.title);
-            if (builder.titleColor != null) {
-                tvTipsTitle.setTextColor(builder.titleColor);
-            }
-            if (builder.titleTextSize > 0) {
-                tvTipsTitle.setTextSize(builder.titleTextSize);
-            }
-        }
-        if (TextUtils.isEmpty(builder.content)) {
-            tvTipsContent.setVisibility(View.GONE);
-        } else {
-            tvTipsContent.setText(builder.content);
-            if (builder.contentColor != null) {
-                tvTipsContent.setTextColor(builder.contentColor);
-            }
-            if (builder.contentTextSize > 0) {
-                tvTipsContent.setTextSize(builder.contentTextSize);
+        if (tvTipsTitle != null) {
+            if (TextUtils.isEmpty(builder.title)) {
+                tvTipsTitle.setVisibility(View.GONE);
+            } else {
+                tvTipsTitle.setText(builder.title);
+                if (builder.titleColor != null) {
+                    tvTipsTitle.setTextColor(builder.titleColor);
+                }
+                if (builder.titleTextSize > 0) {
+                    tvTipsTitle.setTextSize(builder.titleTextSize);
+                }
             }
         }
-        if (builder.imgResId != 0) {
-            imgTips.setVisibility(View.VISIBLE);
-            imgTips.setImageResource(builder.imgResId);
+        if (tvTipsContent != null) {
+            if (TextUtils.isEmpty(builder.content)) {
+                tvTipsContent.setVisibility(View.GONE);
+            } else {
+                tvTipsContent.setText(builder.content);
+                if (builder.contentColor != null) {
+                    tvTipsContent.setTextColor(builder.contentColor);
+                }
+                if (builder.contentTextSize > 0) {
+                    tvTipsContent.setTextSize(builder.contentTextSize);
+                }
+            }
         }
-        if (builder.inputCallback == null) {
-            etTips.setVisibility(View.GONE);
-        } else {
-            etTips.setVisibility(View.VISIBLE);
-            etTips.setHint(builder.inputHint == null ? "" : builder.inputHint);
-            etTips.setText(builder.inputPrefill == null ? "" : builder.inputPrefill);
-            etTips.addTextChangedListener(new DialogTextWatcher(TangramDialog.this, builder));
+        if (imgTips != null) {
+            if (builder.imgResId != 0) {
+                imgTips.setVisibility(View.VISIBLE);
+                imgTips.setImageResource(builder.imgResId);
+            }
+        }
+        if (etTips != null) {
+            if (builder.inputCallback == null) {
+                etTips.setVisibility(View.GONE);
+            } else {
+                etTips.setVisibility(View.VISIBLE);
+                etTips.setHint(builder.inputHint == null ? "" : builder.inputHint);
+                etTips.setText(builder.inputPrefill == null ? "" : builder.inputPrefill);
+                etTips.addTextChangedListener(new DialogTextWatcher(TangramDialog.this, builder));
+            }
         }
         if (TextUtils.isEmpty(builder.negativeText) && TextUtils.isEmpty(builder.negativeText)) {
-            root.findViewById(R.id.view_divider_button).setVisibility(View.INVISIBLE);
-            root.findViewById(R.id.layout_button).setVisibility(View.GONE);
+            View viewDividerHorizontal = root.findViewById(R.id.view_divider_horizontal);
+            View layoutButtons = root.findViewById(R.id.layout_buttons);
+            if (viewDividerHorizontal != null) {
+                viewDividerHorizontal.setVisibility(View.INVISIBLE);
+            }
+            if (layoutButtons != null) {
+                layoutButtons.setVisibility(View.GONE);
+            }
         } else {
-            if (TextUtils.isEmpty(builder.negativeText)) {
-                btnNegative.setVisibility(View.GONE);
-            } else {
-                btnNegative.setText(builder.negativeText);
-            }
-            if (TextUtils.isEmpty(builder.neutralText)) {
-                root.findViewById(R.id.view_vertical_line_1).setVisibility(View.GONE);
-                btnNeutral.setVisibility(View.GONE);
-            } else {
-                root.findViewById(R.id.view_vertical_line_1).setVisibility(View.VISIBLE);
-                btnNeutral.setText(builder.neutralText);
-            }
-            if (TextUtils.isEmpty(builder.positiveText)) {
-                root.findViewById(R.id.view_vertical_line_2).setVisibility(View.GONE);
-                btnPositive.setVisibility(View.GONE);
-            } else {
-                root.findViewById(R.id.view_vertical_line_2).setVisibility(View.VISIBLE);
-                btnPositive.setText(builder.positiveText);
-            }
-        }
-        if (builder.animStyle == 0) {
-            if (builder.gravity == Gravity.CENTER) {
-                builder.animStyle = R.style.TangramCenterDialogAnim;
-            } else if (builder.gravity == Gravity.TOP) {
-                builder.animStyle = R.style.TangramTopEnterAnim;
-            } else if (builder.gravity == Gravity.BOTTOM) {
-                builder.animStyle = R.style.TangramBottomEnterAnim;
-            }
-        }
-
-        if (btnPositive.getVisibility() == View.VISIBLE) {
-            btnPositive.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (checkEmptyInput()) return;
-                    dismiss();
-                    if (builder.onPositiveCallback != null) {
-                        builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.POSITIVE);
-                    }
+            if (btnNegative != null) {
+                if (TextUtils.isEmpty(builder.negativeText)) {
+                    btnNegative.setVisibility(View.GONE);
+                } else {
+                    btnNegative.setText(builder.negativeText);
                 }
-            });
-        }
-
-        if (btnNegative.getVisibility() == View.VISIBLE) {
-            btnNegative.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (checkEmptyInput()) return;
-                    dismiss();
-                    if (builder.onNegativeCallback != null) {
-                        builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.NEGATIVE);
-                    }
+                if (btnNegative.getVisibility() == View.VISIBLE) {
+                    btnNegative.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (checkEmptyInput()) return;
+                            dismiss();
+                            if (builder.onNegativeCallback != null) {
+                                builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.NEGATIVE);
+                            }
+                        }
+                    });
                 }
-            });
-        }
-
-        if (btnNeutral.getVisibility() == View.VISIBLE) {
-            btnNeutral.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (checkEmptyInput()) return;
-                    dismiss();
-                    if (builder.onNeutralCallback != null) {
-                        builder.onNeutralCallback.onClick(TangramDialog.this, DialogAction.NEUTRAL);
-                    }
+            }
+            if (btnNeutral != null) {
+                if (TextUtils.isEmpty(builder.neutralText)) {
+                    root.findViewById(R.id.view_vertical_line_1).setVisibility(View.GONE);
+                    btnNeutral.setVisibility(View.GONE);
+                } else {
+                    root.findViewById(R.id.view_vertical_line_1).setVisibility(View.VISIBLE);
+                    btnNeutral.setText(builder.neutralText);
                 }
-            });
+                if (btnNeutral.getVisibility() == View.VISIBLE) {
+                    btnNeutral.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (checkEmptyInput()) return;
+                            dismiss();
+                            if (builder.onNeutralCallback != null) {
+                                builder.onNeutralCallback.onClick(TangramDialog.this, DialogAction.NEUTRAL);
+                            }
+                        }
+                    });
+                }
+            }
+            if (btnPositive != null) {
+                if (TextUtils.isEmpty(builder.positiveText)) {
+                    root.findViewById(R.id.view_vertical_line_2).setVisibility(View.GONE);
+                    btnPositive.setVisibility(View.GONE);
+                } else {
+                    root.findViewById(R.id.view_vertical_line_2).setVisibility(View.VISIBLE);
+                    btnPositive.setText(builder.positiveText);
+                }
+                if (btnPositive.getVisibility() == View.VISIBLE) {
+                    btnPositive.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (checkEmptyInput()) return;
+                            dismiss();
+                            if (builder.onPositiveCallback != null) {
+                                builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.POSITIVE);
+                            }
+                        }
+                    });
+                }
+            }
         }
         return root;
     }
@@ -315,8 +323,18 @@ public class TangramDialog extends BaseDialog {
             return this;
         }
 
-        public Builder background(Drawable drawable){
+        public Builder background(Drawable drawable) {
             this.backgroundDrawable = drawable;
+            return this;
+        }
+
+        public Builder customView(View customView) {
+            this.customView = customView;
+            return this;
+        }
+
+        public Builder customView(@LayoutRes int layoutRes) {
+            this.customView = LayoutInflater.from(context).inflate(layoutRes, null);
             return this;
         }
 
@@ -359,6 +377,12 @@ public class TangramDialog extends BaseDialog {
         public TangramDialog show() {
             TangramDialog dialog = new TangramDialog();
             dialog.builder = this;
+            if (customView != null) {
+                dialog.rootView = customView;
+            } else {
+                LayoutInflater inflater = LayoutInflater.from(context);
+                dialog.rootView = inflater.inflate(this.layoutId, null);
+            }
             if (this.context instanceof FragmentActivity) {
                 dialog.show((FragmentActivity) this.context);
             } else {

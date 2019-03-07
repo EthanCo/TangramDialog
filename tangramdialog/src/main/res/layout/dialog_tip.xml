@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <!--android:background="@drawable/shape_white_solid_4"-->
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialog_primary_solid_height"
         android:layout_marginBottom="30dp"
         android:background="@color/tangramColorPrimary" />
-    <!--android:background="@drawable/shape_yellow_solid_4"-->
 
     <ImageView
         android:id="@+id/img_tips"
@@ -52,12 +50,12 @@
         android:layout_marginTop="15dp" />
 
     <View
-        android:id="@+id/view_divider_button"
+        android:id="@+id/view_divider_horizontal"
         style="@style/TangramLineHorizontal"
         android:layout_marginTop="30dp" />
 
     <LinearLayout
-        android:id="@+id/layout_button"
+        android:id="@+id/layout_buttons"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"

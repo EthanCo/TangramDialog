@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.heiko.tangramdialog.BaseDialog;
@@ -140,6 +141,27 @@ public class MainActivity extends AppCompatActivity {
                             }
                         })
                         .show();
+            }
+        });
+
+        findViewById(R.id.btn_dialog_custom).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
+                        .customView(R.layout.dialog_custom)
+                        .canceledOnTouchOutside(false)
+                        .show();
+                View rootView = dialog.getRootView();
+                TextView tvTitle = rootView.findViewById(R.id.tv_title);
+                TextView btnClickMe = rootView.findViewById(R.id.btn_click_me);
+                tvTitle.setText("Hello World!");
+                btnClickMe.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "Click Me!", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
             }
         });
     }

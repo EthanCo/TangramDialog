@@ -3,6 +3,8 @@ package com.heiko.tangramdialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 
 /**
  * @author Heiko
@@ -29,6 +31,8 @@ public class BaseBuilder {
     protected float dimAmount = 0.5f;//背景昏暗度
     protected Drawable backgroundDrawable; //背景
     protected boolean canceledOnTouchOutside;
+    protected View customView;
+
     protected ButtonCallback onPositiveCallback;
     protected ButtonCallback onNegativeCallback;
     protected ButtonCallback onNeutralCallback;

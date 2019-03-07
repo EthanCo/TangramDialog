@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +38,6 @@ public class BaseDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        Log.i("DialogM", "builder:"+builder+" builder.layoutId:"+builder.layoutId);
-        rootView = inflater.inflate(builder.layoutId, container, false);
         return rootView;
     }
 
@@ -83,6 +81,15 @@ public class BaseDialog extends DialogFragment {
             }
 
             //设置dialog动画
+            if (builder.animStyle == 0) {
+                if (builder.gravity == Gravity.CENTER) {
+                    builder.animStyle = R.style.TangramCenterDialogAnim;
+                } else if (builder.gravity == Gravity.TOP) {
+                    builder.animStyle = R.style.TangramTopEnterAnim;
+                } else if (builder.gravity == Gravity.BOTTOM) {
+                    builder.animStyle = R.style.TangramBottomEnterAnim;
+                }
+            }
             if (builder.animStyle != 0) {
                 window.setWindowAnimations(builder.animStyle);
             }
@@ -96,6 +103,10 @@ public class BaseDialog extends DialogFragment {
             window.setAttributes(params);
         }
         setCancelable(builder.canceledOnTouchOutside);
+    }
+
+    public View getRootView() {
+        return rootView;
     }
 
     private BaseDialog show(FragmentManager manager) {
