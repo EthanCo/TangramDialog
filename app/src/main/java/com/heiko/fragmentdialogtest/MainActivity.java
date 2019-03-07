@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                         .content("这是具体内容")
                         .positiveText("确定")
                         .negativeText("取消")
-                        .neutralText("中立")
+                        //.neutralText("中立")
                         //.titleColorRes(R.color.text_red)
                         //.titleTextSize(22)
                         //.contentColorRes(R.color.text_orange)
@@ -47,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "取消", Toast.LENGTH_SHORT).show();
                             }
                         })
-                        .onNeutral(new ButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull BaseDialog dialog, @NonNull DialogAction which) {
-                                Toast.makeText(MainActivity.this, "中立", Toast.LENGTH_SHORT).show();
-                            }
-                        })
+                        //.onNeutral(new ButtonCallback() {
+                        //  @Override
+                        //  public void onClick(@NonNull BaseDialog dialog, @NonNull DialogAction which) {
+                        //      Toast.makeText(MainActivity.this, "中立", Toast.LENGTH_SHORT).show();
+                        //  }
+                        //})
                         //.imgResId(R.mipmap.ic_launcher)
                         //.width(ViewGroup.LayoutParams.MATCH_PARENT)
                         //.height(WindowManager.LayoutParams.WRAP_CONTENT)
