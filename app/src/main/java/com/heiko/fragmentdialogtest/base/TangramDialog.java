@@ -113,11 +113,11 @@ public class TangramDialog extends BaseDialog {
         }
         if (builder.animStyle == 0) {
             if (builder.gravity == Gravity.CENTER) {
-                builder.animStyle = R.style.CenterDialogStyle;
+                builder.animStyle = R.style.TangramCenterDialogAnim;
             } else if (builder.gravity == Gravity.TOP) {
-                builder.animStyle = R.style.TopEnterStyle;
+                builder.animStyle = R.style.TangramTopEnterAnim;
             } else if (builder.gravity == Gravity.BOTTOM) {
-                builder.animStyle = R.style.BottomEnterStyle;
+                builder.animStyle = R.style.TangramBottomEnterAnim;
             }
         }
 

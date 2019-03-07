@@ -7,32 +7,4 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
-    <style name="TopEnterStyle" parent="android:Animation">
-        <item name="android:windowEnterAnimation">@anim/dialog_top_in</item>
-        <item name="android:windowExitAnimation">@anim/dialog_top_out</item>
-    </style>
-
-    <style name="BottomEnterStyle" parent="android:Animation">
-        <item name="android:windowEnterAnimation">@anim/dialog_bottom_in</item>
-        <item name="android:windowExitAnimation">@anim/dialog_bottom_out</item>
-    </style>
-
-    <style name="CenterDialogStyle" parent="android:Animation">
-        <item name="android:windowEnterAnimation">@anim/dialog_center_in</item>
-        <item name="android:windowExitAnimation">@anim/dialog_center_out</item>
-    </style>
-
-
-    <style name="line_horizontal">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/line_width</item>
-        <item name="android:background">@color/line_grey</item>
-    </style>
-
-    <style name="line_vertical">
-        <item name="android:layout_width">@dimen/line_width</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@color/line_grey</item>
-    </style>
 </resources>

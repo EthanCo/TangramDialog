@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--顶部弹出动画-->
+    <style name="TangramTopEnterAnim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_top_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_top_out</item>
+    </style>
+
+    <!--底部弹出动画-->
+    <style name="TangramBottomEnterAnim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_bottom_out</item>
+    </style>
+
+    <!--中间弹出动画-->
+    <style name="TangramCenterDialogAnim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_center_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_center_out</item>
+    </style>
+
+    <!--横线样式-->
+    <style name="TangramLineHorizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/line_width</item>
+        <item name="android:background">@color/line_grey</item>
+    </style>
+
+    <!--竖线样式-->
+    <style name="TangramLineVertical">
+        <item name="android:layout_width">@dimen/line_width</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/line_grey</item>
+    </style>
+</resources>

@@ -53,7 +53,7 @@
 
     <View
         android:id="@+id/view_divider_button"
-        style="@style/line_horizontal"
+        style="@style/TangramLineHorizontal"
         android:layout_marginTop="30dp" />
 
     <LinearLayout
@@ -78,7 +78,7 @@
 
         <View
             android:id="@+id/view_vertical_line_1"
-            style="@style/line_vertical" />
+            style="@style/TangramLineVertical" />
 
         <TextView
             android:id="@+id/btn_neutral"
@@ -94,7 +94,7 @@
 
         <View
             android:id="@+id/view_vertical_line_2"
-            style="@style/line_vertical" />
+            style="@style/TangramLineVertical" />
 
         <TextView
             android:id="@+id/btn_positive"

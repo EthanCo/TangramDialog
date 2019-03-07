@@ -4,32 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-
-    <color name="bg_black">#333333</color>
-    <!-- 主标题文字颜色 -->
-    <color name="text_title">#222222</color>
-    <!-- 副标题文字颜色 -->
-    <color name="text_gray">#A4A4A4</color>
-
     <color name="text_red">#FFE6251B</color>
     <color name="text_orange">#FF6E2A</color>
     <color name="text_default">#6A6A6A</color>
-
-    <color name="color_black_60">#60000000</color>
-    <color name="color_black_90">#90000000</color>
-    <color name="line_grey">#E1E1E1</color>
-    <color name="page_bg">#FFF5F5F5</color>
-    <color name="white">#ffffff</color>
-    <color name="text_unchecked">#A4A4A4</color>
-    <color name="status_personal">#fdf9d8</color>
-    <!--引导颜色-->
-    <!--<color name="color_guide">#4D4200</color>-->
-    <color name="color_guide">#322d00</color>
-    <color name="color_guide_bg">#CC000000</color>
-
-    <color name="btn_cirular_red">#FF444D</color>
-
-    <color name="sp_progress_background">#FFF5F5F5</color>
-    <color name="indicator_normal">#FFF5F5F5</color>
-    <color name="indicator_select">@color/colorPrimary</color>
 </resources>
