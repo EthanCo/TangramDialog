@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.heiko.fragmentdialogtest.R;
 
 /**
- * NevesDialog
+ * TangramDialog
  *
  * @author Heiko
  * @date 2019/3/4
