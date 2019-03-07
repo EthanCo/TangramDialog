@@ -20,12 +20,12 @@ import android.widget.TextView;
 import com.heiko.fragmentdialogtest.R;
 
 /**
- * TipsDialog
+ * NevesDialog
  *
  * @author Heiko
  * @date 2019/3/4
  */
-public class TipsDialog extends BaseDialog {
+public class TangramDialog extends BaseDialog {
 
     private TextView tvTipsTitle;
     private TextView tvTipsContent;
@@ -85,7 +85,7 @@ public class TipsDialog extends BaseDialog {
             etTips.setVisibility(View.VISIBLE);
             etTips.setHint(builder.inputHint == null ? "" : builder.inputHint);
             etTips.setText(builder.inputPrefill == null ? "" : builder.inputPrefill);
-            etTips.addTextChangedListener(new DialogTextWatcher(TipsDialog.this, builder));
+            etTips.addTextChangedListener(new DialogTextWatcher(TangramDialog.this, builder));
         }
         if (TextUtils.isEmpty(builder.negativeText) && TextUtils.isEmpty(builder.negativeText)) {
             root.findViewById(R.id.view_divider_button).setVisibility(View.INVISIBLE);
@@ -128,7 +128,7 @@ public class TipsDialog extends BaseDialog {
                     if (checkEmptyInput()) return;
                     dismiss();
                     if (builder.onPositiveCallback != null) {
-                        builder.onPositiveCallback.onClick(TipsDialog.this, DialogAction.POSITIVE);
+                        builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.POSITIVE);
                     }
                 }
             });
@@ -141,7 +141,7 @@ public class TipsDialog extends BaseDialog {
                     if (checkEmptyInput()) return;
                     dismiss();
                     if (builder.onNegativeCallback != null) {
-                        builder.onPositiveCallback.onClick(TipsDialog.this, DialogAction.POSITIVE);
+                        builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.POSITIVE);
                     }
                 }
             });
@@ -154,7 +154,7 @@ public class TipsDialog extends BaseDialog {
                     if (checkEmptyInput()) return;
                     dismiss();
                     if (builder.onNeutralCallback != null) {
-                        builder.onNeutralCallback.onClick(TipsDialog.this, DialogAction.NEUTRAL);
+                        builder.onNeutralCallback.onClick(TangramDialog.this, DialogAction.NEUTRAL);
                     }
                 }
             });
@@ -250,7 +250,7 @@ public class TipsDialog extends BaseDialog {
          * @return
          */
         public Builder neutralText(CharSequence message) {
-            this.negativeText = message;
+            this.neutralText = message;
             return this;
         }
 
@@ -285,17 +285,17 @@ public class TipsDialog extends BaseDialog {
             return this;
         }
 
-        public Builder onPositive(@NonNull SingleButtonCallback callback) {
+        public Builder onPositive(@NonNull ButtonCallback callback) {
             this.onPositiveCallback = callback;
             return this;
         }
 
-        public Builder onNeutral(@NonNull SingleButtonCallback callback) {
+        public Builder onNeutral(@NonNull ButtonCallback callback) {
             this.onNeutralCallback = callback;
             return this;
         }
 
-        public Builder onNegative(@NonNull SingleButtonCallback callback) {
+        public Builder onNegative(@NonNull ButtonCallback callback) {
             this.onNegativeCallback = callback;
             return this;
         }
@@ -346,8 +346,8 @@ public class TipsDialog extends BaseDialog {
             return input(hint, prefill, true, callback);
         }
 
-        public TipsDialog show() {
-            TipsDialog dialog = new TipsDialog();
+        public TangramDialog show() {
+            TangramDialog dialog = new TangramDialog();
             dialog.builder = this;
             if (this.context instanceof FragmentActivity) {
                 dialog.show((FragmentActivity) this.context);

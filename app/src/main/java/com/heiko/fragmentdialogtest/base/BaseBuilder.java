@@ -29,9 +29,9 @@ public class BaseBuilder {
     protected float dimAmount = 0.5f;//背景昏暗度
     protected Drawable backgroundDrawable; //背景
     protected boolean canceledOnTouchOutside;
-    protected SingleButtonCallback onPositiveCallback;
-    protected SingleButtonCallback onNegativeCallback;
-    protected SingleButtonCallback onNeutralCallback;
+    protected ButtonCallback onPositiveCallback;
+    protected ButtonCallback onNegativeCallback;
+    protected ButtonCallback onNeutralCallback;
 
     //input
     protected CharSequence inputHint;

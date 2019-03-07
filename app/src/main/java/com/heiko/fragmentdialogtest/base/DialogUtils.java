@@ -35,7 +35,7 @@ public class DialogUtils {
 
     public static void showKeyboard(
             @NonNull final DialogFragment di, @NonNull final BaseBuilder builder) {
-        final TipsDialog dialog = (TipsDialog) di;
+        final TangramDialog dialog = (TangramDialog) di;
         if (dialog.getInputEditText() == null) {
             return;
         }
@@ -56,7 +56,7 @@ public class DialogUtils {
 
     public static void hideKeyboard(
             @NonNull final DialogFragment di, @NonNull final BaseBuilder builder) {
-        final TipsDialog dialog = (TipsDialog) di;
+        final TangramDialog dialog = (TangramDialog) di;
         if (dialog.getInputEditText() == null) {
             return;
         }
