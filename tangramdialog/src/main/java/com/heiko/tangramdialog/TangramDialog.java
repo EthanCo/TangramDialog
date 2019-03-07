@@ -1,4 +1,4 @@
-package com.heiko.fragmentdialogtest.base;
+package com.heiko.tangramdialog;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,8 +16,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.heiko.fragmentdialogtest.R;
 
 /**
  * TangramDialog
@@ -141,7 +139,7 @@ public class TangramDialog extends BaseDialog {
                     if (checkEmptyInput()) return;
                     dismiss();
                     if (builder.onNegativeCallback != null) {
-                        builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.POSITIVE);
+                        builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.NEGATIVE);
                     }
                 }
             });

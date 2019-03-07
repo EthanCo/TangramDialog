@@ -1,4 +1,4 @@
-package com.heiko.fragmentdialogtest.base;
+package com.heiko.tangramdialog;
 
 public enum DialogAction {
   POSITIVE,

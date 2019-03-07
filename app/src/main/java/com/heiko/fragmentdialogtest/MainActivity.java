@@ -7,11 +7,11 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.heiko.fragmentdialogtest.base.BaseDialog;
-import com.heiko.fragmentdialogtest.base.DialogAction;
-import com.heiko.fragmentdialogtest.base.InputCallback;
-import com.heiko.fragmentdialogtest.base.ButtonCallback;
-import com.heiko.fragmentdialogtest.base.TangramDialog;
+import com.heiko.tangramdialog.BaseDialog;
+import com.heiko.tangramdialog.DialogAction;
+import com.heiko.tangramdialog.InputCallback;
+import com.heiko.tangramdialog.ButtonCallback;
+import com.heiko.tangramdialog.TangramDialog;
 
 public class MainActivity extends AppCompatActivity {
 
