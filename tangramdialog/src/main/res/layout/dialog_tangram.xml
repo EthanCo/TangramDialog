@@ -12,7 +12,7 @@
         android:background="@color/tangramColorPrimary" />
 
     <ImageView
-        android:id="@+id/img_tips"
+        android:id="@+id/img_info_tangram"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -20,7 +20,7 @@
         android:visibility="gone" />
 
     <TextView
-        android:id="@+id/tv_tips_title"
+        android:id="@+id/tv_title_tangram"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -29,7 +29,7 @@
         tools:text="Title" />
 
     <TextView
-        android:id="@+id/tv_tips_content"
+        android:id="@+id/tv_content_tangram"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -42,7 +42,7 @@
         tools:text="Content" />
 
     <EditText
-        android:id="@+id/et_tips"
+        android:id="@+id/et_input_tangram"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_width="match_parent"
@@ -50,12 +50,12 @@
         android:layout_marginTop="15dp" />
 
     <View
-        android:id="@+id/view_divider_horizontal"
+        android:id="@+id/view_line_horizontal_tangram"
         style="@style/TangramLineHorizontal"
         android:layout_marginTop="30dp" />
 
     <LinearLayout
-        android:id="@+id/layout_buttons"
+        android:id="@+id/layout_buttons_tangram"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
@@ -63,7 +63,7 @@
 
         <!--@color/text_gray-->
         <TextView
-            android:id="@+id/btn_negative"
+            android:id="@+id/btn_negative_tangram"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -75,11 +75,11 @@
             tools:text="Cancel" />
 
         <View
-            android:id="@+id/view_vertical_line_1"
+            android:id="@+id/view_line_vertical_1_tangram"
             style="@style/TangramLineVertical" />
 
         <TextView
-            android:id="@+id/btn_neutral"
+            android:id="@+id/btn_neutral_tangram"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -91,11 +91,11 @@
             tools:text="Info" />
 
         <View
-            android:id="@+id/view_vertical_line_2"
+            android:id="@+id/view_line_vertical_2_tangram"
             style="@style/TangramLineVertical" />
 
         <TextView
-            android:id="@+id/btn_positive"
+            android:id="@+id/btn_positive_tangram"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

@@ -43,13 +43,13 @@ public class TangramDialog extends BaseDialog {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        tvTipsTitle = root.findViewById(R.id.tv_tips_title);
-        tvTipsContent = root.findViewById(R.id.tv_tips_content);
-        imgTips = root.findViewById(R.id.img_tips);
-        btnNegative = root.findViewById(R.id.btn_negative);
-        btnPositive = root.findViewById(R.id.btn_positive);
-        btnNeutral = root.findViewById(R.id.btn_neutral);
-        etTips = root.findViewById(R.id.et_tips);
+        tvTipsTitle = root.findViewById(R.id.tv_title_tangram);
+        tvTipsContent = root.findViewById(R.id.tv_content_tangram);
+        imgTips = root.findViewById(R.id.img_info_tangram);
+        btnNegative = root.findViewById(R.id.btn_negative_tangram);
+        btnPositive = root.findViewById(R.id.btn_positive_tangram);
+        btnNeutral = root.findViewById(R.id.btn_neutral_tangram);
+        etTips = root.findViewById(R.id.et_input_tangram);
 
         Log.i("TipsDialog", "builder:" + builder);
         if (builder == null) return root;
@@ -95,9 +95,9 @@ public class TangramDialog extends BaseDialog {
                 etTips.addTextChangedListener(new DialogTextWatcher(TangramDialog.this, builder));
             }
         }
-        if (TextUtils.isEmpty(builder.negativeText) && TextUtils.isEmpty(builder.negativeText)) {
-            View viewDividerHorizontal = root.findViewById(R.id.view_divider_horizontal);
-            View layoutButtons = root.findViewById(R.id.layout_buttons);
+        if (isNoButtom()) {
+            View viewDividerHorizontal = root.findViewById(R.id.view_line_horizontal_tangram);
+            View layoutButtons = root.findViewById(R.id.layout_buttons_tangram);
             if (viewDividerHorizontal != null) {
                 viewDividerHorizontal.setVisibility(View.INVISIBLE);
             }
@@ -126,10 +126,10 @@ public class TangramDialog extends BaseDialog {
             }
             if (btnNeutral != null) {
                 if (TextUtils.isEmpty(builder.neutralText)) {
-                    root.findViewById(R.id.view_vertical_line_1).setVisibility(View.GONE);
+                    root.findViewById(R.id.view_line_vertical_1_tangram).setVisibility(View.GONE);
                     btnNeutral.setVisibility(View.GONE);
                 } else {
-                    root.findViewById(R.id.view_vertical_line_1).setVisibility(View.VISIBLE);
+                    root.findViewById(R.id.view_line_vertical_1_tangram).setVisibility(View.VISIBLE);
                     btnNeutral.setText(builder.neutralText);
                 }
                 if (btnNeutral.getVisibility() == View.VISIBLE) {
@@ -147,10 +147,10 @@ public class TangramDialog extends BaseDialog {
             }
             if (btnPositive != null) {
                 if (TextUtils.isEmpty(builder.positiveText)) {
-                    root.findViewById(R.id.view_vertical_line_2).setVisibility(View.GONE);
+                    root.findViewById(R.id.view_line_vertical_2_tangram).setVisibility(View.GONE);
                     btnPositive.setVisibility(View.GONE);
                 } else {
-                    root.findViewById(R.id.view_vertical_line_2).setVisibility(View.VISIBLE);
+                    root.findViewById(R.id.view_line_vertical_2_tangram).setVisibility(View.VISIBLE);
                     btnPositive.setText(builder.positiveText);
                 }
                 if (btnPositive.getVisibility() == View.VISIBLE) {
@@ -168,6 +168,10 @@ public class TangramDialog extends BaseDialog {
             }
         }
         return root;
+    }
+
+    private boolean isNoButtom() {
+        return TextUtils.isEmpty(builder.positiveText) && TextUtils.isEmpty(builder.negativeText) && TextUtils.isEmpty(builder.neutralText);
     }
 
     @Override
@@ -196,7 +200,7 @@ public class TangramDialog extends BaseDialog {
 
     public static class Builder extends BaseBuilder {
         public Builder(Context context) {
-            this.layoutId = R.layout.dialog_tip;
+            this.layoutId = R.layout.dialog_tangram;
             this.context = context;
         }
 
