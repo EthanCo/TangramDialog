@@ -43,11 +43,11 @@
 
     <EditText
         android:id="@+id/et_input_tangram"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="16dp" />
 
     <View
         android:id="@+id/view_line_horizontal_tangram"
@@ -61,49 +61,69 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <!--@color/text_gray-->
-        <TextView
-            android:id="@+id/btn_negative_tangram"
+        <FrameLayout
+            android:id="@+id/layout_negative_tangram"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:textColor="#333333"
-            android:textSize="16sp"
-            tools:text="Cancel" />
+            android:foreground="?android:attr/selectableItemBackground">
 
-        <View
-            android:id="@+id/view_line_vertical_1_tangram"
-            style="@style/TangramLineVertical" />
+            <TextView
+                android:id="@+id/tv_negative_tangram"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                tools:text="Cancel" />
 
-        <TextView
-            android:id="@+id/btn_neutral_tangram"
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_neutral_tangram"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:textColor="#333333"
-            android:textSize="16sp"
-            tools:text="Info" />
+            android:foreground="?android:attr/selectableItemBackground">
 
-        <View
-            android:id="@+id/view_line_vertical_2_tangram"
-            style="@style/TangramLineVertical" />
+            <TextView
+                android:id="@+id/tv_neutral_tangram"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                tools:text="Info" />
 
-        <TextView
-            android:id="@+id/btn_positive_tangram"
+            <View
+                android:id="@+id/view_line_vertical_1_tangram"
+                style="@style/TangramLineVertical" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_positive_tangram"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:textColor="#333333"
-            android:textSize="16sp"
-            tools:text="OK" />
+            android:foreground="?android:attr/selectableItemBackground">
+
+            <TextView
+                android:id="@+id/tv_positive_tangram"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                tools:text="OK" />
+
+            <View
+                android:id="@+id/view_line_vertical_2_tangram"
+                style="@style/TangramLineVertical" />
+
+        </FrameLayout>
     </LinearLayout>
 </LinearLayout>

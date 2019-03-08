@@ -30,14 +30,17 @@ public class TangramDialog extends BaseDialog {
 
     private TextView tvTipsTitle;
     private TextView tvTipsContent;
-    private TextView btnNegative;
-    private TextView btnPositive;
-    private TextView btnNeutral;
-    private ImageView imgTips;
-    private EditText etTips;
+    private TextView tvNegative;
+    private TextView tvPositive;
+    private TextView tvNeutral;
+    private ImageView imgInfo;
+    private EditText etInput;
+    private ViewGroup layoutNegative;
+    private ViewGroup layoutPositive;
+    private ViewGroup layoutNeutral;
 
     public EditText getInputEditText() {
-        return etTips;
+        return etInput;
     }
 
     @Nullable
@@ -46,11 +49,14 @@ public class TangramDialog extends BaseDialog {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         tvTipsTitle = root.findViewById(R.id.tv_title_tangram);
         tvTipsContent = root.findViewById(R.id.tv_content_tangram);
-        imgTips = root.findViewById(R.id.img_info_tangram);
-        btnNegative = root.findViewById(R.id.btn_negative_tangram);
-        btnPositive = root.findViewById(R.id.btn_positive_tangram);
-        btnNeutral = root.findViewById(R.id.btn_neutral_tangram);
-        etTips = root.findViewById(R.id.et_input_tangram);
+        imgInfo = root.findViewById(R.id.img_info_tangram);
+        tvNegative = root.findViewById(R.id.tv_negative_tangram);
+        layoutNegative = root.findViewById(R.id.layout_negative_tangram);
+        tvPositive = root.findViewById(R.id.tv_positive_tangram);
+        layoutPositive = root.findViewById(R.id.layout_positive_tangram);
+        tvNeutral = root.findViewById(R.id.tv_neutral_tangram);
+        layoutNeutral = root.findViewById(R.id.layout_neutral_tangram);
+        etInput = root.findViewById(R.id.et_input_tangram);
 
         Log.i("TipsDialog", "builder:" + builder);
         if (builder == null) return root;
@@ -80,23 +86,23 @@ public class TangramDialog extends BaseDialog {
                 }
             }
         }
-        if (imgTips != null) {
+        if (imgInfo != null) {
             if (builder.imgRes != 0) {
-                imgTips.setVisibility(View.VISIBLE);
-                imgTips.setImageResource(builder.imgRes);
+                imgInfo.setVisibility(View.VISIBLE);
+                imgInfo.setImageResource(builder.imgRes);
             }
         }
-        if (etTips != null) {
+        if (etInput != null) {
             if (builder.inputCallback == null) {
-                etTips.setVisibility(View.GONE);
+                etInput.setVisibility(View.GONE);
             } else {
-                etTips.setVisibility(View.VISIBLE);
-                etTips.setHint(builder.inputHint == null ? "" : builder.inputHint);
-                etTips.setText(builder.inputPrefill == null ? "" : builder.inputPrefill);
-                etTips.addTextChangedListener(new DialogTextWatcher(TangramDialog.this, builder));
+                etInput.setVisibility(View.VISIBLE);
+                etInput.setHint(builder.inputHint == null ? "" : builder.inputHint);
+                etInput.setText(builder.inputPrefill == null ? "" : builder.inputPrefill);
+                etInput.addTextChangedListener(new DialogTextWatcher(TangramDialog.this, builder));
             }
         }
-        if (isNoButtom()) {
+        if (isNoButton()) {
             View viewDividerHorizontal = root.findViewById(R.id.view_line_horizontal_tangram);
             View layoutButtons = root.findViewById(R.id.layout_buttons_tangram);
             if (viewDividerHorizontal != null) {
@@ -106,14 +112,16 @@ public class TangramDialog extends BaseDialog {
                 layoutButtons.setVisibility(View.GONE);
             }
         } else {
-            if (btnNegative != null) {
+            if (layoutNegative != null) {
                 if (TextUtils.isEmpty(builder.negativeText)) {
-                    btnNegative.setVisibility(View.GONE);
+                    layoutNegative.setVisibility(View.GONE);
                 } else {
-                    btnNegative.setText(builder.negativeText);
+                    if (tvNegative != null) {
+                        tvNegative.setText(builder.negativeText);
+                    }
                 }
-                if (btnNegative.getVisibility() == View.VISIBLE) {
-                    btnNegative.setOnClickListener(new View.OnClickListener() {
+                if (layoutNegative.getVisibility() == View.VISIBLE) {
+                    layoutNegative.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (checkEmptyInput()) return;
@@ -125,16 +133,23 @@ public class TangramDialog extends BaseDialog {
                     });
                 }
             }
-            if (btnNeutral != null) {
+            if (layoutNeutral != null) {
+                View lineVertical1 = root.findViewById(R.id.view_line_vertical_1_tangram);
                 if (TextUtils.isEmpty(builder.neutralText)) {
-                    root.findViewById(R.id.view_line_vertical_1_tangram).setVisibility(View.GONE);
-                    btnNeutral.setVisibility(View.GONE);
+                    if (lineVertical1 != null) {
+                        lineVertical1.setVisibility(View.GONE);
+                    }
+                    layoutNeutral.setVisibility(View.GONE);
                 } else {
-                    root.findViewById(R.id.view_line_vertical_1_tangram).setVisibility(View.VISIBLE);
-                    btnNeutral.setText(builder.neutralText);
+                    if (lineVertical1 != null) {
+                        lineVertical1.setVisibility(View.VISIBLE);
+                    }
+                    if (tvNeutral != null) {
+                        tvNeutral.setText(builder.neutralText);
+                    }
                 }
-                if (btnNeutral.getVisibility() == View.VISIBLE) {
-                    btnNeutral.setOnClickListener(new View.OnClickListener() {
+                if (layoutNeutral.getVisibility() == View.VISIBLE) {
+                    layoutNeutral.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (checkEmptyInput()) return;
@@ -146,16 +161,23 @@ public class TangramDialog extends BaseDialog {
                     });
                 }
             }
-            if (btnPositive != null) {
+            if (layoutPositive != null) {
+                View lineVertical2 = root.findViewById(R.id.view_line_vertical_2_tangram);
                 if (TextUtils.isEmpty(builder.positiveText)) {
-                    root.findViewById(R.id.view_line_vertical_2_tangram).setVisibility(View.GONE);
-                    btnPositive.setVisibility(View.GONE);
+                    if (lineVertical2 != null) {
+                        lineVertical2.setVisibility(View.GONE);
+                    }
+                    layoutPositive.setVisibility(View.GONE);
                 } else {
-                    root.findViewById(R.id.view_line_vertical_2_tangram).setVisibility(View.VISIBLE);
-                    btnPositive.setText(builder.positiveText);
+                    if (lineVertical2 != null) {
+                        lineVertical2.setVisibility(View.VISIBLE);
+                    }
+                    if (tvPositive != null) {
+                        tvPositive.setText(builder.positiveText);
+                    }
                 }
-                if (btnPositive.getVisibility() == View.VISIBLE) {
-                    btnPositive.setOnClickListener(new View.OnClickListener() {
+                if (layoutPositive.getVisibility() == View.VISIBLE) {
+                    layoutPositive.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (checkEmptyInput()) return;
@@ -171,8 +193,10 @@ public class TangramDialog extends BaseDialog {
         return root;
     }
 
-    private boolean isNoButtom() {
-        return TextUtils.isEmpty(builder.positiveText) && TextUtils.isEmpty(builder.negativeText) && TextUtils.isEmpty(builder.neutralText);
+    private boolean isNoButton() {
+        return TextUtils.isEmpty(builder.positiveText)
+                && TextUtils.isEmpty(builder.negativeText)
+                && TextUtils.isEmpty(builder.neutralText);
     }
 
     @Override
@@ -181,8 +205,8 @@ public class TangramDialog extends BaseDialog {
 
         if (builder.inputCallback != null) {
             DialogUtils.showKeyboard(this, builder);
-            if (etTips.getText().length() > 0) {
-                etTips.setSelection(etTips.getText().length());
+            if (etInput.getText().length() > 0) {
+                etInput.setSelection(etInput.getText().length());
             }
         }
     }
@@ -196,7 +220,7 @@ public class TangramDialog extends BaseDialog {
     }
 
     private boolean checkEmptyInput() {
-        return !builder.inputAllowEmpty && TextUtils.isEmpty(etTips.getText().toString());
+        return !builder.inputAllowEmpty && TextUtils.isEmpty(etInput.getText().toString());
     }
 
     public static class Builder extends BaseBuilder {

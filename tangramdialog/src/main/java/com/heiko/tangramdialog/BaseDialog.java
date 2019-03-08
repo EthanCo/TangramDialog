@@ -64,7 +64,7 @@ public class BaseDialog extends DialogFragment {
 
             //设置dialog显示位置
             params.gravity = builder.gravity;
-            if (builder.gravity==Gravity.CENTER && builder.margin == null) {
+            if (builder.gravity == Gravity.CENTER && builder.margin == null) {
                 //如果是中心弹出，并没没有设置margin，默认margin设为8
                 builder.margin = 8;
             }
@@ -117,6 +117,10 @@ public class BaseDialog extends DialogFragment {
 
     public View getRootView() {
         return rootView;
+    }
+
+    public boolean isShowing() {
+        return getDialog() != null && getDialog().isShowing();
     }
 
     private BaseDialog show(FragmentManager manager) {

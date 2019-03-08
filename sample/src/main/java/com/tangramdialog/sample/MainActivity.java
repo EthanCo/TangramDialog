@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.heiko.tangramdialog.BaseDialog;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                         //.contentColorRes(R.color.text_orange)
                         //.contentTextSize(10)
                         //.background(new ColorDrawable(Color.BLUE))
+                        //.background(new ColorDrawable(Color.TRANSPARENT)) //背景透明
                         .canceledOnTouchOutside(false)
                         .onPositive(new ButtonCallback() {
                             @Override
@@ -143,10 +145,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*new TangramDialog.Builder(MainActivity.this)
+                .imgRes(R.mipmap.ic_launcher)
+                .title("您已成功为好友砍押金")
+                .positiveText("我知道了")
+                .onPositive(new ButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull BaseDialog dialog, @NonNull DialogAction which) {
+                        Toast.makeText(MainActivity.this, "dismiss", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .show();*/
+
         findViewById(R.id.btn_dialog_custom).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*final TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
+                final TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
                         .customView(R.layout.dialog_custom)
                         .canceledOnTouchOutside(true)
                         .show();
@@ -160,18 +174,28 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Click Me!", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
-                });*/
-                new TangramDialog.Builder(MainActivity.this)
-                        .imgRes(R.mipmap.ic_launcher)
-                        .title("您已成功为好友砍押金")
-                        .positiveText("我知道了")
-                        .onPositive(new ButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull BaseDialog dialog, @NonNull DialogAction which) {
-                                Toast.makeText(MainActivity.this, "dismiss", Toast.LENGTH_SHORT).show();
-                            }
-                        })
+                });
+            }
+        });
+
+        findViewById(R.id.btn_dialog_custom_no_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
+                        .customView(R.layout.dialog_custom)
+                        .canceledOnTouchOutside(true)
                         .show();
+                View rootView = dialog.getRootView();
+                TextView tvTitle = rootView.findViewById(R.id.tv_title);
+                TextView btnClickMe = rootView.findViewById(R.id.btn_click_me);
+                tvTitle.setText("Hello World!");
+                btnClickMe.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "Click Me!", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
             }
         });
     }
