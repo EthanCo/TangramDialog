@@ -3,20 +3,20 @@
 
     <!--顶部弹出动画-->
     <style name="TangramTopEnterAnim" parent="android:Animation">
-        <item name="android:windowEnterAnimation">@anim/dialog_top_in</item>
-        <item name="android:windowExitAnimation">@anim/dialog_top_out</item>
+        <item name="android:windowEnterAnimation">@anim/tagram_dialog_top_in</item>
+        <item name="android:windowExitAnimation">@anim/tagram_dialog_top_out</item>
     </style>
 
     <!--底部弹出动画-->
     <style name="TangramBottomEnterAnim" parent="android:Animation">
-        <item name="android:windowEnterAnimation">@anim/dialog_bottom_in</item>
-        <item name="android:windowExitAnimation">@anim/dialog_bottom_out</item>
+        <item name="android:windowEnterAnimation">@anim/tagram_dialog_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/tagram_dialog_bottom_out</item>
     </style>
 
     <!--中间弹出动画-->
     <style name="TangramCenterDialogAnim" parent="android:Animation">
-        <item name="android:windowEnterAnimation">@anim/dialog_center_in</item>
-        <item name="android:windowExitAnimation">@anim/dialog_center_out</item>
+        <item name="android:windowEnterAnimation">@anim/tagram_dialog_center_in</item>
+        <item name="android:windowExitAnimation">@anim/tagram_dialog_center_out</item>
     </style>
 
     <!--横线样式-->

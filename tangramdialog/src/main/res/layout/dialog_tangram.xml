@@ -7,7 +7,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dialog_primary_solid_height"
+        android:layout_height="@dimen/tangram_primary_solid_height"
         android:layout_marginBottom="30dp"
         android:background="@color/tangramColorPrimary" />
 

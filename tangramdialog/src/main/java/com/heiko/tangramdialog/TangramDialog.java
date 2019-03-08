@@ -118,7 +118,7 @@ public class TangramDialog extends BaseDialog {
                         public void onClick(View v) {
                             if (checkEmptyInput()) return;
                             if (builder.onNegativeCallback != null) {
-                                builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.NEGATIVE);
+                                builder.onNegativeCallback.onClick(TangramDialog.this, DialogAction.NEGATIVE);
                             }
                             dismiss();
                         }
