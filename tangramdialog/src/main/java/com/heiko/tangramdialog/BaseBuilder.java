@@ -31,6 +31,7 @@ public class BaseBuilder {
     protected Drawable backgroundDrawable; //背景
     protected boolean canceledOnTouchOutside = true;
     protected boolean canPenetrate; //点击背景穿透
+    protected boolean autoDismiss = true;
     protected View customView;
 
     protected ButtonCallback onPositiveCallback;
@@ -40,6 +41,6 @@ public class BaseBuilder {
     //input
     protected CharSequence inputHint;
     protected CharSequence inputPrefill;
-    protected boolean inputAllowEmpty = true;
+    protected Boolean inputAllowEmpty;
     protected InputCallback inputCallback;
 }

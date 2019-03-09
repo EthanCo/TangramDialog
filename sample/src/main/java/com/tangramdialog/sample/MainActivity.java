@@ -1,6 +1,5 @@
 package com.tangramdialog.sample;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +12,7 @@ import com.heiko.tangramdialog.BaseDialog;
 import com.heiko.tangramdialog.ButtonCallback;
 import com.heiko.tangramdialog.DialogAction;
 import com.heiko.tangramdialog.InputCallback;
+import com.heiko.tangramdialog.OnDismissListener;
 import com.heiko.tangramdialog.TangramDialog;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                         //.contentTextSize(10)
                         //.background(new ColorDrawable(Color.BLUE))
                         //.background(new ColorDrawable(Color.TRANSPARENT)) //背景透明
+                        //.backgroundColor(R.color.colorAccent)
                         .canceledOnTouchOutside(false)
                         .onPositive(new ButtonCallback() {
                             @Override
@@ -60,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
                         //.width(ViewGroup.LayoutParams.MATCH_PARENT)
                         //.height(WindowManager.LayoutParams.WRAP_CONTENT)
                         .show();
-                dialog.addOnDismissListener(new DialogInterface.OnDismissListener() {
+                dialog.addOnDismissListener(new OnDismissListener() {
                     @Override
-                    public void onDismiss(DialogInterface dialog) {
+                    public void onDismiss(BaseDialog dialog) {
 
                     }
                 });
@@ -139,7 +140,8 @@ public class MainActivity extends AppCompatActivity {
                         .onPositive(new ButtonCallback() {
                             @Override
                             public void onClick(@NonNull BaseDialog dialog, @NonNull DialogAction which) {
-                                Toast.makeText(MainActivity.this, "确定", Toast.LENGTH_SHORT).show();
+                                String input = ((TangramDialog) dialog).getInputEditText().getText().toString();
+                                Toast.makeText(MainActivity.this, "确定:" + input, Toast.LENGTH_SHORT).show();
                             }
                         })
                         .onNegative(new ButtonCallback() {

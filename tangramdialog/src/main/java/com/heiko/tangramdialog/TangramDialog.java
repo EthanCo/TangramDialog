@@ -1,6 +1,7 @@
 package com.heiko.tangramdialog;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
@@ -93,7 +94,7 @@ public class TangramDialog extends BaseDialog {
             }
         }
         if (etInput != null) {
-            if (builder.inputCallback == null) {
+            if (builder.inputAllowEmpty == null) {
                 etInput.setVisibility(View.GONE);
             } else {
                 etInput.setVisibility(View.VISIBLE);
@@ -128,7 +129,9 @@ public class TangramDialog extends BaseDialog {
                             if (builder.onNegativeCallback != null) {
                                 builder.onNegativeCallback.onClick(TangramDialog.this, DialogAction.NEGATIVE);
                             }
-                            dismiss();
+                            if (builder.autoDismiss) {
+                                dismiss();
+                            }
                         }
                     });
                 }
@@ -156,7 +159,9 @@ public class TangramDialog extends BaseDialog {
                             if (builder.onNeutralCallback != null) {
                                 builder.onNeutralCallback.onClick(TangramDialog.this, DialogAction.NEUTRAL);
                             }
-                            dismiss();
+                            if (builder.autoDismiss) {
+                                dismiss();
+                            }
                         }
                     });
                 }
@@ -184,7 +189,9 @@ public class TangramDialog extends BaseDialog {
                             if (builder.onPositiveCallback != null) {
                                 builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.POSITIVE);
                             }
-                            dismiss();
+                            if (builder.autoDismiss) {
+                                dismiss();
+                            }
                         }
                     });
                 }
@@ -357,6 +364,11 @@ public class TangramDialog extends BaseDialog {
             return this;
         }
 
+        public Builder backgroundColor(@ColorRes int backgroundColor) {
+            this.backgroundDrawable = new ColorDrawable(DialogUtils.getColor(context, backgroundColor));
+            return this;
+        }
+
         public Builder customView(View customView) {
             this.customView = customView;
             return this;
@@ -364,6 +376,11 @@ public class TangramDialog extends BaseDialog {
 
         public Builder customView(@LayoutRes int layoutRes) {
             this.customView = LayoutInflater.from(context).inflate(layoutRes, null);
+            return this;
+        }
+
+        public Builder autoDismiss(boolean dismiss) {
+            this.autoDismiss = dismiss;
             return this;
         }
 
