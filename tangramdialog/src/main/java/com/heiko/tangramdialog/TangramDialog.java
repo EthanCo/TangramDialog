@@ -127,7 +127,7 @@ public class TangramDialog extends BaseDialog {
                         public void onClick(View v) {
                             if (checkEmptyInput()) return;
                             if (builder.onNegativeCallback != null) {
-                                builder.onNegativeCallback.onClick(TangramDialog.this, DialogAction.NEGATIVE);
+                                builder.onNegativeCallback.onClick(TangramDialog.this, layoutNegative);
                             }
                             if (builder.autoDismiss) {
                                 dismiss();
@@ -157,7 +157,7 @@ public class TangramDialog extends BaseDialog {
                         public void onClick(View v) {
                             if (checkEmptyInput()) return;
                             if (builder.onNeutralCallback != null) {
-                                builder.onNeutralCallback.onClick(TangramDialog.this, DialogAction.NEUTRAL);
+                                builder.onNeutralCallback.onClick(TangramDialog.this, layoutNeutral);
                             }
                             if (builder.autoDismiss) {
                                 dismiss();
@@ -187,7 +187,7 @@ public class TangramDialog extends BaseDialog {
                         public void onClick(View v) {
                             if (checkEmptyInput()) return;
                             if (builder.onPositiveCallback != null) {
-                                builder.onPositiveCallback.onClick(TangramDialog.this, DialogAction.POSITIVE);
+                                builder.onPositiveCallback.onClick(TangramDialog.this,layoutPositive);
                             }
                             if (builder.autoDismiss) {
                                 dismiss();
