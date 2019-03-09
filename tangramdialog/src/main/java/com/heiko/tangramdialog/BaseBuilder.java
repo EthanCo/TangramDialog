@@ -43,4 +43,8 @@ public class BaseBuilder {
     protected CharSequence inputPrefill;
     protected Boolean inputAllowEmpty;
     protected InputCallback inputCallback;
+
+    //对话框相对自身位置的偏移量
+    protected Integer offsetX;
+    protected Integer offsetY;
 }

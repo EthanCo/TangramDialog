@@ -103,6 +103,15 @@ public class BaseDialog extends DialogFragment {
                 params.height = DialogUtils.dp2px(getContext(), builder.height);
             }
 
+            // x y 是相对值 相对自身位置的偏移量 负值无效
+            // 显而易见 x 是代表水平方向的偏移 y 代表竖直方向的偏移
+            if (builder.offsetX != null) {
+                params.x = builder.offsetX;
+            }
+            if (builder.offsetY != null) {
+                params.y = builder.offsetY;
+            }
+
             //设置dialog动画
             if (builder.animStyle == 0) {
                 if (builder.gravity == Gravity.CENTER) {

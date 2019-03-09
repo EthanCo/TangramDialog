@@ -207,5 +207,31 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+        findViewById(R.id.btn_dialog_top_margin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
+                        .title("标题")
+                        .content("这是具体内容")
+                        .positiveText("确定")
+                        .negativeText("取消")
+                        .canceledOnTouchOutside(false)
+                        .onPositive(new ButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull BaseDialog dialog, @NonNull DialogAction which) {
+                                Toast.makeText(MainActivity.this, "确定", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .onNegative(new ButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull BaseDialog dialog, @NonNull DialogAction which) {
+                                Toast.makeText(MainActivity.this, "取消", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .gravity(Gravity.TOP)
+                        .show();
+            }
+        });
     }
 }

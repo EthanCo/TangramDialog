@@ -227,7 +227,9 @@ public class TangramDialog extends BaseDialog {
     }
 
     private boolean checkEmptyInput() {
-        return !builder.inputAllowEmpty && TextUtils.isEmpty(etInput.getText().toString());
+        if (builder.inputAllowEmpty == null) return false;
+        return  !builder.inputAllowEmpty
+                && TextUtils.isEmpty(etInput.getText().toString());
     }
 
     public static class Builder extends BaseBuilder {
@@ -381,6 +383,16 @@ public class TangramDialog extends BaseDialog {
 
         public Builder autoDismiss(boolean dismiss) {
             this.autoDismiss = dismiss;
+            return this;
+        }
+
+        public Builder offsetX(int offsetX){
+            this.offsetX = offsetX;
+            return this;
+        }
+
+        public Builder offsetY(int offsetY){
+            this.offsetY = offsetY;
             return this;
         }
 
