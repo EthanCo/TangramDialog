@@ -24,6 +24,7 @@ public class BaseDialog extends DialogFragment {
     protected BaseBuilder builder;
     protected View rootView;
     protected List<OnDismissListener> onDismissListeners;
+    protected List<OnShowListener> onShowListeners;
 
     @Override
     public void onAttach(Context context) {
@@ -42,6 +43,12 @@ public class BaseDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        onShowListeners();
     }
 
     @Override
@@ -143,13 +150,38 @@ public class BaseDialog extends DialogFragment {
         onDismissListeners.remove(listener);
     }
 
+    public void addOnShowListener(OnShowListener listener) {
+        if (onShowListeners == null) {
+            onShowListeners = new ArrayList<>();
+        }
+        if (!onShowListeners.contains(listener)) {
+            onShowListeners.add(listener);
+        }
+    }
+
+    public void remvoeOnShowListener(OnShowListener listener) {
+        if (onShowListeners == null) return;
+        onShowListeners.remove(listener);
+    }
+
     @Override
     public void dismiss() {
         super.dismiss();
 
+        onDismissListeners();
+    }
+
+    private void onDismissListeners() {
         if (onDismissListeners == null) return;
         for (OnDismissListener onDismissListener : onDismissListeners) {
             onDismissListener.onDismiss(this);
+        }
+    }
+
+    private void onShowListeners() {
+        if (onShowListeners == null) return;
+        for (OnShowListener onShowListener : onShowListeners) {
+            onShowListener.onShow(this);
         }
     }
 
