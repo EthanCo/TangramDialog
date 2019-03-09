@@ -1,5 +1,6 @@
 package com.tangramdialog.sample;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -59,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
                         //.width(ViewGroup.LayoutParams.MATCH_PARENT)
                         //.height(WindowManager.LayoutParams.WRAP_CONTENT)
                         .show();
+                dialog.addOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+
+                    }
+                });
             }
         });
 

@@ -14,13 +14,16 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Dialog通用样式
  */
 public class BaseDialog extends DialogFragment {
-    public static final String KEY_LAYOUT_RES_ID = "layoutResId";
     protected BaseBuilder builder;
     protected View rootView;
+    protected List<OnDismissListener> onDismissListeners;
 
     @Override
     public void onAttach(Context context) {
@@ -124,6 +127,30 @@ public class BaseDialog extends DialogFragment {
 
     public boolean isShowing() {
         return getDialog() != null && getDialog().isShowing();
+    }
+
+    public void addOnDismissListener(OnDismissListener listener) {
+        if (onDismissListeners == null) {
+            onDismissListeners = new ArrayList<>();
+        }
+        if (!onDismissListeners.contains(listener)) {
+            onDismissListeners.add(listener);
+        }
+    }
+
+    public void remvoeOnDismissListener(OnDismissListener listener) {
+        if (onDismissListeners == null) return;
+        onDismissListeners.remove(listener);
+    }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+
+        if (onDismissListeners == null) return;
+        for (OnDismissListener onDismissListener : onDismissListeners) {
+            onDismissListener.onDismiss(this);
+        }
     }
 
     private BaseDialog show(FragmentManager manager) {

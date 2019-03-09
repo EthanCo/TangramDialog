@@ -29,7 +29,7 @@ public class BaseBuilder {
     protected int animStyle;
     protected Float dimAmount;//背景昏暗度
     protected Drawable backgroundDrawable; //背景
-    protected boolean canceledOnTouchOutside;
+    protected boolean canceledOnTouchOutside = true;
     protected boolean canPenetrate; //点击背景穿透
     protected View customView;
 
