@@ -62,6 +62,9 @@ public class BaseDialog extends DialogFragment {
                 params.dimAmount = builder.dimAmount;
             }
 
+            if (builder.canPenetrate) {
+                params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+            }
             //设置dialog显示位置
             params.gravity = builder.gravity;
             if (builder.gravity == Gravity.CENTER && builder.margin == null) {

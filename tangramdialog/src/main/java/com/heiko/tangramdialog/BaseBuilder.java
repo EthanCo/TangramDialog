@@ -30,6 +30,7 @@ public class BaseBuilder {
     protected Float dimAmount;//背景昏暗度
     protected Drawable backgroundDrawable; //背景
     protected boolean canceledOnTouchOutside;
+    protected boolean canPenetrate; //点击背景穿透
     protected View customView;
 
     protected ButtonCallback onPositiveCallback;

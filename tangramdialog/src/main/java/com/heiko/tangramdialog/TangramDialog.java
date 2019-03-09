@@ -367,6 +367,17 @@ public class TangramDialog extends BaseDialog {
             return this;
         }
 
+        /**
+         * 点击背景是否穿透
+         *
+         * @param canPenetrate
+         * @return
+         */
+        public Builder canPenetrate(boolean canPenetrate) {
+            this.canPenetrate = canPenetrate;
+            return this;
+        }
+
         public Builder input(
                 @Nullable CharSequence hint,
                 @Nullable CharSequence prefill,
