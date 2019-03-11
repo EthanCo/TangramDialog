@@ -8,7 +8,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+
+import java.util.List;
 
 /**
  * Utils
@@ -80,5 +84,43 @@ public class DialogUtils {
     @ColorInt
     public static int getColor(Context context, @ColorRes int colorId) {
         return ContextCompat.getColor(context, colorId);
+    }
+
+    /**
+     * Loop among the views in the hierarchy and assign listener to them
+     */
+    public static void assignClickListenerRecursively(BaseDialog dialog, View parent, List<Integer> ignoreIds, ButtonCallback buttonCallback) {
+        if (buttonCallback == null || parent == null) {
+            return;
+        }
+
+        if (parent instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) parent;
+            int childCount = viewGroup.getChildCount();
+            for (int i = childCount - 1; i >= 0; i--) {
+                View child = viewGroup.getChildAt(i);
+                assignClickListenerRecursively(dialog, child, ignoreIds, buttonCallback);
+            }
+        }
+        setClickListener(dialog, parent, ignoreIds, buttonCallback);
+    }
+
+    private static void setClickListener(final BaseDialog dialog, View view, List<Integer> ignoreIds, final ButtonCallback buttonCallback) {
+        if (view.getId() == View.NO_ID) {
+            return;
+        }
+        for (int ignoreId : ignoreIds) {
+            if (view.getId() == ignoreId) {
+                return;
+            }
+        }
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (buttonCallback != null) {
+                    buttonCallback.onClick(dialog, v);
+                }
+            }
+        });
     }
 }

@@ -202,4 +202,9 @@ public class BaseDialog extends DialogFragment {
     public BaseDialog show(FragmentActivity activity) {
         return show(activity.getSupportFragmentManager());
     }
+
+    public void setOnClickListener(ButtonCallback buttonCallback) {
+        List<Integer> ignoreIds = new ArrayList<>();
+        DialogUtils.assignClickListenerRecursively(this, rootView, ignoreIds, buttonCallback);
+    }
 }

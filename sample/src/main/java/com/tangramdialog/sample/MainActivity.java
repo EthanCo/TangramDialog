@@ -66,6 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+                dialog.setOnClickListener(new ButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull BaseDialog dialog, @NonNull View v) {
+
+                    }
+                });
             }
         });
 
@@ -181,6 +187,29 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Toast.makeText(MainActivity.this, "Click Me!", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
+                    }
+                });
+            }
+        });
+
+        findViewById(R.id.btn_dialog_custom_unify).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
+                        .customView(R.layout.dialog_custom)
+                        .canceledOnTouchOutside(true)
+                        .show();
+                View rootView = dialog.getRootView();
+                TextView tvTitle = rootView.findViewById(R.id.tv_title);
+                final TextView btnClickMe = rootView.findViewById(R.id.btn_click_me);
+                tvTitle.setText("Hello World!");
+                dialog.setOnClickListener(new ButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull BaseDialog dialog, @NonNull View v) {
+                        if (v.getId() == R.id.btn_click_me) {
+                            Toast.makeText(MainActivity.this, "Click Me!", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss(); //需要手动调用dismiss
+                        }
                     }
                 });
             }

@@ -38,6 +38,12 @@
         android:text="自定义对话框" />
 
     <Button
+        android:id="@+id/btn_dialog_custom_unify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自定义对话框_统一Click事件" />
+
+    <Button
         android:id="@+id/btn_dialog_custom_no_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
