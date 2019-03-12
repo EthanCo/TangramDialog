@@ -66,12 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-                dialog.setOnClickListener(new ButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull BaseDialog dialog, @NonNull View v) {
-
-                    }
-                });
             }
         });
 
