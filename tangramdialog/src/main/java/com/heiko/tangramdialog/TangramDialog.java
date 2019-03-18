@@ -48,6 +48,8 @@ public class TangramDialog extends BaseDialog {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
+        if (root == null) return root;
+
         tvTipsTitle = root.findViewById(R.id.tv_title_tangram);
         tvTipsContent = root.findViewById(R.id.tv_content_tangram);
         imgInfo = root.findViewById(R.id.img_info_tangram);
@@ -187,7 +189,7 @@ public class TangramDialog extends BaseDialog {
                         public void onClick(View v) {
                             if (checkEmptyInput()) return;
                             if (builder.onPositiveCallback != null) {
-                                builder.onPositiveCallback.onClick(TangramDialog.this,layoutPositive);
+                                builder.onPositiveCallback.onClick(TangramDialog.this, layoutPositive);
                             }
                             if (builder.autoDismiss) {
                                 dismiss();
@@ -210,7 +212,7 @@ public class TangramDialog extends BaseDialog {
     public void onStart() {
         super.onStart();
 
-        if (builder.inputCallback != null) {
+        if (builder != null && builder.inputCallback != null) {
             DialogUtils.showKeyboard(this, builder);
             if (etInput.getText().length() > 0) {
                 etInput.setSelection(etInput.getText().length());
@@ -220,15 +222,15 @@ public class TangramDialog extends BaseDialog {
 
     @Override
     public void dismiss() {
-        if (builder.inputCallback != null) {
+        if (builder != null && builder.inputCallback != null) {
             DialogUtils.hideKeyboard(this, builder);
         }
         super.dismiss();
     }
 
     private boolean checkEmptyInput() {
-        if (builder.inputAllowEmpty == null) return false;
-        return  !builder.inputAllowEmpty
+        if (builder != null || builder.inputAllowEmpty == null) return false;
+        return !builder.inputAllowEmpty
                 && TextUtils.isEmpty(etInput.getText().toString());
     }
 
@@ -386,12 +388,12 @@ public class TangramDialog extends BaseDialog {
             return this;
         }
 
-        public Builder offsetX(int offsetX){
+        public Builder offsetX(int offsetX) {
             this.offsetX = offsetX;
             return this;
         }
 
-        public Builder offsetY(int offsetY){
+        public Builder offsetY(int offsetY) {
             this.offsetY = offsetY;
             return this;
         }

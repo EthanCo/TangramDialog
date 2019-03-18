@@ -3,10 +3,12 @@ package com.heiko.tangramdialog;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,10 +62,14 @@ public class BaseDialog extends DialogFragment {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        dismiss();
+        //dismiss();
     }
 
     private void initParams() {
+        if (builder == null) {
+            dismiss();
+            return;
+        }
         Window window = getDialog().getWindow();
         if (window != null) {
             WindowManager.LayoutParams params = window.getAttributes();
@@ -175,9 +181,17 @@ public class BaseDialog extends DialogFragment {
 
     @Override
     public void dismiss() {
-        super.dismiss();
+        super.dismissAllowingStateLoss();
+    }
 
+    public void dismissNotAllowingStateLoss() {
+        super.dismiss();
+    }
+
+    @Override
+    public void onDestroy() {
         onDismissListeners();
+        super.onDestroy();
     }
 
     private void onDismissListeners() {
@@ -195,13 +209,41 @@ public class BaseDialog extends DialogFragment {
     }
 
     private BaseDialog show(FragmentManager manager) {
-        super.show(manager, String.valueOf(System.currentTimeMillis()));
+        try {
+            super.show(manager, getDialogTag());
+        } catch (Exception e) {
+            Log.w("BaseDialog", e);
+        }
         return this;
+    }
+
+    @NonNull
+    private String getDialogTag() {
+        return getClass().getSimpleName() + String.valueOf(System.currentTimeMillis());
     }
 
     public BaseDialog show(FragmentActivity activity) {
         return show(activity.getSupportFragmentManager());
     }
+
+    /*@Override
+    public void show(FragmentManager manager, String tag) {
+        try {
+            Field mDismissed = this.getClass().getSuperclass().getDeclaredField("mDismissed");
+            Field mShownByMe = this.getClass().getSuperclass().getDeclaredField("mShownByMe");
+            mDismissed.setAccessible(true);
+            mShownByMe.setAccessible(true);
+            mDismissed.setBoolean(this, false);
+            mShownByMe.setBoolean(this, true);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        FragmentTransaction ft = manager.beginTransaction();
+        ft.add(this, tag);
+        ft.commitAllowingStateLoss();
+    }*/
 
     public void setOnClickListener(ButtonCallback buttonCallback) {
         List<Integer> ignoreIds = new ArrayList<>();

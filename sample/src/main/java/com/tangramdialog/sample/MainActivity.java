@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                         //.background(new ColorDrawable(Color.BLUE))
                         //.background(new ColorDrawable(Color.TRANSPARENT)) //背景透明
                         //.backgroundColor(R.color.colorAccent)
-                        .canceledOnTouchOutside(false)
+                        .canceledOnTouchOutside(true)
                         .onPositive(new ButtonCallback() {
                             @Override
                             public void onClick(@NonNull BaseDialog dialog, @NonNull View view) {
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.addOnDismissListener(new OnDismissListener() {
                     @Override
                     public void onDismiss(BaseDialog dialog) {
-
+                        Toast.makeText(MainActivity.this, "dismiss", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -224,7 +224,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(MainActivity.this, "Click Me!", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
+                        //dialog.dismiss();
+                        dialog.dismissAllowingStateLoss();
                     }
                 });
             }
