@@ -89,7 +89,7 @@ public class DialogUtils {
     /**
      * Loop among the views in the hierarchy and assign listener to them
      */
-    public static void assignClickListenerRecursively(BaseDialog dialog, View parent, List<Integer> ignoreIds, ButtonCallback buttonCallback) {
+    public static void assignClickListenerRecursively(DialogBase dialog, View parent, List<Integer> ignoreIds, ButtonCallback buttonCallback) {
         if (buttonCallback == null || parent == null) {
             return;
         }
@@ -105,7 +105,7 @@ public class DialogUtils {
         setClickListener(dialog, parent, ignoreIds, buttonCallback);
     }
 
-    private static void setClickListener(final BaseDialog dialog, View view, List<Integer> ignoreIds, final ButtonCallback buttonCallback) {
+    private static void setClickListener(final DialogBase dialog, View view, List<Integer> ignoreIds, final ButtonCallback buttonCallback) {
         if (view.getId() == View.NO_ID) {
             return;
         }

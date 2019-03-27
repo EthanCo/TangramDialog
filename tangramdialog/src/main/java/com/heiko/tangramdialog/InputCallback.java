@@ -9,5 +9,5 @@ import android.support.annotation.NonNull;
  * @date 2019/3/6
  */
 public interface InputCallback {
-    void onInput(@NonNull BaseDialog dialog, CharSequence input);
+    void onInput(@NonNull DialogBase dialog, CharSequence input);
 }

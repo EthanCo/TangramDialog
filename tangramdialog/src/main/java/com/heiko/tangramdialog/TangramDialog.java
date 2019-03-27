@@ -13,7 +13,6 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +26,7 @@ import android.widget.TextView;
  * @author Heiko
  * @date 2019/3/4
  */
-public class TangramDialog extends BaseDialog {
+public class TangramDialog extends DialogBase {
 
     private TextView tvTipsTitle;
     private TextView tvTipsContent;
@@ -61,7 +60,6 @@ public class TangramDialog extends BaseDialog {
         layoutNeutral = root.findViewById(R.id.layout_neutral_tangram);
         etInput = root.findViewById(R.id.et_input_tangram);
 
-        Log.i("TipsDialog", "builder:" + builder);
         if (builder == null) return root;
         if (tvTipsTitle != null) {
             if (TextUtils.isEmpty(builder.title)) {
@@ -245,6 +243,11 @@ public class TangramDialog extends BaseDialog {
             return this;
         }
 
+        public Builder title(@StringRes int titleRes) {
+            this.title = context.getString(titleRes);
+            return this;
+        }
+
         public Builder titleColorRes(@ColorRes int colorRes) {
             this.titleColor = DialogUtils.getColor(this.context, colorRes);
             return this;
@@ -257,6 +260,11 @@ public class TangramDialog extends BaseDialog {
 
         public Builder content(CharSequence content) {
             this.content = content;
+            return this;
+        }
+
+        public Builder content(@StringRes int contentRes) {
+            this.content = context.getString(contentRes);
             return this;
         }
 
@@ -291,6 +299,11 @@ public class TangramDialog extends BaseDialog {
             return this;
         }
 
+        public Builder negativeText(@StringRes int messageRes) {
+            this.negativeText = context.getString(messageRes);
+            return this;
+        }
+
         /**
          * 中立的按钮文字
          *
@@ -302,6 +315,11 @@ public class TangramDialog extends BaseDialog {
             return this;
         }
 
+        public Builder neutralText(@StringRes int messageRes) {
+            this.neutralText = context.getString(messageRes);
+            return this;
+        }
+
         /**
          * 肯定的按钮文字
          *
@@ -310,6 +328,11 @@ public class TangramDialog extends BaseDialog {
          */
         public Builder positiveText(CharSequence message) {
             this.positiveText = message;
+            return this;
+        }
+
+        public Builder positiveText(@StringRes int messageRes) {
+            this.positiveText = context.getString(messageRes);
             return this;
         }
 

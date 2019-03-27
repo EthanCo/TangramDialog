@@ -8,10 +8,10 @@ import android.text.TextWatcher;
  * @date 2019/3/6
  */
 public class DialogTextWatcher implements TextWatcher {
-    private final BaseDialog dialog;
+    private final DialogBase dialog;
     private BaseBuilder builder;
 
-    public DialogTextWatcher(BaseDialog dialog, BaseBuilder builder) {
+    public DialogTextWatcher(DialogBase dialog, BaseBuilder builder) {
         this.dialog = dialog;
         this.builder = builder;
     }

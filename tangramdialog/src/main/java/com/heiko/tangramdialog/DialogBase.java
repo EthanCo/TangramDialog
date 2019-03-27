@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Dialog通用样式
  */
-public class BaseDialog extends DialogFragment {
+public class DialogBase extends DialogFragment {
     protected BaseBuilder builder;
     protected View rootView;
     protected List<OnDismissListener> onDismissListeners;
@@ -208,7 +208,7 @@ public class BaseDialog extends DialogFragment {
         }
     }
 
-    private BaseDialog show(FragmentManager manager) {
+    private DialogBase show(FragmentManager manager) {
         try {
             super.show(manager, getDialogTag());
         } catch (Exception e) {
@@ -222,7 +222,7 @@ public class BaseDialog extends DialogFragment {
         return getClass().getSimpleName() + String.valueOf(System.currentTimeMillis());
     }
 
-    public BaseDialog show(FragmentActivity activity) {
+    public DialogBase show(FragmentActivity activity) {
         return show(activity.getSupportFragmentManager());
     }
 

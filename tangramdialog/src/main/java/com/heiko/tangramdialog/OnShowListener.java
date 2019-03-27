@@ -7,5 +7,5 @@ package com.heiko.tangramdialog;
  * @date 2019/3/9
  */
 public interface OnShowListener {
-    void onShow(BaseDialog dialog);
+    void onShow(DialogBase dialog);
 }

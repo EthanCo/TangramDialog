@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.heiko.tangramdialog.BaseDialog;
+import com.heiko.tangramdialog.DialogBase;
 import com.heiko.tangramdialog.ButtonCallback;
 import com.heiko.tangramdialog.InputCallback;
 import com.heiko.tangramdialog.OnDismissListener;
@@ -40,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
                         .canceledOnTouchOutside(true)
                         .onPositive(new ButtonCallback() {
                             @Override
-                            public void onClick(@NonNull BaseDialog dialog, @NonNull View view) {
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View view) {
                                 Toast.makeText(MainActivity.this, "确定", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .onNegative(new ButtonCallback() {
                             @Override
-                            public void onClick(@NonNull BaseDialog dialog, @NonNull View view) {
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View view) {
                                 Toast.makeText(MainActivity.this, "取消", Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         .show();
                 dialog.addOnDismissListener(new OnDismissListener() {
                     @Override
-                    public void onDismiss(BaseDialog dialog) {
+                    public void onDismiss(DialogBase dialog) {
                         Toast.makeText(MainActivity.this, "dismiss", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -80,13 +80,13 @@ public class MainActivity extends AppCompatActivity {
                         .canceledOnTouchOutside(false)
                         .onPositive(new ButtonCallback() {
                             @Override
-                            public void onClick(@NonNull BaseDialog dialog, @NonNull View view) {
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View view) {
                                 Toast.makeText(MainActivity.this, "确定", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .onNegative(new ButtonCallback() {
                             @Override
-                            public void onClick(@NonNull BaseDialog dialog, @NonNull View view) {
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View view) {
                                 Toast.makeText(MainActivity.this, "取消", Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -106,13 +106,13 @@ public class MainActivity extends AppCompatActivity {
                         .canceledOnTouchOutside(false)
                         .onPositive(new ButtonCallback() {
                             @Override
-                            public void onClick(@NonNull BaseDialog dialog, @NonNull View view) {
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View view) {
                                 Toast.makeText(MainActivity.this, "确定", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .onNegative(new ButtonCallback() {
                             @Override
-                            public void onClick(@NonNull BaseDialog dialog, @NonNull View view) {
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View view) {
                                 Toast.makeText(MainActivity.this, "取消", Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         .content("这是具体内容")
                         .input("请输入", "预加载", false, new InputCallback() {
                             @Override
-                            public void onInput(@NonNull BaseDialog dialog, CharSequence input) {
+                            public void onInput(@NonNull DialogBase dialog, CharSequence input) {
                                 Toast.makeText(MainActivity.this, input, Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -138,14 +138,14 @@ public class MainActivity extends AppCompatActivity {
                         .canceledOnTouchOutside(false)
                         .onPositive(new ButtonCallback() {
                             @Override
-                            public void onClick(@NonNull BaseDialog dialog, @NonNull View view) {
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View view) {
                                 String input = ((TangramDialog) dialog).getInputEditText().getText().toString();
                                 Toast.makeText(MainActivity.this, "确定:" + input, Toast.LENGTH_SHORT).show();
                             }
                         })
                         .onNegative(new ButtonCallback() {
                             @Override
-                            public void onClick(@NonNull BaseDialog dialog, @NonNull View view) {
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View view) {
                                 Toast.makeText(MainActivity.this, "取消", Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 tvTitle.setText("Hello World!");
                 dialog.setOnClickListener(new ButtonCallback() {
                     @Override
-                    public void onClick(@NonNull BaseDialog dialog, @NonNull View v) {
+                    public void onClick(@NonNull DialogBase dialog, @NonNull View v) {
                         if (v.getId() == R.id.btn_click_me) {
                             Toast.makeText(MainActivity.this, "Click Me!", Toast.LENGTH_SHORT).show();
                             dialog.dismiss(); //需要手动调用dismiss
@@ -243,13 +243,13 @@ public class MainActivity extends AppCompatActivity {
                         .canceledOnTouchOutside(false)
                         .onPositive(new ButtonCallback() {
                             @Override
-                            public void onClick(@NonNull BaseDialog dialog, @NonNull View view) {
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View view) {
                                 Toast.makeText(MainActivity.this, "确定", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .onNegative(new ButtonCallback() {
                             @Override
-                            public void onClick(@NonNull BaseDialog dialog, @NonNull View view) {
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View view) {
                                 Toast.makeText(MainActivity.this, "取消", Toast.LENGTH_SHORT).show();
                             }
                         })

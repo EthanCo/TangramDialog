@@ -7,5 +7,5 @@ package com.heiko.tangramdialog;
  * @date 2019/3/9
  */
 public interface OnDismissListener {
-    void onDismiss(BaseDialog dialog);
+    void onDismiss(DialogBase dialog);
 }
