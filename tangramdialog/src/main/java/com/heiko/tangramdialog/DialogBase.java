@@ -2,12 +2,14 @@ package com.heiko.tangramdialog;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -213,6 +216,8 @@ public class DialogBase extends DialogFragment {
             super.show(manager, getDialogTag());
         } catch (Exception e) {
             Log.w("BaseDialog", e);
+            onError("show dialog error:", e.getMessage());
+            showAllowingStateLoss(manager, getDialogTag());
         }
         return this;
     }
@@ -223,11 +228,28 @@ public class DialogBase extends DialogFragment {
     }
 
     public DialogBase show(FragmentActivity activity) {
-        return show(activity.getSupportFragmentManager());
+        if (!isActivityDestroy(activity)) {
+            show(activity.getSupportFragmentManager());
+        } else {
+            onError("tangramDialog isDestroy","");
+            showAllowingStateLoss(activity.getSupportFragmentManager(), getDialogTag());
+        }
+        return this;
     }
 
-    /*@Override
-    public void show(FragmentManager manager, String tag) {
+    private boolean isActivityDestroy(FragmentActivity activity) {
+        if (activity.isFinishing()) {
+            return true;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if (activity.isDestroyed()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void showAllowingStateLoss(FragmentManager manager, String tag) {
         try {
             Field mDismissed = this.getClass().getSuperclass().getDeclaredField("mDismissed");
             Field mShownByMe = this.getClass().getSuperclass().getDeclaredField("mShownByMe");
@@ -236,17 +258,39 @@ public class DialogBase extends DialogFragment {
             mDismissed.setBoolean(this, false);
             mShownByMe.setBoolean(this, true);
         } catch (NoSuchFieldException e) {
+            onError("showAllowingStateLoss NoSuchFieldException:", e.getMessage());
             e.printStackTrace();
         } catch (IllegalAccessException e) {
+            onError("showAllowingStateLoss IllegalAccessException:", e.getMessage());
             e.printStackTrace();
         }
-        FragmentTransaction ft = manager.beginTransaction();
-        ft.add(this, tag);
-        ft.commitAllowingStateLoss();
-    }*/
+        try {
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.add(this, tag);
+            ft.commitAllowingStateLoss();
+        } catch (Exception e) {
+            onError("showAllowingStateLoss dialog error:", e.getMessage());
+        }
+    }
 
     public void setOnClickListener(ButtonCallback buttonCallback) {
         List<Integer> ignoreIds = new ArrayList<>();
         DialogUtils.assignClickListenerRecursively(this, rootView, ignoreIds, buttonCallback);
+    }
+
+    public interface ErrorListener {
+        void onError(String error);
+    }
+
+    private static ErrorListener errorListener;
+
+    public static void setErrorListener(ErrorListener errorListener) {
+        DialogBase.errorListener = errorListener;
+    }
+
+    private void onError(String tag, String message) {
+        if (errorListener != null) {
+            errorListener.onError(tag + message);
+        }
     }
 }
