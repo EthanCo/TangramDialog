@@ -1,15 +1,15 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-
-group='com.github.EthanCo'
+//apply plugin: 'com.github.dcendents.android-maven'
+//
+//group='com.github.EthanCo'
 android {
     compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 132
-        versionName "1.3.2"
+        versionCode 133
+        versionName "1.3.3"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -28,7 +28,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.+'
 }
 
-//ext.GROUP="com.kit"
-//ext.VERSION_NAME=android.defaultConfig.versionName
-//ext.POM_ARTIFACT_ID="tangramdialog"
-//apply from: "${project.rootDir}/gradle_maven.gradle"
+ext.GROUP="com.kit"
+ext.VERSION_NAME=android.defaultConfig.versionName
+ext.POM_ARTIFACT_ID="tangramdialog"
+apply from: "${project.rootDir}/gradle_maven.gradle"

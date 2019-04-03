@@ -2,7 +2,6 @@ package com.heiko.tangramdialog;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -217,7 +216,6 @@ public class DialogBase extends DialogFragment {
         } catch (Exception e) {
             Log.w("BaseDialog", e);
             onError("show dialog error:", e.getMessage());
-            showAllowingStateLoss(manager, getDialogTag());
         }
         return this;
     }
@@ -228,49 +226,31 @@ public class DialogBase extends DialogFragment {
     }
 
     public DialogBase show(FragmentActivity activity) {
-        if (!isActivityDestroy(activity)) {
-            show(activity.getSupportFragmentManager());
-        } else {
-            onError("tangramDialog isDestroy","");
+        try {
             showAllowingStateLoss(activity.getSupportFragmentManager(), getDialogTag());
+        } catch (NoSuchFieldException e) {
+            Log.w("BaseDialog", e);
+            onError("show NoSuchFieldException error", e.getMessage());
+            show(activity.getSupportFragmentManager());
+        } catch (IllegalAccessException e) {
+            Log.w("BaseDialog", e);
+            onError("show IllegalAccessException error", e.getMessage());
+            show(activity.getSupportFragmentManager());
         }
         return this;
     }
 
-    private boolean isActivityDestroy(FragmentActivity activity) {
-        if (activity.isFinishing()) {
-            return true;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            if (activity.isDestroyed()) {
-                return true;
-            }
-        }
-        return false;
-    }
+    private void showAllowingStateLoss(FragmentManager manager, String tag) throws NoSuchFieldException, IllegalAccessException {
+        Field mDismissed = this.getClass().getSuperclass().getDeclaredField("mDismissed");
+        Field mShownByMe = this.getClass().getSuperclass().getDeclaredField("mShownByMe");
+        mDismissed.setAccessible(true);
+        mShownByMe.setAccessible(true);
+        mDismissed.setBoolean(this, false);
+        mShownByMe.setBoolean(this, true);
 
-    private void showAllowingStateLoss(FragmentManager manager, String tag) {
-        try {
-            Field mDismissed = this.getClass().getSuperclass().getDeclaredField("mDismissed");
-            Field mShownByMe = this.getClass().getSuperclass().getDeclaredField("mShownByMe");
-            mDismissed.setAccessible(true);
-            mShownByMe.setAccessible(true);
-            mDismissed.setBoolean(this, false);
-            mShownByMe.setBoolean(this, true);
-        } catch (NoSuchFieldException e) {
-            onError("showAllowingStateLoss NoSuchFieldException:", e.getMessage());
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            onError("showAllowingStateLoss IllegalAccessException:", e.getMessage());
-            e.printStackTrace();
-        }
-        try {
-            FragmentTransaction ft = manager.beginTransaction();
-            ft.add(this, tag);
-            ft.commitAllowingStateLoss();
-        } catch (Exception e) {
-            onError("showAllowingStateLoss dialog error:", e.getMessage());
-        }
+        FragmentTransaction ft = manager.beginTransaction();
+        ft.add(this, tag);
+        ft.commitAllowingStateLoss();
     }
 
     public void setOnClickListener(ButtonCallback buttonCallback) {
