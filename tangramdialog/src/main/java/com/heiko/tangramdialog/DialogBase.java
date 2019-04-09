@@ -241,8 +241,9 @@ public class DialogBase extends DialogFragment {
     }
 
     private void showAllowingStateLoss(FragmentManager manager, String tag) throws NoSuchFieldException, IllegalAccessException {
-        Field mDismissed = this.getClass().getSuperclass().getDeclaredField("mDismissed");
-        Field mShownByMe = this.getClass().getSuperclass().getDeclaredField("mShownByMe");
+        Class<?> superclass = DialogBase.class.getSuperclass();
+        Field mDismissed = superclass.getDeclaredField("mDismissed");
+        Field mShownByMe = superclass.getDeclaredField("mShownByMe");
         mDismissed.setAccessible(true);
         mShownByMe.setAccessible(true);
         mDismissed.setBoolean(this, false);
