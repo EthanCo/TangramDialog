@@ -384,6 +384,8 @@ Add it in your root build.gradle at the end of repositories:
 #### 自定义样式对话框  
 针对对话框样式需要自定义，但是对话框功能基本相同(标题、确定按钮、取消按钮等)，可更改默认布局为自定义布局，与默认布局id保持一致。  
 
+> 默认布局为 [dialog_tangram.xml](tangramdialog\src\main\res\layout\dialog_tangram.xml)
+
 比如，我们要实现一个如下自定义样式的对话框  
 
 ![custom_styles](custom_styles.webp)  
