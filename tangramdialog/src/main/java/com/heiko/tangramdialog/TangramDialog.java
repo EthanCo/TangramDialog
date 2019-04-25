@@ -238,51 +238,111 @@ public class TangramDialog extends DialogBase {
             this.context = context;
         }
 
+        /**
+         * 设置标题
+         *
+         * @param title
+         * @return
+         */
         public Builder title(CharSequence title) {
             this.title = title;
             return this;
         }
 
+        /**
+         * 设置标题
+         *
+         * @param titleRes
+         * @return
+         */
         public Builder title(@StringRes int titleRes) {
             this.title = context.getString(titleRes);
             return this;
         }
 
+        /**
+         * 标题颜色
+         *
+         * @param colorRes
+         * @return
+         */
         public Builder titleColorRes(@ColorRes int colorRes) {
             this.titleColor = DialogUtils.getColor(this.context, colorRes);
             return this;
         }
 
+        /**
+         * 标题字体大小
+         *
+         * @param textSize
+         * @return
+         */
         public Builder titleTextSize(float textSize) {
             this.titleTextSize = textSize;
             return this;
         }
 
+        /**
+         * 内容文字
+         *
+         * @param content
+         * @return
+         */
         public Builder content(CharSequence content) {
             this.content = content;
             return this;
         }
 
+        /**
+         * 内容文字
+         *
+         * @param contentRes
+         * @return
+         */
         public Builder content(@StringRes int contentRes) {
             this.content = context.getString(contentRes);
             return this;
         }
 
+        /**
+         * 内容文字颜色
+         *
+         * @param colorRes
+         * @return
+         */
         public Builder contentColorRes(@ColorRes int colorRes) {
             this.contentColor = DialogUtils.getColor(this.context, colorRes);
             return this;
         }
 
+        /**
+         * 内容文字字体
+         *
+         * @param textSize
+         * @return
+         */
         public Builder contentTextSize(float textSize) {
             this.contentTextSize = textSize;
             return this;
         }
 
+        /**
+         * 图片资源ID
+         *
+         * @param imgRes
+         * @return
+         */
         public Builder imgRes(@DrawableRes int imgRes) {
             this.imgRes = imgRes;
             return this;
         }
 
+        /**
+         * 对话框布局，用作替换默认布局样式，id需要和默认布局保持一致
+         *
+         * @param layoutId
+         * @return
+         */
         public Builder layoutId(int layoutId) {
             this.layoutId = layoutId;
             return this;
@@ -299,6 +359,12 @@ public class TangramDialog extends DialogBase {
             return this;
         }
 
+        /**
+         * 否定的按钮文字
+         *
+         * @param messageRes
+         * @return
+         */
         public Builder negativeText(@StringRes int messageRes) {
             this.negativeText = context.getString(messageRes);
             return this;
@@ -315,6 +381,12 @@ public class TangramDialog extends DialogBase {
             return this;
         }
 
+        /**
+         * 中立的按钮文字
+         *
+         * @param messageRes
+         * @return
+         */
         public Builder neutralText(@StringRes int messageRes) {
             this.neutralText = context.getString(messageRes);
             return this;
@@ -331,98 +403,213 @@ public class TangramDialog extends DialogBase {
             return this;
         }
 
+        /**
+         * 肯定的按钮文字
+         *
+         * @param messageRes
+         * @return
+         */
         public Builder positiveText(@StringRes int messageRes) {
             this.positiveText = context.getString(messageRes);
             return this;
         }
 
+        /**
+         * 对话框位置
+         *
+         * @param gravity {@link android.view.Gravity#TOP}:顶部
+         *                {@link android.view.Gravity#CENTER}:居中
+         *                {@link android.view.Gravity#BOTTOM}:底部
+         * @return
+         */
         public Builder gravity(int gravity) {
             this.gravity = gravity;
             return this;
         }
 
+        /**
+         * 对话框 显示/隐藏 动画
+         *
+         * @param animStyle
+         * @return
+         */
         public Builder animStyle(int animStyle) {
             this.animStyle = animStyle;
             return this;
         }
 
+        /**
+         * 指定对话框宽度
+         *
+         * @param width
+         * @return
+         */
         public Builder width(int width) {
             this.width = width;
             return this;
         }
 
+        /**
+         * 指定对话框高度
+         *
+         * @param height
+         * @return
+         */
         public Builder height(int height) {
             this.height = height;
             return this;
         }
 
+        /**
+         * 肯定的按钮 点击回调
+         *
+         * @param callback
+         * @return
+         */
         public Builder onPositive(@NonNull ButtonCallback callback) {
             this.onPositiveCallback = callback;
             return this;
         }
 
+        /**
+         * 中立的按钮 点击回调
+         *
+         * @param callback
+         * @return
+         */
         public Builder onNeutral(@NonNull ButtonCallback callback) {
             this.onNeutralCallback = callback;
             return this;
         }
 
+        /**
+         * 否定的按钮 点击回调
+         *
+         * @param callback
+         * @return
+         */
         public Builder onNegative(@NonNull ButtonCallback callback) {
             this.onNegativeCallback = callback;
             return this;
         }
 
+        /**
+         * 对话框外围 点击是否可隐藏
+         *
+         * @param canceledOnTouchOutside
+         * @return
+         */
         public Builder canceledOnTouchOutside(boolean canceledOnTouchOutside) {
             this.canceledOnTouchOutside = canceledOnTouchOutside;
             return this;
         }
 
+        /**
+         * 对话框 margin
+         *
+         * @param margin
+         * @return
+         */
         public Builder margin(int margin) {
             this.margin = margin;
             return this;
         }
 
+        /**
+         * 背景的昏暗度
+         *
+         * @param dimAmount
+         * @return
+         */
         public Builder dimAmount(@FloatRange(from = 0, to = 1) float dimAmount) {
             this.dimAmount = dimAmount;
             return this;
         }
 
+        /**
+         * 设置背景
+         * 例如 new ColorDrawable(Color.BLUE) //蓝色
+         * new ColorDrawable(Color.TRANSPARENT) //透明
+         *
+         * @param drawable
+         * @return
+         */
         public Builder background(Drawable drawable) {
             this.backgroundDrawable = drawable;
             return this;
         }
 
+        /**
+         * 设置背景色
+         *
+         * @param backgroundColor
+         * @return
+         */
         public Builder backgroundColor(@ColorRes int backgroundColor) {
             this.backgroundDrawable = new ColorDrawable(DialogUtils.getColor(context, backgroundColor));
             return this;
         }
 
+        /**
+         * 设置自定义的View，此模式下需手动findViewById来设置UI及相关点击回调
+         * 通过{@link DialogBase#getRootView()}获取根View
+         *
+         * @param customView
+         * @return
+         */
         public Builder customView(View customView) {
             this.customView = customView;
             return this;
         }
 
+
+        /**
+         * 设置自定义的View，此模式下需手动findViewById来设置UI及相关点击回调
+         * 通过{@link DialogBase#getRootView()}获取根View
+         *
+         * @param layoutRes
+         * @return
+         */
         public Builder customView(@LayoutRes int layoutRes) {
             this.customView = LayoutInflater.from(context).inflate(layoutRes, null);
             return this;
         }
 
+        /**
+         * 点击按钮是否自动隐藏对话框
+         *
+         * @param dismiss
+         * @return
+         */
         public Builder autoDismiss(boolean dismiss) {
             this.autoDismiss = dismiss;
             return this;
         }
 
+        /**
+         * 对话框相对自身位置X轴的偏移量
+         *
+         * @param offsetX
+         * @return
+         */
         public Builder offsetX(int offsetX) {
             this.offsetX = offsetX;
             return this;
         }
 
+        /**
+         * 对话框相对自身位置Y轴的偏移量
+         *
+         * @param offsetY
+         * @return
+         */
         public Builder offsetY(int offsetY) {
             this.offsetY = offsetY;
             return this;
         }
 
         /**
-         * 点击背景是否穿透
+         * 点击背景 点击事件是否穿透
          *
          * @param canPenetrate
          * @return
@@ -432,6 +619,14 @@ public class TangramDialog extends DialogBase {
             return this;
         }
 
+        /**
+         * 显示输入框
+         *
+         * @param hint     hint文字
+         * @param prefill  预加载的文字
+         * @param callback 输入改变回调
+         * @return
+         */
         public Builder input(
                 @Nullable CharSequence hint,
                 @Nullable CharSequence prefill,
@@ -439,6 +634,15 @@ public class TangramDialog extends DialogBase {
             return input(hint, prefill, true, callback);
         }
 
+        /**
+         * 显示输入框
+         *
+         * @param hint            hint文字
+         * @param prefill         预加载的文字
+         * @param allowEmptyInput 是否允许为空
+         * @param callback        输入改变回调
+         * @return
+         */
         public Builder input(
                 @Nullable CharSequence hint,
                 @Nullable CharSequence prefill,
@@ -451,6 +655,15 @@ public class TangramDialog extends DialogBase {
             return this;
         }
 
+        /**
+         * 显示输入框
+         *
+         * @param hint            hint文字
+         * @param prefill         预加载的文字
+         * @param allowEmptyInput 是否允许为空
+         * @param callback        输入改变回调
+         * @return
+         */
         public Builder input(
                 @StringRes int hint,
                 @StringRes int prefill,
@@ -463,6 +676,14 @@ public class TangramDialog extends DialogBase {
                     callback);
         }
 
+        /**
+         * 显示输入框
+         *
+         * @param hint     hint文字
+         * @param prefill  预加载的文字
+         * @param callback 输入改变回调
+         * @return
+         */
         public Builder input(
                 @StringRes int hint, @StringRes int prefill, @NonNull InputCallback callback) {
             return input(hint, prefill, true, callback);
