@@ -19,7 +19,7 @@ Add it in your root build.gradle at the end of repositories:
 #### Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.EthanCo:TangramDialog:1.0.5'
+        implementation 'com.github.EthanCo:TangramDialog:1.0.5'
 	}
 
 ### 使用
@@ -33,13 +33,13 @@ Add it in your root build.gradle at the end of repositories:
 		.canceledOnTouchOutside(true)
 		.onPositive(new ButtonCallback() {
 		    @Override
-		    public void onClick(@NonNull DialogBase dialog, @NonNull View view) {
+		    public void onClick(DialogBase dialog, View view) {
 		        //确定
 		    }
 		})
 		.onNegative(new ButtonCallback() {
 		    @Override
-		    public void onClick(@NonNull DialogBase dialog, @NonNull View view) {
+		    public void onClick(DialogBase dialog, View view) {
 		        //取消
 		    }
 		})
@@ -380,3 +380,133 @@ Add it in your root build.gradle at the end of repositories:
                 @StringRes int hint, 
 				@StringRes int prefill,
 				@NonNull InputCallback callback)
+
+#### 自定义样式对话框  
+针对对话框样式需要自定义，但是对话框功能基本相同(标题、确定按钮、取消按钮等)，可更改默认布局为自定义布局，与默认布局id保持一致。  
+
+比如，我们要实现一个如下自定义样式的对话框  
+
+![custom_styles](custom_styles.webp)  
+
+我们需要新建一个布局文件，比如dialog_custom_styles  
+
+	<?xml version="1.0" encoding="utf-8"?>
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:app="http://schemas.android.com/apk/res-auto"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/shape_white_solid_4"
+	    android:orientation="vertical">
+	
+	    <TextView
+	        android:id="@+id/tv_title_tangram"
+	        android:layout_width="match_parent"
+	        android:layout_height="50dp"
+	        android:background="@drawable/shape_gray_solid_4"
+	        android:gravity="center"
+	        android:text="标题"
+	        android:textSize="16sp"
+	        android:textColor="#222222" />
+	
+	    <EditText
+	        android:id="@+id/et_input_tangram"
+	        android:layout_width="match_parent"
+	        android:layout_height="45dp"
+	        android:layout_marginLeft="17dp"
+	        android:layout_marginTop="27dp"
+	        android:layout_marginRight="17dp"
+	        android:background="@drawable/shape_gray_solid_2"
+	        android:gravity="center_vertical"
+	        android:maxLength="20"
+	        android:paddingLeft="15dp"
+	        android:paddingRight="15dp" />
+	
+	    <LinearLayout
+	        android:id="@+id/layout_buttons_tangram"
+	        android:layout_width="match_parent"
+	        android:layout_height="40dp"
+	        android:layout_marginLeft="25dp"
+	        android:layout_marginTop="35dp"
+	        android:layout_marginRight="25dp"
+	        android:layout_marginBottom="25dp"
+	        android:gravity="center"
+	        android:orientation="horizontal">
+	
+	        <FrameLayout
+	            android:id="@+id/layout_negative_tangram"
+	            android:layout_width="0dp"
+	            android:layout_height="match_parent"
+	            android:layout_weight="1">
+	
+	            <TextView
+	                android:textSize="16sp"
+	                android:id="@+id/tv_negative_tangram"
+	                android:layout_width="114dp"
+	                android:layout_height="match_parent"
+	                android:layout_gravity="center"
+	                android:layout_marginLeft="12dp"
+	                android:layout_marginRight="12dp"
+	                android:background="@drawable/shape_black_stroke_30"
+	                android:gravity="center"
+	                android:text="取消"
+	                android:textColor="#222222" />
+	        </FrameLayout>
+	
+	
+	        <FrameLayout
+	            android:id="@+id/layout_positive_tangram"
+	            android:layout_width="0dp"
+	            android:layout_height="match_parent"
+	            android:layout_weight="1">
+	
+	            <TextView
+	                android:id="@+id/tv_positive_tangram"
+	                android:layout_width="114dp"
+	                android:layout_height="match_parent"
+	                android:layout_gravity="center"
+	                android:layout_marginLeft="12dp"
+	                android:layout_marginRight="12dp"
+	                android:background="@drawable/shape_bike_checked"
+	                android:gravity="center"
+	                android:text="保存"
+	                android:textColor="#FFFFFF"
+	                android:textSize="16sp" />
+	        </FrameLayout>
+	    </LinearLayout>
+	</LinearLayout>
+
+接着，我们把layoutId指定为dialog_custom_styles，即可照常使用TangramDialog  
+
+	TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
+        .layoutId(R.layout.dialog_custom_styles)
+        .title("设置")
+        .titleTextSize(18)
+        .input("hint", "1234567890", null)
+        .negativeText("取消")
+        .positiveText("保存")
+        .onPositive(new ButtonCallback() {
+            @Override
+            public void onClick(@NonNull DialogBase dialog, @NonNull View v) {
+                Toast.makeText(MainActivity.this, "保存完毕", Toast.LENGTH_SHORT).show();
+            }
+        })
+        .show();  
+
+#### 自定义布局
+对于需要自定义样式，且对话框功能不是基础功能(标题、确定按钮、取消按钮等)，可使用自定义布局，此模式下需手动findViewById来设置UI及相关点击回调  
+
+	TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
+            .customView(R.layout.dialog_custom)
+            .canceledOnTouchOutside(true)
+            .show();
+    View rootView = dialog.getRootView();
+    TextView tvTitle = rootView.findViewById(R.id.tv_title);
+    TextView btnClickMe = rootView.findViewById(R.id.btn_click_me);
+    tvTitle.setText("Hello World!");
+    btnClickMe.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(MainActivity.this, "Click Me!", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        }
+    });

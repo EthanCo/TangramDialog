@@ -99,7 +99,9 @@ public class TangramDialog extends DialogBase {
             } else {
                 etInput.setVisibility(View.VISIBLE);
                 etInput.setHint(builder.inputHint == null ? "" : builder.inputHint);
-                etInput.setText(builder.inputPrefill == null ? "" : builder.inputPrefill);
+                CharSequence text = builder.inputPrefill == null ? "" : builder.inputPrefill;
+                etInput.setText(text);
+                etInput.setSelection(text.length());
                 etInput.addTextChangedListener(new DialogTextWatcher(TangramDialog.this, builder));
             }
         }

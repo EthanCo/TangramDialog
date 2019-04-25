@@ -44,10 +44,10 @@
         android:text="自定义对话框_统一Click事件" />
 
     <Button
-        android:id="@+id/btn_dialog_custom_no_button"
+        android:id="@+id/btn_dialog_custom_styles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="自定义对话框_无按钮" />
+        android:text="自定义样式对话框" />
 
     <Button
         android:id="@+id/btn_dialog_top_margin"

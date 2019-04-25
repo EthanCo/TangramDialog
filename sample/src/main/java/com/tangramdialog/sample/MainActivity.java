@@ -203,7 +203,6 @@ public class MainActivity extends AppCompatActivity {
                         .show();
                 View rootView = dialog.getRootView();
                 TextView tvTitle = rootView.findViewById(R.id.tv_title);
-                final TextView btnClickMe = rootView.findViewById(R.id.btn_click_me);
                 tvTitle.setText("Hello World!");
                 dialog.setOnClickListener(new ButtonCallback() {
                     @Override
@@ -217,25 +216,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btn_dialog_custom_no_button).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_dialog_custom_styles).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
-                        .customView(R.layout.dialog_custom)
-                        .canceledOnTouchOutside(true)
+                        .layoutId(R.layout.dialog_custom_styles)
+                        .title("设置")
+                        .titleTextSize(18)
+                        .input("hint", "1234567890", null)
+                        .negativeText("取消")
+                        .positiveText("保存")
+                        .onPositive(new ButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View v) {
+                                Toast.makeText(MainActivity.this, "保存完毕", Toast.LENGTH_SHORT).show();
+                            }
+                        })
                         .show();
-                View rootView = dialog.getRootView();
-                TextView tvTitle = rootView.findViewById(R.id.tv_title);
-                TextView btnClickMe = rootView.findViewById(R.id.btn_click_me);
-                tvTitle.setText("Hello World!");
-                btnClickMe.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, "Click Me!", Toast.LENGTH_SHORT).show();
-                        //dialog.dismiss();
-                        dialog.dismissAllowingStateLoss();
-                    }
-                });
             }
         });
 
