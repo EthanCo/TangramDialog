@@ -386,7 +386,7 @@ Add it in your root build.gradle at the end of repositories:
 
 比如，我们要实现一个如下自定义样式的对话框  
 
-![custom_styles](custom_styles.webp =200px)  
+![custom_styles](custom_styles.webp =200x)  
 
 我们需要新建一个布局文件，比如dialog_custom_styles  
 
