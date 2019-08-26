@@ -554,7 +554,7 @@ public class TangramDialog extends DialogBase {
         }
 
         /**
-         * 设置自定义的View，此模式下需手动findViewById来设置UI及相关点击回调
+         * 设置自定义的View
          * 通过{@link DialogBase#getRootView()}获取根View
          *
          * @param customView
@@ -567,7 +567,7 @@ public class TangramDialog extends DialogBase {
 
 
         /**
-         * 设置自定义的View，此模式下需手动findViewById来设置UI及相关点击回调
+         * 设置自定义的View
          * 通过{@link DialogBase#getRootView()}获取根View
          *
          * @param layoutRes
