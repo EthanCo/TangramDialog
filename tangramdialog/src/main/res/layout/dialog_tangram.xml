@@ -49,6 +49,12 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="16dp" />
 
+    <LinearLayout
+        android:id="@+id/layout_tangram_custom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
     <View
         android:id="@+id/view_line_horizontal_tangram"
         style="@style/TangramLineHorizontal"

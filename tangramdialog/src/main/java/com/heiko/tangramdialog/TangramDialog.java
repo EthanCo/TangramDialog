@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -507,7 +508,7 @@ public class TangramDialog extends DialogBase {
         }
 
         /**
-         * 对话框 margin
+         * 对话框 margin - 需要结合background有效
          *
          * @param margin
          * @return
@@ -694,11 +695,11 @@ public class TangramDialog extends DialogBase {
         public TangramDialog show() {
             TangramDialog dialog = new TangramDialog();
             dialog.builder = this;
+            LayoutInflater inflater = LayoutInflater.from(context);
+            dialog.rootView = inflater.inflate(this.layoutId, null);
             if (customView != null) {
-                dialog.rootView = customView;
-            } else {
-                LayoutInflater inflater = LayoutInflater.from(context);
-                dialog.rootView = inflater.inflate(this.layoutId, null);
+                LinearLayout customRoot = dialog.rootView.findViewById(R.id.layout_tangram_custom);
+                customRoot.addView(this.customView);
             }
             if (this.context instanceof FragmentActivity) {
                 dialog.show((FragmentActivity) this.context);

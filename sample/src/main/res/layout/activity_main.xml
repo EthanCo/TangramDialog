@@ -32,16 +32,22 @@
         android:text="输入对话框" />
 
     <Button
-        android:id="@+id/btn_dialog_custom"
+        android:id="@+id/btn_custom_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="自定义对话框" />
+        android:text="添加自定义View" />
 
     <Button
-        android:id="@+id/btn_dialog_custom_unify"
+        android:id="@+id/btn_dialog_layout_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="自定义对话框_统一Click事件" />
+        android:text="自定义布局" />
+
+    <Button
+        android:id="@+id/btn_dialog_layout_id_unify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自定义布局_统一Click事件" />
 
     <Button
         android:id="@+id/btn_dialog_custom_styles"
@@ -54,5 +60,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="顶部对话框_Margin" />
+
+    <Button
+        android:id="@+id/btn_double_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="对话框嵌套" />
 
 </LinearLayout>
