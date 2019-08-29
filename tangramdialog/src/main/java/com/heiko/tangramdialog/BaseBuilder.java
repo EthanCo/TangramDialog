@@ -22,6 +22,9 @@ public class BaseBuilder {
     protected CharSequence negativeText;
     protected CharSequence neutralText;
     protected CharSequence positiveText;
+    protected Integer negativeTextColor;
+    protected Integer neutralTextColor;
+    protected Integer positiveTextColor;
     protected int gravity = Gravity.CENTER;
     protected Integer margin;
     protected int width;

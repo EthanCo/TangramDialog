@@ -3,6 +3,7 @@ package com.heiko.tangramdialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
@@ -123,6 +124,9 @@ public class TangramDialog extends DialogBase {
                     if (tvNegative != null) {
                         tvNegative.setText(builder.negativeText);
                     }
+                    if (builder.negativeTextColor != null) {
+                        tvNegative.setTextColor(builder.negativeTextColor);
+                    }
                 }
                 if (layoutNegative.getVisibility() == View.VISIBLE) {
                     layoutNegative.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +157,9 @@ public class TangramDialog extends DialogBase {
                     if (tvNeutral != null) {
                         tvNeutral.setText(builder.neutralText);
                     }
+                    if (builder.neutralTextColor != null) {
+                        tvNeutral.setTextColor(builder.neutralTextColor);
+                    }
                 }
                 if (layoutNeutral.getVisibility() == View.VISIBLE) {
                     layoutNeutral.setOnClickListener(new View.OnClickListener() {
@@ -182,6 +189,9 @@ public class TangramDialog extends DialogBase {
                     }
                     if (tvPositive != null) {
                         tvPositive.setText(builder.positiveText);
+                    }
+                    if (builder.positiveTextColor != null) {
+                        tvPositive.setTextColor(builder.positiveTextColor);
                     }
                 }
                 if (layoutPositive.getVisibility() == View.VISIBLE) {
@@ -374,6 +384,22 @@ public class TangramDialog extends DialogBase {
         }
 
         /**
+         * 否定的按钮文字颜色
+         *
+         * @param textColor
+         * @return
+         */
+        public Builder negativeTextColor(@ColorRes int textColor) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                this.negativeTextColor = context.getColor(textColor);
+            } else {
+                this.negativeTextColor = context.getResources().getColor(textColor);
+            }
+            return this;
+        }
+
+
+        /**
          * 中立的按钮文字
          *
          * @param message
@@ -396,6 +422,21 @@ public class TangramDialog extends DialogBase {
         }
 
         /**
+         * 中立的按钮文字颜色
+         *
+         * @param textColor
+         * @return
+         */
+        public Builder neutralTextColor(@ColorRes int textColor) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                this.neutralTextColor = context.getColor(textColor);
+            } else {
+                this.neutralTextColor = context.getResources().getColor(textColor);
+            }
+            return this;
+        }
+
+        /**
          * 肯定的按钮文字
          *
          * @param message
@@ -414,6 +455,21 @@ public class TangramDialog extends DialogBase {
          */
         public Builder positiveText(@StringRes int messageRes) {
             this.positiveText = context.getString(messageRes);
+            return this;
+        }
+
+        /**
+         * 肯定的按钮文字颜色
+         *
+         * @param textColor
+         * @return
+         */
+        public Builder positiveTextColor(@ColorRes int textColor) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                this.positiveTextColor = context.getColor(textColor);
+            } else {
+                this.positiveTextColor = context.getResources().getColor(textColor);
+            }
             return this;
         }
 

@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                         .content("这是具体内容")
                         .positiveText("确定")
                         .negativeText("取消")
+                        .negativeTextColor(R.color.colorPrimaryDark)
                         //.neutralText("中立")
                         //.titleColorRes(R.color.text_red)
                         //.titleTextSize(22)

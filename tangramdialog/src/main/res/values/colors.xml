@@ -2,4 +2,9 @@
 <resources>
     <color name="tangramLineGrey">#E1E1E1</color>
     <color name="tangramColorPrimary">#008577</color>
+    <color name="tangramColorTextPrimary">#333333</color>
+    <color name="tangramColorTextSecond">#333333</color>
+    <color name="tangramColorTextNegative">#333333</color>
+    <color name="tangramColorTextNeutral">#333333</color>
+    <color name="tangramColorTextPositive">#333333</color>
 </resources>

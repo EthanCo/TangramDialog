@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textColor="#333333"
+        android:textColor="@color/tangramColorTextPrimary"
         android:textSize="18sp"
         tools:text="Title" />
 
@@ -37,7 +37,7 @@
         android:lineSpacingExtra="5dp"
         android:paddingLeft="35dp"
         android:paddingRight="35dp"
-        android:textColor="#333333"
+        android:textColor="@color/tangramColorTextSecond"
         android:textSize="15sp"
         tools:text="Content" />
 
@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:textColor="#333333"
+                android:textColor="@color/tangramColorTextNegative"
                 android:textSize="16sp"
                 tools:text="Cancel" />
 
@@ -99,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:textColor="#333333"
+                android:textColor="@color/tangramColorTextNeutral"
                 android:textSize="16sp"
                 tools:text="Info" />
 
@@ -122,7 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:textColor="#333333"
+                android:textColor="@color/tangramColorTextPositive"
                 android:textSize="16sp"
                 tools:text="OK" />
 
