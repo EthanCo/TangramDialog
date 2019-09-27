@@ -30,8 +30,9 @@ import android.widget.TextView;
  */
 public class TangramDialog extends DialogBase {
 
-    private TextView tvTipsTitle;
-    private TextView tvTipsContent;
+    private TextView tvTitle;
+    private TextView tvContent;
+    private TextView tvTips;
     private TextView tvNegative;
     private TextView tvPositive;
     private TextView tvNeutral;
@@ -51,8 +52,9 @@ public class TangramDialog extends DialogBase {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         if (root == null) return root;
 
-        tvTipsTitle = root.findViewById(R.id.tv_title_tangram);
-        tvTipsContent = root.findViewById(R.id.tv_content_tangram);
+        tvTitle = root.findViewById(R.id.tv_title_tangram);
+        tvContent = root.findViewById(R.id.tv_content_tangram);
+        tvTips = root.findViewById(R.id.tv_tips_tangram);
         imgInfo = root.findViewById(R.id.img_info_tangram);
         tvNegative = root.findViewById(R.id.tv_negative_tangram);
         layoutNegative = root.findViewById(R.id.layout_negative_tangram);
@@ -63,29 +65,42 @@ public class TangramDialog extends DialogBase {
         etInput = root.findViewById(R.id.et_input_tangram);
 
         if (builder == null) return root;
-        if (tvTipsTitle != null) {
+        if (tvTitle != null) {
             if (TextUtils.isEmpty(builder.title)) {
-                tvTipsTitle.setVisibility(View.GONE);
+                tvTitle.setVisibility(View.GONE);
             } else {
-                tvTipsTitle.setText(builder.title);
+                tvTitle.setText(builder.title);
                 if (builder.titleColor != null) {
-                    tvTipsTitle.setTextColor(builder.titleColor);
+                    tvTitle.setTextColor(builder.titleColor);
                 }
                 if (builder.titleTextSize > 0) {
-                    tvTipsTitle.setTextSize(builder.titleTextSize);
+                    tvTitle.setTextSize(builder.titleTextSize);
                 }
             }
         }
-        if (tvTipsContent != null) {
+        if (tvContent != null) {
             if (TextUtils.isEmpty(builder.content)) {
-                tvTipsContent.setVisibility(View.GONE);
+                tvContent.setVisibility(View.GONE);
             } else {
-                tvTipsContent.setText(builder.content);
+                tvContent.setText(builder.content);
                 if (builder.contentColor != null) {
-                    tvTipsContent.setTextColor(builder.contentColor);
+                    tvContent.setTextColor(builder.contentColor);
                 }
                 if (builder.contentTextSize > 0) {
-                    tvTipsContent.setTextSize(builder.contentTextSize);
+                    tvContent.setTextSize(builder.contentTextSize);
+                }
+            }
+        }
+        if (tvTips != null) {
+            if (TextUtils.isEmpty(builder.tips)) {
+                tvTips.setVisibility(View.GONE);
+            } else {
+                tvTips.setText(builder.tips);
+                if (builder.tipsColor != null) {
+                    tvTips.setTextColor(builder.tipsColor);
+                }
+                if (builder.tipsTextSize > 0) {
+                    tvTips.setTextSize(builder.tipsTextSize);
                 }
             }
         }
@@ -336,6 +351,49 @@ public class TangramDialog extends DialogBase {
          */
         public Builder contentTextSize(float textSize) {
             this.contentTextSize = textSize;
+            return this;
+        }
+
+        /**
+         * 次要内容文字
+         *
+         * @return
+         */
+        public Builder tips(CharSequence content) {
+            this.tips = content;
+            return this;
+        }
+
+        /**
+         * 次要内容文字
+         *
+         * @param contentRes
+         * @return
+         */
+        public Builder tips(@StringRes int contentRes) {
+            this.tips = context.getString(contentRes);
+            return this;
+        }
+
+        /**
+         * 次要内容文字颜色
+         *
+         * @param colorRes
+         * @return
+         */
+        public Builder tipsColorRes(@ColorRes int colorRes) {
+            this.tipsColor = DialogUtils.getColor(this.context, colorRes);
+            return this;
+        }
+
+        /**
+         * 次要内容文字字体
+         *
+         * @param textSize
+         * @return
+         */
+        public Builder tipsTextSize(float textSize) {
+            this.tipsTextSize = textSize;
             return this;
         }
 

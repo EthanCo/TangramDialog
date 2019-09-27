@@ -41,6 +41,19 @@
         android:textSize="15sp"
         tools:text="Content" />
 
+    <TextView
+        android:id="@+id/tv_tips_tangram"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:lineSpacingExtra="5dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:textColor="@color/tangramColorTextSecond"
+        android:textSize="13sp"
+        tools:text="tips" />
+
     <EditText
         android:id="@+id/et_input_tangram"
         android:layout_width="match_parent"
