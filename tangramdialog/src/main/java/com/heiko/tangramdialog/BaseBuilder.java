@@ -28,6 +28,9 @@ public class BaseBuilder {
     protected CharSequence negativeText;
     protected CharSequence neutralText;
     protected CharSequence positiveText;
+    protected Integer negativeTextStyle;
+    protected Integer neutralTextStyle;
+    protected Integer positiveTextStyle;
     protected Integer negativeTextColor;
     protected Integer neutralTextColor;
     protected Integer positiveTextColor;
