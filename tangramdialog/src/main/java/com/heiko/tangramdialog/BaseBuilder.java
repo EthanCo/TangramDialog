@@ -12,12 +12,15 @@ import android.view.View;
 public class BaseBuilder {
     protected Context context;
     protected CharSequence title;
+    protected Integer titleTextStyle;
     protected Integer titleColor;
     protected float titleTextSize;
     protected CharSequence content;
+    protected Integer contentTextStyle;
     protected Integer contentColor;
     protected float contentTextSize;
     protected CharSequence tips;
+    protected Integer tipsTextStyle;
     protected Integer tipsColor;
     protected float tipsTextSize;
     protected int imgRes;

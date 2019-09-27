@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                         .positiveText("确定")
                         .negativeText("取消")
                         .negativeTextColor(R.color.colorPrimaryDark)
+                        //.contentTextStyle(Typeface.ITALIC)
                         //.tips("这是一个温馨提示")
                         //.tipsColorRes(R.color.colorPrimaryDark)
                         //.tipsTextSize(12)

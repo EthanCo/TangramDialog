@@ -1,6 +1,7 @@
 package com.heiko.tangramdialog;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -76,6 +77,9 @@ public class TangramDialog extends DialogBase {
                 if (builder.titleTextSize > 0) {
                     tvTitle.setTextSize(builder.titleTextSize);
                 }
+                if (builder.titleTextStyle != null) {
+                    tvTitle.setTypeface(Typeface.defaultFromStyle(builder.titleTextStyle));
+                }
             }
         }
         if (tvContent != null) {
@@ -89,6 +93,9 @@ public class TangramDialog extends DialogBase {
                 if (builder.contentTextSize > 0) {
                     tvContent.setTextSize(builder.contentTextSize);
                 }
+                if (builder.contentTextStyle != null) {
+                    tvContent.setTypeface(Typeface.defaultFromStyle(builder.contentTextStyle));
+                }
             }
         }
         if (tvTips != null) {
@@ -101,6 +108,9 @@ public class TangramDialog extends DialogBase {
                 }
                 if (builder.tipsTextSize > 0) {
                     tvTips.setTextSize(builder.tipsTextSize);
+                }
+                if (builder.tipsTextStyle != null) {
+                    tvTips.setTypeface(Typeface.defaultFromStyle(builder.tipsTextStyle));
                 }
             }
         }
@@ -289,6 +299,17 @@ public class TangramDialog extends DialogBase {
         }
 
         /**
+         * 设置标题TextStyle
+         *
+         * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
+         * @return
+         */
+        public Builder titleTextStyle(int style) {
+            this.titleTextStyle = style;
+            return this;
+        }
+
+        /**
          * 标题颜色
          *
          * @param colorRes
@@ -333,6 +354,17 @@ public class TangramDialog extends DialogBase {
         }
 
         /**
+         * 内容文字TextStyle
+         *
+         * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
+         * @return
+         */
+        public Builder contentTextStyle(int style) {
+            this.contentTextStyle = style;
+            return this;
+        }
+
+        /**
          * 内容文字颜色
          *
          * @param colorRes
@@ -372,6 +404,17 @@ public class TangramDialog extends DialogBase {
          */
         public Builder tips(@StringRes int contentRes) {
             this.tips = context.getString(contentRes);
+            return this;
+        }
+
+        /**
+         * 次要内容TextStyle
+         *
+         * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
+         * @return
+         */
+        public Builder tipsTextStyle(int style) {
+            this.tipsTextStyle = style;
             return this;
         }
 
