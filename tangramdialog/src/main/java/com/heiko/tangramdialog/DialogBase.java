@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Dialog通用样式
  */
-public class DialogBase extends DialogFragment {
+public class DialogBase extends DialogFragment implements IDismiss {
     protected BaseBuilder builder;
     protected View rootView;
     protected List<OnDismissListener> onDismissListeners;
