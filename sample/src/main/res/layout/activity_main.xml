@@ -67,4 +67,10 @@
         android:layout_height="wrap_content"
         android:text="对话框嵌套" />
 
+    <Button
+        android:id="@+id/btn_go_second"
+        android:text="跳转到第二个Activity，并关闭弹框"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

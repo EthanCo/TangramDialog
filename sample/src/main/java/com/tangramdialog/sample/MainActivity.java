@@ -1,6 +1,8 @@
 package com.tangramdialog.sample;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,6 +18,8 @@ import com.heiko.tangramdialog.OnDismissListener;
 import com.heiko.tangramdialog.TangramDialog;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static TangramDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -335,5 +339,26 @@ public class MainActivity extends AppCompatActivity {
                         }).show();
             }
         });
+
+        findViewById(R.id.btn_go_second).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog = new TangramDialog.Builder(MainActivity.this)
+                        .title("标题")
+                        .content("内容XXXXX")
+                        .positiveText("确定")
+                        .canceledOnTouchOutside(false)
+                        .show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                        startActivity(intent);
+                    }
+                }, 2000);
+            }
+        });
     }
 }
+
