@@ -28,7 +28,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.+'
 }
 
-ext.GROUP="com.kit"
-ext.VERSION_NAME=android.defaultConfig.versionName
-ext.POM_ARTIFACT_ID="tangramdialog"
-apply from: "${project.rootDir}/gradle_maven.gradle"
+//ext.GROUP="com.kit"
+//ext.VERSION_NAME=android.defaultConfig.versionName
+//ext.POM_ARTIFACT_ID="tangramdialog"
+//apply from: "${project.rootDir}/gradle_maven.gradle"
