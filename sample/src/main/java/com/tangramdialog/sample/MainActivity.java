@@ -273,6 +273,7 @@ public class MainActivity extends AppCompatActivity {
                         .layoutId(R.layout.dialog_custom_styles)
                         .title("设置")
                         .titleTextSize(18)
+                        //.padding(15)
                         .input("hint", "1234567890", null)
                         .negativeText("取消")
                         .positiveText("保存")

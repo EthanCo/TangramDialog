@@ -222,7 +222,7 @@ public class DialogBase extends DialogFragment implements IDismiss {
 
     @NonNull
     private String getDialogTag() {
-        return getClass().getSimpleName() + String.valueOf(System.currentTimeMillis());
+        return getClass().getSimpleName() + System.currentTimeMillis();
     }
 
     public DialogBase show(FragmentActivity activity) {

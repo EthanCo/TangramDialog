@@ -51,7 +51,7 @@ public class TangramDialog extends DialogBase {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        if (root == null) return root;
+        if (root == null) return null;
 
         tvTitle = root.findViewById(R.id.tv_title_tangram);
         tvContent = root.findViewById(R.id.tv_content_tangram);
@@ -66,6 +66,11 @@ public class TangramDialog extends DialogBase {
         etInput = root.findViewById(R.id.et_input_tangram);
 
         if (builder == null) return root;
+        if (builder.paddingLeft != 0 || builder.paddingTop != 0
+                || builder.paddingRight != 0 || builder.paddingBottom != 0) {
+            root.setPadding(builder.paddingLeft, builder.paddingTop,
+                    builder.paddingRight, builder.paddingBottom);
+        }
         if (tvTitle != null) {
             if (TextUtils.isEmpty(builder.title)) {
                 tvTitle.setVisibility(View.GONE);
@@ -889,6 +894,38 @@ public class TangramDialog extends DialogBase {
         public Builder input(
                 @StringRes int hint, @StringRes int prefill, @NonNull InputCallback callback) {
             return input(hint, prefill, true, callback);
+        }
+
+        /**
+         * 内部Padding
+         *
+         * @param padding 单位为DP
+         * @return
+         */
+        public Builder padding(int padding) {
+            int paddingPx = DialogUtils.dp2px(this.context, padding);
+            this.paddingLeft = paddingPx;
+            this.paddingTop = paddingPx;
+            this.paddingRight = paddingPx;
+            this.paddingBottom = paddingPx;
+            return this;
+        }
+
+        /**
+         * 内部Padding
+         *
+         * @param paddingLeft   单位为DP
+         * @param paddingTop    单位为DP
+         * @param paddingRight  单位为DP
+         * @param paddingBottom 单位为DP
+         * @return
+         */
+        public Builder padding(int paddingLeft, int paddingTop, int paddingRight, int paddingBottom) {
+            this.paddingLeft = DialogUtils.dp2px(this.context, paddingLeft);
+            this.paddingTop = DialogUtils.dp2px(this.context, paddingTop);
+            this.paddingRight = DialogUtils.dp2px(this.context, paddingRight);
+            this.paddingBottom = DialogUtils.dp2px(this.context, paddingBottom);
+            return this;
         }
 
         public TangramDialog show() {

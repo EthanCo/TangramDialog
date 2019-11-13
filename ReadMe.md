@@ -47,7 +47,7 @@ Add it in your root build.gradle at the end of repositories:
 
 #### 具体方法
 
-	/**
+		/**
          * 设置标题
          *
          * @param title
@@ -62,6 +62,14 @@ Add it in your root build.gradle at the end of repositories:
          * @return
          */
         public Builder title(@StringRes int titleRes)
+
+        /**
+         * 设置标题TextStyle
+         *
+         * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
+         * @return
+         */
+        public Builder titleTextStyle(int style)
 
         /**
          * 标题颜色
@@ -96,6 +104,14 @@ Add it in your root build.gradle at the end of repositories:
         public Builder content(@StringRes int contentRes)
 
         /**
+         * 内容文字TextStyle
+         *
+         * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
+         * @return
+         */
+        public Builder contentTextStyle(int style)
+
+        /**
          * 内容文字颜色
          *
          * @param colorRes
@@ -110,6 +126,45 @@ Add it in your root build.gradle at the end of repositories:
          * @return
          */
         public Builder contentTextSize(float textSize)
+
+        /**
+         * 次要内容文字
+         *
+         * @return
+         */
+        public Builder tips(CharSequence content)
+
+        /**
+         * 次要内容文字
+         *
+         * @param contentRes
+         * @return
+         */
+        public Builder tips(@StringRes int contentRes)
+
+        /**
+         * 次要内容TextStyle
+         *
+         * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
+         * @return
+         */
+        public Builder tipsTextStyle(int style)
+
+        /**
+         * 次要内容文字颜色
+         *
+         * @param colorRes
+         * @return
+         */
+        public Builder tipsColorRes(@ColorRes int colorRes)
+
+        /**
+         * 次要内容文字字体
+         *
+         * @param textSize
+         * @return
+         */
+        public Builder tipsTextSize(float textSize)
 
         /**
          * 图片资源ID
@@ -144,6 +199,22 @@ Add it in your root build.gradle at the end of repositories:
         public Builder negativeText(@StringRes int messageRes)
 
         /**
+         * 否定的按钮文字TextStyle
+         *
+         * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
+         * @return
+         */
+        public Builder negativeTextStyle(int style)
+        /**
+         * 否定的按钮文字颜色
+         *
+         * @param textColor
+         * @return
+         */
+        public Builder negativeTextColor(@ColorRes int textColor)
+
+
+        /**
          * 中立的按钮文字
          *
          * @param message
@@ -160,6 +231,22 @@ Add it in your root build.gradle at the end of repositories:
         public Builder neutralText(@StringRes int messageRes)
 
         /**
+         * 中立的按钮文字TextStyle
+         *
+         * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
+         * @return
+         */
+        public Builder neutralTextStyle(int style)
+
+        /**
+         * 中立的按钮文字颜色
+         *
+         * @param textColor
+         * @return
+         */
+        public Builder neutralTextColor(@ColorRes int textColor)
+
+        /**
          * 肯定的按钮文字
          *
          * @param message
@@ -174,6 +261,22 @@ Add it in your root build.gradle at the end of repositories:
          * @return
          */
         public Builder positiveText(@StringRes int messageRes)
+
+        /**
+         * 肯定的按钮文字
+         *
+         * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
+         * @return
+         */
+        public Builder positiveTextStyle(int style)
+
+        /**
+         * 肯定的按钮文字颜色
+         *
+         * @param textColor
+         * @return
+         */
+        public Builder positiveTextColor(@ColorRes int textColor)
 
         /**
          * 对话框位置
@@ -242,7 +345,7 @@ Add it in your root build.gradle at the end of repositories:
         public Builder canceledOnTouchOutside(boolean canceledOnTouchOutside)
 
         /**
-         * 对话框 margin
+         * 对话框 margin - 需要结合background有效
          *
          * @param margin
          * @return
@@ -276,7 +379,7 @@ Add it in your root build.gradle at the end of repositories:
         public Builder backgroundColor(@ColorRes int backgroundColor)
 
         /**
-         * 设置自定义的View，此模式下需手动findViewById来设置UI及相关点击回调
+         * 设置自定义的View
          * 通过{@link DialogBase#getRootView()}获取根View
          *
          * @param customView
@@ -285,7 +388,7 @@ Add it in your root build.gradle at the end of repositories:
         public Builder customView(View customView)
 
         /**
-         * 设置自定义的View，此模式下需手动findViewById来设置UI及相关点击回调
+         * 设置自定义的View
          * 通过{@link DialogBase#getRootView()}获取根View
          *
          * @param layoutRes
@@ -377,9 +480,26 @@ Add it in your root build.gradle at the end of repositories:
          * @return
          */
         public Builder input(
-                @StringRes int hint, 
-				@StringRes int prefill,
-				@NonNull InputCallback callback)
+                @StringRes int hint, @StringRes int prefill, @NonNull InputCallback callback)
+
+        /**
+         * 内部Padding
+         *
+         * @param padding 单位为DP
+         * @return
+         */
+        public Builder padding(int padding)
+
+        /**
+         * 内部Padding
+         *
+         * @param paddingLeft   单位为DP
+         * @param paddingTop    单位为DP
+         * @param paddingRight  单位为DP
+         * @param paddingBottom 单位为DP
+         * @return
+         */
+        public Builder padding(int paddingLeft, int paddingTop, int paddingRight, int paddingBottom)
 
 #### 自定义样式对话框  
 针对对话框样式需要自定义，但是对话框功能基本相同(标题、确定按钮、取消按钮等)，可更改默认布局为自定义布局，与默认布局id保持一致。  
@@ -397,6 +517,7 @@ Add it in your root build.gradle at the end of repositories:
 	    xmlns:app="http://schemas.android.com/apk/res-auto"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
+    	android:id="@+id/layout_root_tangram"
 	    android:background="@drawable/shape_white_solid_4"
 	    android:orientation="vertical">
 	

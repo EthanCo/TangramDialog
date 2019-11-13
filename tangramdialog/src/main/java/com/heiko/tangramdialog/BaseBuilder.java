@@ -59,4 +59,10 @@ public class BaseBuilder {
     //对话框相对自身位置的偏移量
     protected Integer offsetX;
     protected Integer offsetY;
+
+    //Padding
+    protected int paddingLeft;
+    protected int paddingRight;
+    protected int paddingTop;
+    protected int paddingBottom;
 }
