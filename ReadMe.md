@@ -19,7 +19,7 @@ Add it in your root build.gradle at the end of repositories:
 #### Step 2. Add the dependency
 
 	dependencies {
-        implementation 'com.github.EthanCo:TangramDialog:1.0.5'
+        implementation 'com.github.EthanCo:TangramDialog:1.4.2'
 	}
 
 ### 使用
