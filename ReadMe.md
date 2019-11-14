@@ -633,3 +633,27 @@ Add it in your root build.gradle at the end of repositories:
             dialog.dismiss();
         }
     });
+
+#### 设置自定义的主题色
+在colors.xml中添加  
+
+	<resources>
+	    <color name="colorPrimary">#008577</color>
+	    <color name="colorPrimaryDark">#00574B</color>
+	    <color name="colorAccent">#D81B60</color>
+	
+	    <color name="text_red">#FFE6251B</color>
+	    <color name="text_orange">#FF6E2A</color>
+	    <color name="text_default">#6A6A6A</color>
+	
+	    <!--透明的对话框顶部条-->
+	    <!--<color name="tangramColorPrimary">@android:color/transparent</color>-->
+	    <!--设置自定义颜色的对话框顶部条-->
+	    <color name="tangramColorPrimary">@color/colorPrimary</color>
+	</resources>
+
+
+##### 不显示顶部颜色条
+在colors.xml中添加  
+
+	<color name="tangramColorPrimary">@android:color/transparent</color>

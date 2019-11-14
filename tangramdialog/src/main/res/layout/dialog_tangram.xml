@@ -65,6 +65,7 @@
 
     <LinearLayout
         android:id="@+id/layout_tangram_custom"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" />
@@ -72,7 +73,7 @@
     <View
         android:id="@+id/view_line_horizontal_tangram"
         style="@style/TangramLineHorizontal"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="15dp" />
 
     <LinearLayout
         android:id="@+id/layout_buttons_tangram"
