@@ -17,6 +17,7 @@ public class BaseBuilder {
     protected float titleTextSize;
     protected CharSequence content;
     protected Integer contentTextStyle;
+    protected Integer contentTextGravity;
     protected Integer contentColor;
     protected float contentTextSize;
     protected CharSequence tips;

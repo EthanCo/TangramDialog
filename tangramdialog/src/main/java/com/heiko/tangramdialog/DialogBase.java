@@ -3,6 +3,7 @@ package com.heiko.tangramdialog;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -208,6 +209,10 @@ public class DialogBase extends DialogFragment implements IDismiss {
         for (OnShowListener onShowListener : onShowListeners) {
             onShowListener.onShow(this);
         }
+    }
+
+    public final <T extends View> T findViewById(@IdRes int id) {
+        return rootView.findViewById(id);
     }
 
     private DialogBase show(FragmentManager manager) {

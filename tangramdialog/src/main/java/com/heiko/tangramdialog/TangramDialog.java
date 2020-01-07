@@ -101,6 +101,9 @@ public class TangramDialog extends DialogBase {
                 if (builder.contentTextStyle != null) {
                     tvContent.setTypeface(Typeface.defaultFromStyle(builder.contentTextStyle));
                 }
+                if (builder.contentTextGravity != null) {
+                    tvContent.setGravity(builder.contentTextGravity);
+                }
             }
         }
         if (tvTips != null) {
@@ -375,6 +378,17 @@ public class TangramDialog extends DialogBase {
          */
         public Builder contentTextStyle(int style) {
             this.contentTextStyle = style;
+            return this;
+        }
+
+        /**
+         * 内容文字对齐方式
+         *
+         * @param gravity
+         * @return
+         */
+        public Builder contentTextGraviry(int gravity) {
+            this.contentTextGravity = gravity;
             return this;
         }
 

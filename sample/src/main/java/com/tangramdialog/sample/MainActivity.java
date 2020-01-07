@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
                         .title("标题")
-                        .content("这是具体内容")
+                        .content("这是具体内容\n1122")
                         .positiveText("确定")
                         .negativeText("取消")
                         .neutralText("中立")
@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         //.background(new ColorDrawable(Color.BLUE))
                         //.background(new ColorDrawable(Color.TRANSPARENT)) //背景透明
                         //.backgroundColor(R.color.colorAccent)
+                        //.contentTextGraviry(Gravity.LEFT)
                         .canceledOnTouchOutside(true)
                         .onPositive(new ButtonCallback() {
                             @Override
