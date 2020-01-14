@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         //.background(new ColorDrawable(Color.BLUE))
                         //.background(new ColorDrawable(Color.TRANSPARENT)) //背景透明
                         //.backgroundColor(R.color.colorAccent)
-                        //.contentTextGraviry(Gravity.LEFT)
+                        .contentTextGraviry(Gravity.LEFT)
                         .canceledOnTouchOutside(true)
                         .onPositive(new ButtonCallback() {
                             @Override

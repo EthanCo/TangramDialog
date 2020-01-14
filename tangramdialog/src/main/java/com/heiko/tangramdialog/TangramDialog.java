@@ -950,6 +950,7 @@ public class TangramDialog extends DialogBase {
             if (customView != null) {
                 LinearLayout customRoot = dialog.rootView.findViewById(R.id.layout_tangram_custom);
                 customRoot.addView(this.customView);
+                customRoot.setVisibility(View.VISIBLE);
             }
             if (this.context instanceof FragmentActivity) {
                 dialog.show((FragmentActivity) this.context);
