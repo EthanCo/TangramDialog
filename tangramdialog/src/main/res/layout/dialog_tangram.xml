@@ -9,7 +9,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/tangram_primary_solid_height"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="25dp"
         android:background="@color/tangramColorPrimary" />
 
     <ImageView
@@ -74,7 +74,7 @@
     <View
         android:id="@+id/view_line_horizontal_tangram"
         style="@style/TangramLineHorizontal"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="20dp" />
 
     <LinearLayout
         android:id="@+id/layout_buttons_tangram"
