@@ -32,6 +32,12 @@
         android:text="输入对话框" />
 
     <Button
+        android:id="@+id/btn_dialog_over_length"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="超长文本" />
+
+    <Button
         android:id="@+id/btn_custom_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

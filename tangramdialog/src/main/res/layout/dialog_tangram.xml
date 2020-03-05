@@ -29,18 +29,25 @@
         android:textSize="18sp"
         tools:text="Title" />
 
-    <TextView
-        android:id="@+id/tv_content_tangram"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:lineSpacingExtra="5dp"
-        android:paddingLeft="35dp"
-        android:paddingRight="35dp"
-        android:textColor="@color/tangramColorTextSecond"
-        android:textSize="15sp"
-        tools:text="Content" />
+        android:layout_weight="1"
+        android:layout_height="0dp" >
+
+        <TextView
+            android:id="@+id/tv_content_tangram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:lineSpacingExtra="5dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:textColor="@color/tangramColorTextSecond"
+            android:textSize="15sp"
+            tools:text="Content" />
+
+    </ScrollView>
 
     <TextView
         android:id="@+id/tv_tips_tangram"

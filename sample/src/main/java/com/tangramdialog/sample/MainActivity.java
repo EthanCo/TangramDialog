@@ -175,6 +175,70 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.btn_dialog_over_length).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String content = "1111111111111111\n";
+                content += "222222222222222222222\n";
+                content += "333333333333333333333\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+                content += "222222222222222222222\n";
+
+                new TangramDialog.Builder(MainActivity.this)
+                        .title("标题")
+                        .content(content)
+                        .contentTextGraviry(Gravity.LEFT)
+                        .negativeText("取消")
+                        .positiveText("确定")
+                        .onPositive(new ButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View v) {
+                                Toast.makeText(MainActivity.this, "确定", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
+            }
+        });
+
         /*new TangramDialog.Builder(MainActivity.this)
                 .imgRes(R.mipmap.ic_launcher)
                 .title("您已成功为好友砍押金")
