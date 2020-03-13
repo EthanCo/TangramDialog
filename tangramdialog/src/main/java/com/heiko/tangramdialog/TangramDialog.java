@@ -160,6 +160,9 @@ public class TangramDialog extends DialogBase {
                     if (builder.negativeTextColor != null) {
                         tvNegative.setTextColor(builder.negativeTextColor);
                     }
+                    if (builder.negativeTextSize != null) {
+                        tvNegative.setTextSize(builder.negativeTextSize);
+                    }
                     if (builder.negativeTextStyle != null) {
                         tvNegative.setTypeface(Typeface.defaultFromStyle(builder.negativeTextStyle));
                     }
@@ -196,6 +199,9 @@ public class TangramDialog extends DialogBase {
                     if (builder.neutralTextColor != null) {
                         tvNeutral.setTextColor(builder.neutralTextColor);
                     }
+                    if (builder.neutralTextSize != null) {
+                        tvNeutral.setTextSize(builder.neutralTextSize);
+                    }
                     if (builder.neutralTextStyle != null) {
                         tvNeutral.setTypeface(Typeface.defaultFromStyle(builder.neutralTextStyle));
                     }
@@ -231,6 +237,9 @@ public class TangramDialog extends DialogBase {
                     }
                     if (builder.positiveTextColor != null) {
                         tvPositive.setTextColor(builder.positiveTextColor);
+                    }
+                    if (builder.positiveTextSize != null) {
+                        tvPositive.setTextSize(builder.positiveTextSize);
                     }
                     if (builder.positiveTextStyle != null) {
                         tvPositive.setTypeface(Typeface.defaultFromStyle(builder.positiveTextStyle));
@@ -513,6 +522,17 @@ public class TangramDialog extends DialogBase {
         }
 
         /**
+         * 否定的按钮字体大小
+         *
+         * @param textSize
+         * @return
+         */
+        public Builder negativeTextSize(int textSize) {
+            this.negativeTextSize = textSize;
+            return this;
+        }
+
+        /**
          * 否定的按钮文字TextStyle
          *
          * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
@@ -562,6 +582,17 @@ public class TangramDialog extends DialogBase {
         }
 
         /**
+         * 中立的按钮字体大小
+         *
+         * @param textSize
+         * @return
+         */
+        public Builder neutralTextSize(int textSize) {
+            this.negativeTextSize = textSize;
+            return this;
+        }
+
+        /**
          * 中立的按钮文字TextStyle
          *
          * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
@@ -606,6 +637,17 @@ public class TangramDialog extends DialogBase {
          */
         public Builder positiveText(@StringRes int messageRes) {
             this.positiveText = context.getString(messageRes);
+            return this;
+        }
+
+        /**
+         * 肯定的按钮字体大小
+         *
+         * @param textSize
+         * @return
+         */
+        public Builder positiveTextSize(int textSize) {
+            this.positiveTextSize = textSize;
             return this;
         }
 
