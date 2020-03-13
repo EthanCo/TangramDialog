@@ -2,6 +2,7 @@ package com.heiko.tangramdialog;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -88,7 +89,8 @@ public class DialogBase extends DialogFragment implements IDismiss {
             params.gravity = builder.gravity;
             if (builder.gravity == Gravity.CENTER && builder.margin == null) {
                 //如果是中心弹出，并没没有设置margin，默认margin设为8
-                builder.margin = 8;
+                Resources resources = getContext().getResources();
+                builder.margin = (int) resources.getDimension(R.dimen.tangram_margin_if_gravity_center);
             }
             if (builder.margin == null) {
                 builder.margin = 0;
