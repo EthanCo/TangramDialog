@@ -1,0 +1,32 @@
+/**
+ * 用来上传到maven仓库
+ */
+apply plugin: 'maven'
+//release 地址
+def RELEASE_REPOSITORY_URL = "" //TODO 填写Release的Repository URL
+//snapshots 地址
+def SNAPSHOT_REPOSITORY_URL = "" //TODO 填写快照的Repository URL
+//判断 VERSION_NAME 如果以`-SHAPSHOT`结尾,则上传地址为 snapshot 地址
+def REPOSITORY_URL = VERSION_NAME.endsWith("-SNAPSHOT") ? SNAPSHOT_REPOSITORY_URL : RELEASE_REPOSITORY_URL;
+def NEXUS_USERNAME = "" //TODO 填写账号
+def NEXUS_PASSWORD = "" //TODO 填写密码
+logger.info("groupId = %s\t\nartifactId = %s\t\nversion = %s\t\nrepository = %s\t\n", GROUP, POM_ARTIFACT_ID, VERSION_NAME, REPOSITORY_URL)
+afterEvaluate { project ->
+    uploadArchives {
+        repositories.mavenDeployer {
+            pom.groupId = GROUP
+            pom.artifactId = POM_ARTIFACT_ID
+            pom.version = VERSION_NAME
+            repository(url: REPOSITORY_URL) {
+                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+            }
+        }
+    }
+    task androidSourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.sourceFiles
+    }
+    artifacts {
+        archives androidSourcesJar
+    }
+}
