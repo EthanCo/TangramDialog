@@ -2,4 +2,5 @@
 <resources>
     <dimen name="tangram_line_width">1px</dimen>
     <dimen name="tangram_primary_solid_height">6dp</dimen>
+    <dimen name="tangram_margin_if_gravity_center">8dp</dimen>
 </resources>

@@ -425,6 +425,14 @@ public class MainActivity extends AppCompatActivity {
                 }, 2000);
             }
         });
+
+        findViewById(R.id.btn_dialog_full_screen).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FullDialog editNameDialogFragment = new FullDialog();
+                editNameDialogFragment.show(getSupportFragmentManager(), "edit");
+            }
+        });
     }
 }
 

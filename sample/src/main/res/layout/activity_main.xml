@@ -1,82 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.tangramdialog.sample.MainActivity">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_dialog_center"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="普通对话框" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.tangramdialog.sample.MainActivity">
 
-    <Button
-        android:id="@+id/btn_dialog_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="顶部对话框" />
+        <Button
+            android:id="@+id/btn_dialog_center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="普通对话框" />
 
-    <Button
-        android:id="@+id/btn_dialog_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="底部对话框" />
+        <Button
+            android:id="@+id/btn_dialog_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="顶部对话框" />
 
-    <Button
-        android:id="@+id/btn_dialog_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="输入对话框" />
+        <Button
+            android:id="@+id/btn_dialog_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="底部对话框" />
 
-    <Button
-        android:id="@+id/btn_dialog_over_length"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="超长文本" />
+        <Button
+            android:id="@+id/btn_dialog_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="输入对话框" />
 
-    <Button
-        android:id="@+id/btn_custom_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="添加自定义View" />
+        <Button
+            android:id="@+id/btn_dialog_over_length"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="超长文本" />
 
-    <Button
-        android:id="@+id/btn_dialog_layout_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="自定义布局" />
+        <Button
+            android:id="@+id/btn_custom_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="添加自定义View" />
 
-    <Button
-        android:id="@+id/btn_dialog_layout_id_unify"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="自定义布局_统一Click事件" />
+        <Button
+            android:id="@+id/btn_dialog_layout_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自定义布局" />
 
-    <Button
-        android:id="@+id/btn_dialog_custom_styles"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="自定义样式对话框" />
+        <Button
+            android:id="@+id/btn_dialog_layout_id_unify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自定义布局_统一Click事件" />
 
-    <Button
-        android:id="@+id/btn_dialog_top_margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="顶部对话框_Margin" />
+        <Button
+            android:id="@+id/btn_dialog_custom_styles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自定义样式对话框" />
 
-    <Button
-        android:id="@+id/btn_double_dialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="对话框嵌套" />
+        <Button
+            android:id="@+id/btn_dialog_top_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="顶部对话框_Margin" />
 
-    <Button
-        android:id="@+id/btn_go_second"
-        android:text="跳转到第二个Activity，并关闭弹框"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_double_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="对话框嵌套" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btn_go_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="跳转到第二个Activity，并关闭弹框" />
+
+        <Button
+            android:id="@+id/btn_dialog_full_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="全屏对话框" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -165,7 +165,7 @@ public class DialogBase extends DialogFragment implements IDismiss {
         }
     }
 
-    public void remvoeOnDismissListener(OnDismissListener listener) {
+    public void removeOnDismissListener(OnDismissListener listener) {
         if (onDismissListeners == null) return;
         onDismissListeners.remove(listener);
     }
@@ -179,7 +179,7 @@ public class DialogBase extends DialogFragment implements IDismiss {
         }
     }
 
-    public void remvoeOnShowListener(OnShowListener listener) {
+    public void removeOnShowListener(OnShowListener listener) {
         if (onShowListeners == null) return;
         onShowListeners.remove(listener);
     }
