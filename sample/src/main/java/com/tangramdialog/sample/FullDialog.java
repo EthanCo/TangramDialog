@@ -14,6 +14,7 @@ import android.view.WindowManager;
 
 /**
  * 全屏对话框
+ * 详见: https://www.jianshu.com/p/3ecad4bfc55e
  *
  * @author Heiko
  * @date 2020/5/9 0009

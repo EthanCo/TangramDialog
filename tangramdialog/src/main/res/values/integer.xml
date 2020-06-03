@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--背景昏暗度 0-100-->
+    <integer name="dim_amount">60</integer>
+</resources>
