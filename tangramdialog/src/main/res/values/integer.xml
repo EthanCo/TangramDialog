@@ -2,6 +2,6 @@
 <resources>
     <!--背景昏暗度 0-100-->
     <integer name="dim_amount">60</integer>
-    <!--默认的window type-->
-    <integer name="def_window_type">1</integer>
+    <!--默认的window type 1-99-->
+    <integer name="def_window_type">2</integer>
 </resources>
