@@ -55,12 +55,6 @@ public class DialogBase extends DialogFragment implements IDismiss {
     private void setWindowType() {
         if (builder.windowType != null) {
             getDialog().getWindow().setType(builder.windowType);
-        } else {
-            int windowType = getResources().getInteger(R.integer.def_window_type);
-            Log.i("Z-WindowType", "window:"+windowType);
-            if (windowType > 0) {
-                getDialog().getWindow().setType(windowType);
-            }
         }
     }
 
