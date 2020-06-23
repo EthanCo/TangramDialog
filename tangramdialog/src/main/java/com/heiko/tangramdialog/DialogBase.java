@@ -88,8 +88,13 @@ public class DialogBase extends DialogFragment implements IDismiss {
             if (builder.dimAmount != null) {
                 params.dimAmount = builder.dimAmount;
             } else {
-                float dimAmount = getResources().getInteger(R.integer.dim_amount) / 100F;
-                params.dimAmount = dimAmount;
+                Resources resources = getResources();
+                if (resources != null) {
+                    float dimAmount = resources.getInteger(R.integer.dim_amount) / 100F;
+                    params.dimAmount = dimAmount;
+                } else {
+                    params.dimAmount = 0.8F;
+                }
             }
 
             if (builder.canPenetrate) {
