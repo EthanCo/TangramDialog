@@ -24,7 +24,7 @@ dependencies {
 ```
 ### 使用
 #### 基本使用
-```java
+```
 TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
 	.title("标题")
 	.content("这是具体内容")
@@ -46,7 +46,7 @@ TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
 	.show();
 ```
 #### 具体方法
-```java
+```
 /**
  * 设置标题
  *
@@ -554,7 +554,7 @@ public Builder padding(int paddingLeft, int paddingTop, int paddingRight, int pa
 ![custom_styles](custom_styles.webp)  
 
 我们需要新建一个布局文件，比如dialog_custom_styles  
-```java
+```
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -660,7 +660,7 @@ TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
 ```
 #### 自定义布局
 对于需要自定义样式，且对话框功能不是基础功能(标题、确定按钮、取消按钮等)，可使用自定义布局，此模式下需手动findViewById来设置UI及相关点击回调  
-```java
+```
 TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
     .customView(R.layout.dialog_custom)
     .canceledOnTouchOutside(true)
@@ -679,7 +679,7 @@ public void onClick(View v) {
 ```
 #### 设置自定义的主题色
 在colors.xml中添加  
-```java
+```
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
@@ -698,6 +698,6 @@ public void onClick(View v) {
 
 ##### 不显示顶部颜色条
 在colors.xml中添加  
-```java
+```
 <color name="tangramColorPrimary">@android:color/transparent</color>
 ```
