@@ -140,8 +140,7 @@ public class DialogBase extends DialogFragment implements IDismiss {
                 } else if (builder.gravity == Gravity.BOTTOM) {
                     builder.animStyle = R.style.TangramBottomEnterAnim;
                 }
-            }
-            if (builder.animStyle != 0) {
+            } else {
                 window.setWindowAnimations(builder.animStyle);
             }
 

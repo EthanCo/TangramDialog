@@ -700,3 +700,6 @@ Add it in your root build.gradle at the end of repositories:
 在colors.xml中添加  
 
 	<color name="tangramColorPrimary">@android:color/transparent</color>
+
+#### 自定义全局对话框动画
+以`tagram_dialog_center_in.xml`为例，复制该文件到app项目中，然后修改即可。其他动画也类似。
