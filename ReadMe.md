@@ -642,7 +642,7 @@ android:id="@+id/layout_root_tangram"
 </LinearLayout>
 ```
 接着，我们把layoutId指定为dialog_custom_styles，即可照常使用TangramDialog  
-```java
+```
 TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
 .layoutId(R.layout.dialog_custom_styles)
 .title("设置")
