@@ -47,7 +47,7 @@ Add it in your root build.gradle at the end of repositories:
 
 #### 具体方法
 
-		/**
+	/**
          * 设置标题
          *
          * @param title
