@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                         .negativeText("取消")
                         .neutralText("中立")
                         //.canPenetrate(true)
-                        //.windowType(WindowManager.LayoutParams.LAST_APPLICATION_WINDOW)
                         //.positiveTextStyle(Typeface.BOLD)
                         //.negativeTextColor(R.color.colorPrimaryDark)
                         //.contentTextStyle(Typeface.ITALIC)
