@@ -19,7 +19,7 @@ Add it in your root build.gradle at the end of repositories:
 #### Step 2. Add the dependency
 
 	dependencies {
-        implementation 'com.github.EthanCo:TangramDialog:v1.4.2'
+        implementation 'com.github.EthanCo:TangramDialog:v1.5.7'
 	}
 
 ### 使用
@@ -53,7 +53,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param title
          * @return
          */
-        public Builder title(CharSequence title)
+        public Builder title(CharSequence title) {
+            this.title = title;
+            return this;
+        }
 
         /**
          * 设置标题
@@ -61,7 +64,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param titleRes
          * @return
          */
-        public Builder title(@StringRes int titleRes)
+        public Builder title(@StringRes int titleRes) {
+            this.title = context.getString(titleRes);
+            return this;
+        }
 
         /**
          * 设置标题TextStyle
@@ -69,7 +75,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
          * @return
          */
-        public Builder titleTextStyle(int style)
+        public Builder titleTextStyle(int style) {
+            this.titleTextStyle = style;
+            return this;
+        }
 
         /**
          * 标题颜色
@@ -77,7 +86,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param colorRes
          * @return
          */
-        public Builder titleColorRes(@ColorRes int colorRes)
+        public Builder titleColorRes(@ColorRes int colorRes) {
+            this.titleColor = DialogUtils.getColor(this.context, colorRes);
+            return this;
+        }
 
         /**
          * 标题字体大小
@@ -85,7 +97,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param textSize
          * @return
          */
-        public Builder titleTextSize(float textSize)
+        public Builder titleTextSize(float textSize) {
+            this.titleTextSize = textSize;
+            return this;
+        }
 
         /**
          * 内容文字
@@ -93,7 +108,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param content
          * @return
          */
-        public Builder content(CharSequence content)
+        public Builder content(CharSequence content) {
+            this.content = content;
+            return this;
+        }
 
         /**
          * 内容文字
@@ -101,7 +119,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param contentRes
          * @return
          */
-        public Builder content(@StringRes int contentRes)
+        public Builder content(@StringRes int contentRes) {
+            this.content = context.getString(contentRes);
+            return this;
+        }
 
         /**
          * 内容文字TextStyle
@@ -109,7 +130,21 @@ Add it in your root build.gradle at the end of repositories:
          * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
          * @return
          */
-        public Builder contentTextStyle(int style)
+        public Builder contentTextStyle(int style) {
+            this.contentTextStyle = style;
+            return this;
+        }
+
+        /**
+         * 内容文字对齐方式
+         *
+         * @param gravity
+         * @return
+         */
+        public Builder contentTextGraviry(int gravity) {
+            this.contentTextGravity = gravity;
+            return this;
+        }
 
         /**
          * 内容文字颜色
@@ -117,7 +152,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param colorRes
          * @return
          */
-        public Builder contentColorRes(@ColorRes int colorRes)
+        public Builder contentColorRes(@ColorRes int colorRes) {
+            this.contentColor = DialogUtils.getColor(this.context, colorRes);
+            return this;
+        }
 
         /**
          * 内容文字字体
@@ -125,14 +163,20 @@ Add it in your root build.gradle at the end of repositories:
          * @param textSize
          * @return
          */
-        public Builder contentTextSize(float textSize)
+        public Builder contentTextSize(float textSize) {
+            this.contentTextSize = textSize;
+            return this;
+        }
 
         /**
          * 次要内容文字
          *
          * @return
          */
-        public Builder tips(CharSequence content)
+        public Builder tips(CharSequence content) {
+            this.tips = content;
+            return this;
+        }
 
         /**
          * 次要内容文字
@@ -140,7 +184,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param contentRes
          * @return
          */
-        public Builder tips(@StringRes int contentRes)
+        public Builder tips(@StringRes int contentRes) {
+            this.tips = context.getString(contentRes);
+            return this;
+        }
 
         /**
          * 次要内容TextStyle
@@ -148,7 +195,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
          * @return
          */
-        public Builder tipsTextStyle(int style)
+        public Builder tipsTextStyle(int style) {
+            this.tipsTextStyle = style;
+            return this;
+        }
 
         /**
          * 次要内容文字颜色
@@ -156,7 +206,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param colorRes
          * @return
          */
-        public Builder tipsColorRes(@ColorRes int colorRes)
+        public Builder tipsColorRes(@ColorRes int colorRes) {
+            this.tipsColor = DialogUtils.getColor(this.context, colorRes);
+            return this;
+        }
 
         /**
          * 次要内容文字字体
@@ -164,7 +217,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param textSize
          * @return
          */
-        public Builder tipsTextSize(float textSize)
+        public Builder tipsTextSize(float textSize) {
+            this.tipsTextSize = textSize;
+            return this;
+        }
 
         /**
          * 图片资源ID
@@ -172,7 +228,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param imgRes
          * @return
          */
-        public Builder imgRes(@DrawableRes int imgRes)
+        public Builder imgRes(@DrawableRes int imgRes) {
+            this.imgRes = imgRes;
+            return this;
+        }
 
         /**
          * 对话框布局，用作替换默认布局样式，id需要和默认布局保持一致
@@ -180,7 +239,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param layoutId
          * @return
          */
-        public Builder layoutId(int layoutId)
+        public Builder layoutId(int layoutId) {
+            this.layoutId = layoutId;
+            return this;
+        }
 
         /**
          * 否定的按钮文字
@@ -188,7 +250,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param message
          * @return
          */
-        public Builder negativeText(CharSequence message)
+        public Builder negativeText(CharSequence message) {
+            this.negativeText = message;
+            return this;
+        }
 
         /**
          * 否定的按钮文字
@@ -196,7 +261,21 @@ Add it in your root build.gradle at the end of repositories:
          * @param messageRes
          * @return
          */
-        public Builder negativeText(@StringRes int messageRes)
+        public Builder negativeText(@StringRes int messageRes) {
+            this.negativeText = context.getString(messageRes);
+            return this;
+        }
+
+        /**
+         * 否定的按钮字体大小
+         *
+         * @param textSize
+         * @return
+         */
+        public Builder negativeTextSize(int textSize) {
+            this.negativeTextSize = textSize;
+            return this;
+        }
 
         /**
          * 否定的按钮文字TextStyle
@@ -204,14 +283,25 @@ Add it in your root build.gradle at the end of repositories:
          * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
          * @return
          */
-        public Builder negativeTextStyle(int style)
+        public Builder negativeTextStyle(int style) {
+            this.negativeTextStyle = style;
+            return this;
+        }
+
         /**
          * 否定的按钮文字颜色
          *
          * @param textColor
          * @return
          */
-        public Builder negativeTextColor(@ColorRes int textColor)
+        public Builder negativeTextColor(@ColorRes int textColor) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                this.negativeTextColor = context.getColor(textColor);
+            } else {
+                this.negativeTextColor = context.getResources().getColor(textColor);
+            }
+            return this;
+        }
 
 
         /**
@@ -220,7 +310,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param message
          * @return
          */
-        public Builder neutralText(CharSequence message)
+        public Builder neutralText(CharSequence message) {
+            this.neutralText = message;
+            return this;
+        }
 
         /**
          * 中立的按钮文字
@@ -228,7 +321,21 @@ Add it in your root build.gradle at the end of repositories:
          * @param messageRes
          * @return
          */
-        public Builder neutralText(@StringRes int messageRes)
+        public Builder neutralText(@StringRes int messageRes) {
+            this.neutralText = context.getString(messageRes);
+            return this;
+        }
+
+        /**
+         * 中立的按钮字体大小
+         *
+         * @param textSize
+         * @return
+         */
+        public Builder neutralTextSize(int textSize) {
+            this.negativeTextSize = textSize;
+            return this;
+        }
 
         /**
          * 中立的按钮文字TextStyle
@@ -236,7 +343,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
          * @return
          */
-        public Builder neutralTextStyle(int style)
+        public Builder neutralTextStyle(int style) {
+            this.neutralTextStyle = style;
+            return this;
+        }
 
         /**
          * 中立的按钮文字颜色
@@ -244,7 +354,14 @@ Add it in your root build.gradle at the end of repositories:
          * @param textColor
          * @return
          */
-        public Builder neutralTextColor(@ColorRes int textColor)
+        public Builder neutralTextColor(@ColorRes int textColor) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                this.neutralTextColor = context.getColor(textColor);
+            } else {
+                this.neutralTextColor = context.getResources().getColor(textColor);
+            }
+            return this;
+        }
 
         /**
          * 肯定的按钮文字
@@ -252,7 +369,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param message
          * @return
          */
-        public Builder positiveText(CharSequence message)
+        public Builder positiveText(CharSequence message) {
+            this.positiveText = message;
+            return this;
+        }
 
         /**
          * 肯定的按钮文字
@@ -260,7 +380,21 @@ Add it in your root build.gradle at the end of repositories:
          * @param messageRes
          * @return
          */
-        public Builder positiveText(@StringRes int messageRes)
+        public Builder positiveText(@StringRes int messageRes) {
+            this.positiveText = context.getString(messageRes);
+            return this;
+        }
+
+        /**
+         * 肯定的按钮字体大小
+         *
+         * @param textSize
+         * @return
+         */
+        public Builder positiveTextSize(int textSize) {
+            this.positiveTextSize = textSize;
+            return this;
+        }
 
         /**
          * 肯定的按钮文字
@@ -268,7 +402,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param style Typeface.NORMAL, Typeface.BOLD, Typeface.ITALIC, Typeface.BOLD_ITALIC
          * @return
          */
-        public Builder positiveTextStyle(int style)
+        public Builder positiveTextStyle(int style) {
+            this.positiveTextStyle = style;
+            return this;
+        }
 
         /**
          * 肯定的按钮文字颜色
@@ -276,7 +413,14 @@ Add it in your root build.gradle at the end of repositories:
          * @param textColor
          * @return
          */
-        public Builder positiveTextColor(@ColorRes int textColor)
+        public Builder positiveTextColor(@ColorRes int textColor) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                this.positiveTextColor = context.getColor(textColor);
+            } else {
+                this.positiveTextColor = context.getResources().getColor(textColor);
+            }
+            return this;
+        }
 
         /**
          * 对话框位置
@@ -286,7 +430,10 @@ Add it in your root build.gradle at the end of repositories:
          *                {@link android.view.Gravity#BOTTOM}:底部
          * @return
          */
-        public Builder gravity(int gravity)
+        public Builder gravity(int gravity) {
+            this.gravity = gravity;
+            return this;
+        }
 
         /**
          * 对话框 显示/隐藏 动画
@@ -294,7 +441,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param animStyle
          * @return
          */
-        public Builder animStyle(int animStyle)
+        public Builder animStyle(int animStyle) {
+            this.animStyle = animStyle;
+            return this;
+        }
 
         /**
          * 指定对话框宽度
@@ -302,7 +452,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param width
          * @return
          */
-        public Builder width(int width)
+        public Builder width(int width) {
+            this.width = width;
+            return this;
+        }
 
         /**
          * 指定对话框高度
@@ -310,7 +463,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param height
          * @return
          */
-        public Builder height(int height)
+        public Builder height(int height) {
+            this.height = height;
+            return this;
+        }
 
         /**
          * 肯定的按钮 点击回调
@@ -318,7 +474,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param callback
          * @return
          */
-        public Builder onPositive(@NonNull ButtonCallback callback)
+        public Builder onPositive(@NonNull ButtonCallback callback) {
+            this.onPositiveCallback = callback;
+            return this;
+        }
 
         /**
          * 中立的按钮 点击回调
@@ -326,7 +485,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param callback
          * @return
          */
-        public Builder onNeutral(@NonNull ButtonCallback callback)
+        public Builder onNeutral(@NonNull ButtonCallback callback) {
+            this.onNeutralCallback = callback;
+            return this;
+        }
 
         /**
          * 否定的按钮 点击回调
@@ -334,7 +496,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param callback
          * @return
          */
-        public Builder onNegative(@NonNull ButtonCallback callback)
+        public Builder onNegative(@NonNull ButtonCallback callback) {
+            this.onNegativeCallback = callback;
+            return this;
+        }
 
         /**
          * 对话框外围 点击是否可隐藏
@@ -342,7 +507,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param canceledOnTouchOutside
          * @return
          */
-        public Builder canceledOnTouchOutside(boolean canceledOnTouchOutside)
+        public Builder canceledOnTouchOutside(boolean canceledOnTouchOutside) {
+            this.canceledOnTouchOutside = canceledOnTouchOutside;
+            return this;
+        }
 
         /**
          * 对话框 margin - 需要结合background有效
@@ -350,7 +518,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param margin
          * @return
          */
-        public Builder margin(int margin)
+        public Builder margin(int margin) {
+            this.margin = margin;
+            return this;
+        }
 
         /**
          * 背景的昏暗度
@@ -358,7 +529,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param dimAmount
          * @return
          */
-        public Builder dimAmount(@FloatRange(from = 0, to = 1) float dimAmount)
+        public Builder dimAmount(@FloatRange(from = 0, to = 1) float dimAmount) {
+            this.dimAmount = dimAmount;
+            return this;
+        }
 
         /**
          * 设置背景
@@ -368,7 +542,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param drawable
          * @return
          */
-        public Builder background(Drawable drawable)
+        public Builder background(Drawable drawable) {
+            this.backgroundDrawable = drawable;
+            return this;
+        }
 
         /**
          * 设置背景色
@@ -376,7 +553,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param backgroundColor
          * @return
          */
-        public Builder backgroundColor(@ColorRes int backgroundColor)
+        public Builder backgroundColor(@ColorRes int backgroundColor) {
+            this.backgroundDrawable = new ColorDrawable(DialogUtils.getColor(context, backgroundColor));
+            return this;
+        }
 
         /**
          * 设置自定义的View
@@ -385,7 +565,11 @@ Add it in your root build.gradle at the end of repositories:
          * @param customView
          * @return
          */
-        public Builder customView(View customView)
+        public Builder customView(View customView) {
+            this.customView = customView;
+            return this;
+        }
+
 
         /**
          * 设置自定义的View
@@ -394,7 +578,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param layoutRes
          * @return
          */
-        public Builder customView(@LayoutRes int layoutRes)
+        public Builder customView(@LayoutRes int layoutRes) {
+            this.customView = LayoutInflater.from(context).inflate(layoutRes, null);
+            return this;
+        }
 
         /**
          * 点击按钮是否自动隐藏对话框
@@ -402,7 +589,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param dismiss
          * @return
          */
-        public Builder autoDismiss(boolean dismiss)
+        public Builder autoDismiss(boolean dismiss) {
+            this.autoDismiss = dismiss;
+            return this;
+        }
 
         /**
          * 对话框相对自身位置X轴的偏移量
@@ -410,7 +600,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param offsetX
          * @return
          */
-        public Builder offsetX(int offsetX)
+        public Builder offsetX(int offsetX) {
+            this.offsetX = offsetX;
+            return this;
+        }
 
         /**
          * 对话框相对自身位置Y轴的偏移量
@@ -418,7 +611,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param offsetY
          * @return
          */
-        public Builder offsetY(int offsetY)
+        public Builder offsetY(int offsetY) {
+            this.offsetY = offsetY;
+            return this;
+        }
 
         /**
          * 点击背景 点击事件是否穿透
@@ -426,7 +622,10 @@ Add it in your root build.gradle at the end of repositories:
          * @param canPenetrate
          * @return
          */
-        public Builder canPenetrate(boolean canPenetrate)
+        public Builder canPenetrate(boolean canPenetrate) {
+            this.canPenetrate = canPenetrate;
+            return this;
+        }
 
         /**
          * 显示输入框
@@ -439,7 +638,9 @@ Add it in your root build.gradle at the end of repositories:
         public Builder input(
                 @Nullable CharSequence hint,
                 @Nullable CharSequence prefill,
-                @NonNull InputCallback callback)
+                @NonNull InputCallback callback) {
+            return input(hint, prefill, true, callback);
+        }
 
         /**
          * 显示输入框
@@ -454,7 +655,13 @@ Add it in your root build.gradle at the end of repositories:
                 @Nullable CharSequence hint,
                 @Nullable CharSequence prefill,
                 boolean allowEmptyInput,
-                @NonNull InputCallback callback)
+                @NonNull InputCallback callback) {
+            this.inputHint = hint;
+            this.inputPrefill = prefill;
+            this.inputAllowEmpty = allowEmptyInput;
+            this.inputCallback = callback;
+            return this;
+        }
 
         /**
          * 显示输入框
@@ -469,7 +676,13 @@ Add it in your root build.gradle at the end of repositories:
                 @StringRes int hint,
                 @StringRes int prefill,
                 boolean allowEmptyInput,
-                @NonNull InputCallback callback)
+                @NonNull InputCallback callback) {
+            return input(
+                    hint == 0 ? null : this.context.getText(hint),
+                    prefill == 0 ? null : this.context.getText(prefill),
+                    allowEmptyInput,
+                    callback);
+        }
 
         /**
          * 显示输入框
@@ -480,7 +693,9 @@ Add it in your root build.gradle at the end of repositories:
          * @return
          */
         public Builder input(
-                @StringRes int hint, @StringRes int prefill, @NonNull InputCallback callback)
+                @StringRes int hint, @StringRes int prefill, @NonNull InputCallback callback) {
+            return input(hint, prefill, true, callback);
+        }
 
         /**
          * 内部Padding
@@ -488,7 +703,14 @@ Add it in your root build.gradle at the end of repositories:
          * @param padding 单位为DP
          * @return
          */
-        public Builder padding(int padding)
+        public Builder padding(int padding) {
+            int paddingPx = DialogUtils.dp2px(this.context, padding);
+            this.paddingLeft = paddingPx;
+            this.paddingTop = paddingPx;
+            this.paddingRight = paddingPx;
+            this.paddingBottom = paddingPx;
+            return this;
+        }
 
         /**
          * 内部Padding
@@ -499,7 +721,13 @@ Add it in your root build.gradle at the end of repositories:
          * @param paddingBottom 单位为DP
          * @return
          */
-        public Builder padding(int paddingLeft, int paddingTop, int paddingRight, int paddingBottom)
+        public Builder padding(int paddingLeft, int paddingTop, int paddingRight, int paddingBottom) {
+            this.paddingLeft = DialogUtils.dp2px(this.context, paddingLeft);
+            this.paddingTop = DialogUtils.dp2px(this.context, paddingTop);
+            this.paddingRight = DialogUtils.dp2px(this.context, paddingRight);
+            this.paddingBottom = DialogUtils.dp2px(this.context, paddingBottom);
+            return this;
+        }
 
 #### 自定义样式对话框  
 针对对话框样式需要自定义，但是对话框功能基本相同(标题、确定按钮、取消按钮等)，可更改默认布局为自定义布局，与默认布局id保持一致。  
