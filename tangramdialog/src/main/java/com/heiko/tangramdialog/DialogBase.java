@@ -48,14 +48,7 @@ public class DialogBase extends DialogFragment implements IDismiss {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        setWindowType();
         return rootView;
-    }
-
-    private void setWindowType() {
-        if (builder.windowType != null) {
-            getDialog().getWindow().setType(builder.windowType);
-        }
     }
 
     @Override

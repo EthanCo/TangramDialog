@@ -882,22 +882,22 @@ public class TangramDialog extends DialogBase {
             return this;
         }
 
-        /**
-         * @Deprecated 低版本系统会有问题
-         *
-         * 设置 Window Type (对话框层级优先级)
-         * WindowManager.LayoutParams.FIRST_APPLICATION_WINDOW (层级最后)
-         * WindowManager.LayoutParams.TYPE_APPLICATION
-         * WindowManager.LayoutParams.LAST_APPLICATION_WINDOW (层级最前)
-         *
-         * @param windowType
-         * @return
-         */
-        @Deprecated
-        public Builder windowType(int windowType) {
-            this.windowType = windowType;
-            return this;
-        }
+//        /**
+//         * @Deprecated 低版本系统会有问题
+//         *
+//         * 设置 Window Type (对话框层级优先级)
+//         * WindowManager.LayoutParams.FIRST_APPLICATION_WINDOW (层级最后)
+//         * WindowManager.LayoutParams.TYPE_APPLICATION
+//         * WindowManager.LayoutParams.LAST_APPLICATION_WINDOW (层级最前)
+//         *
+//         * @param windowType
+//         * @return
+//         */
+//        @Deprecated
+//        public Builder windowType(int windowType) {
+//            this.windowType = windowType;
+//            return this;
+//        }
 
         /**
          * 显示输入框
