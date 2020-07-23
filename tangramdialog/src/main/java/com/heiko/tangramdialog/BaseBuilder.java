@@ -25,7 +25,7 @@ public class BaseBuilder {
     protected Integer tipsColor;
     protected float tipsTextSize;
     protected int imgRes;
-    protected int layoutId;
+    protected View layoutIdView;
     protected CharSequence negativeText;
     protected CharSequence neutralText;
     protected CharSequence positiveText;
@@ -40,6 +40,7 @@ public class BaseBuilder {
     protected Integer positiveTextColor;
     protected int gravity = Gravity.CENTER;
     protected Integer margin;
+    protected int topBarVisibility = View.VISIBLE;
     protected int width;
     protected int height;
     protected int animStyle;

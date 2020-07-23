@@ -31,6 +31,7 @@ import android.widget.TextView;
  */
 public class TangramDialog extends DialogBase {
 
+    private View tvTopBar;
     private TextView tvTitle;
     private TextView tvContent;
     private TextView tvTips;
@@ -53,6 +54,7 @@ public class TangramDialog extends DialogBase {
         View root = super.onCreateView(inflater, container, savedInstanceState);
         if (root == null) return null;
 
+        tvTopBar = root.findViewById(R.id.tv_top_bar);
         tvTitle = root.findViewById(R.id.tv_title_tangram);
         tvContent = root.findViewById(R.id.tv_content_tangram);
         tvTips = root.findViewById(R.id.tv_tips_tangram);
@@ -70,6 +72,9 @@ public class TangramDialog extends DialogBase {
                 || builder.paddingRight != 0 || builder.paddingBottom != 0) {
             root.setPadding(builder.paddingLeft, builder.paddingTop,
                     builder.paddingRight, builder.paddingBottom);
+        }
+        if (tvTopBar != null) {
+            tvTopBar.setVisibility(builder.topBarVisibility);
         }
         if (tvTitle != null) {
             if (TextUtils.isEmpty(builder.title)) {
@@ -298,7 +303,6 @@ public class TangramDialog extends DialogBase {
 
     public static class Builder extends BaseBuilder {
         public Builder(Context context) {
-            this.layoutId = R.layout.dialog_tangram;
             this.context = context;
         }
 
@@ -489,13 +493,27 @@ public class TangramDialog extends DialogBase {
         }
 
         /**
-         * 对话框布局，用作替换默认布局样式，id需要和默认布局保持一致
+         * 对话框布局，用作替换默认布局样式
+         * (id需要和默认布局保持一致，可使用其他通用方法)
          *
          * @param layoutId
          * @return
          */
         public Builder layoutId(int layoutId) {
-            this.layoutId = layoutId;
+            LayoutInflater inflater = LayoutInflater.from(this.context);
+            this.layoutIdView = inflater.inflate(layoutId, null);
+            return this;
+        }
+
+        /**
+         * 对话框布局，用作替换默认布局样式
+         * (id需要和默认布局保持一致，可使用其他通用方法)
+         *
+         * @param root
+         * @return
+         */
+        public Builder layoutId(View root) {
+            this.layoutIdView = root;
             return this;
         }
 
@@ -1001,11 +1019,26 @@ public class TangramDialog extends DialogBase {
             return this;
         }
 
+        /**
+         * 顶部横条是否可见
+         *
+         * @param visibility
+         * @return
+         */
+        public Builder topBarVisibility(int visibility) {
+            this.topBarVisibility = visibility;
+            return this;
+        }
+
         public TangramDialog show() {
             TangramDialog dialog = new TangramDialog();
             dialog.builder = this;
-            LayoutInflater inflater = LayoutInflater.from(context);
-            dialog.rootView = inflater.inflate(this.layoutId, null);
+            if (this.layoutIdView != null) {
+                dialog.rootView = this.layoutIdView;
+            } else {
+                LayoutInflater inflater = LayoutInflater.from(context);
+                dialog.rootView = inflater.inflate(R.layout.dialog_tangram, null);
+            }
             if (customView != null) {
                 LinearLayout customRoot = dialog.rootView.findViewById(R.id.layout_tangram_custom);
                 customRoot.addView(this.customView);
