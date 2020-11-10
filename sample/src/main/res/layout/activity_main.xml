@@ -90,6 +90,12 @@
             android:layout_height="wrap_content"
             android:text="全屏对话框" />
 
+        <Button
+            android:id="@+id/btn_dialog_weak_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WeakDialog" />
+
     </LinearLayout>
 
 </ScrollView>

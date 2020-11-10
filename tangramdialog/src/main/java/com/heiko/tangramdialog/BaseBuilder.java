@@ -50,6 +50,8 @@ public class BaseBuilder {
     protected boolean canPenetrate; //点击背景穿透
     protected boolean autoDismiss = true;
     protected View customView;
+    protected View customTopView;
+    protected View customBottomView;
 
     protected ButtonCallback onPositiveCallback;
     protected ButtonCallback onNegativeCallback;

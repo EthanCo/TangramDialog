@@ -12,4 +12,6 @@
     <!--<color name="tangramColorPrimary">@android:color/transparent</color>-->
     <!--设置自定义颜色的对话框顶部条-->
     <color name="tangramColorPrimary">@color/colorPrimary</color>
+
+    <color name="color_black_90">#90000000</color>
 </resources>

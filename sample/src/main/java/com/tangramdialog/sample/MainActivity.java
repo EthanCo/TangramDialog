@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -256,7 +257,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
+                        .layoutId(R.layout.dialog_custom_styles)
+                        .customTopView(R.layout.dialog_custom_top)
                         .customView(R.layout.dialog_custom)
+                        .customBottomView(R.layout.dialog_custom_bottom)
                         .canceledOnTouchOutside(true)
                         .positiveText("确定")
                         .negativeText("取消")
@@ -432,6 +436,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FullDialog editNameDialogFragment = new FullDialog();
                 editNameDialogFragment.show(getSupportFragmentManager(), "edit");
+            }
+        });
+
+        findViewById(R.id.btn_dialog_weak_dialog).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "weakDialog", Toast.LENGTH_SHORT).show();
+                View rootView = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_layout_id, null);
+                WeakDialog dialog = new WeakDialog.Builder(MainActivity.this)
+                        .setContentView(rootView)
+                        .build();
+                dialog.show(MainActivity.this);
             }
         });
     }

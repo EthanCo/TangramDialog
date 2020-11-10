@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--BaseDialog root view-->
+    <item name="dialog_root" type="id"/>
+</resources>

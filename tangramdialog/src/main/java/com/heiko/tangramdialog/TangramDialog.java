@@ -843,7 +843,6 @@ public class TangramDialog extends DialogBase {
             return this;
         }
 
-
         /**
          * 设置自定义的View
          * 通过{@link DialogBase#getRootView()}获取根View
@@ -855,6 +854,55 @@ public class TangramDialog extends DialogBase {
             this.customView = LayoutInflater.from(context).inflate(layoutRes, null);
             return this;
         }
+
+        /**
+         * 设置顶部的自定义的View
+         * 通过{@link DialogBase#getRootView()}获取根View
+         *
+         * @param layoutRes
+         * @return
+         */
+        public Builder customTopView(@LayoutRes int layoutRes) {
+            this.customTopView = LayoutInflater.from(context).inflate(layoutRes, null);
+            return this;
+        }
+
+        /**
+         * 设置顶部的自定义的View
+         * 通过{@link DialogBase#getRootView()}获取根View
+         *
+         * @param customView
+         * @return
+         */
+        public Builder customTopView(View customView) {
+            this.customTopView = customView;
+            return this;
+        }
+
+        /**
+         * 设置顶部的自定义的View
+         * 通过{@link DialogBase#getRootView()}获取根View
+         *
+         * @param layoutRes
+         * @return
+         */
+        public Builder customBottomView(@LayoutRes int layoutRes) {
+            this.customBottomView = LayoutInflater.from(context).inflate(layoutRes, null);
+            return this;
+        }
+
+        /**
+         * 设置底部的自定义的View
+         * 通过{@link DialogBase#getRootView()}获取根View
+         *
+         * @param customView
+         * @return
+         */
+        public Builder customBottomView(View customView) {
+            this.customBottomView = customView;
+            return this;
+        }
+
 
         /**
          * 点击按钮是否自动隐藏对话框
@@ -1039,9 +1087,20 @@ public class TangramDialog extends DialogBase {
                 LayoutInflater inflater = LayoutInflater.from(context);
                 dialog.rootView = inflater.inflate(R.layout.dialog_tangram, null);
             }
+            View rootView = dialog.rootView;
             if (customView != null) {
-                LinearLayout customRoot = dialog.rootView.findViewById(R.id.layout_tangram_custom);
+                LinearLayout customRoot = rootView.findViewById(R.id.layout_tangram_custom);
                 customRoot.addView(this.customView);
+                customRoot.setVisibility(View.VISIBLE);
+            }
+            if (customTopView != null) {
+                LinearLayout customRoot = rootView.findViewById(R.id.layout_tangram_custom_top);
+                customRoot.addView(this.customTopView);
+                customRoot.setVisibility(View.VISIBLE);
+            }
+            if (customBottomView != null) {
+                LinearLayout customRoot = rootView.findViewById(R.id.layout_tangram_custom_bottom);
+                customRoot.addView(this.customBottomView);
                 customRoot.setVisibility(View.VISIBLE);
             }
             if (this.context instanceof FragmentActivity) {
