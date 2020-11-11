@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/layout_root_tangram"
     android:background="@drawable/shape_white_solid_4"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
     <LinearLayout
