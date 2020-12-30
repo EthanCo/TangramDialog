@@ -31,7 +31,7 @@ public class DialogBase extends DialogFragment implements IDismiss {
     protected View rootView;
     protected List<OnDismissListener> onDismissListeners;
     protected List<OnShowListener> onShowListeners;
-    protected static final String TAG = "TangramDialog";
+    protected static final String TAG = "TangramDialog ";
 
     @Override
     public void onAttach(Context context) {
@@ -197,7 +197,7 @@ public class DialogBase extends DialogFragment implements IDismiss {
         try {
             super.dismissAllowingStateLoss();
         } catch (Exception e) {
-            Log.i(TAG, "dismiss error:" + e.getMessage());
+            onError(TAG, "dismiss error:" + e.getMessage());
         }
 
     }
@@ -289,7 +289,7 @@ public class DialogBase extends DialogFragment implements IDismiss {
         DialogBase.errorListener = errorListener;
     }
 
-    private void onError(String tag, String message) {
+    protected static void onError(String tag, String message) {
         if (errorListener != null) {
             errorListener.onError(tag + message);
         }

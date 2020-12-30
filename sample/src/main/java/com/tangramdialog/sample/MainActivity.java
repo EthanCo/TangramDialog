@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,13 +25,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        TangramDialog.setErrorListener(new DialogBase.ErrorListener() {
-            @Override
-            public void onError(String error) {
-                Log.i("Z-Main", "error:" + error);
-            }
-        });
 
         findViewById(R.id.btn_dialog_center).setOnClickListener(new View.OnClickListener() {
             @Override
