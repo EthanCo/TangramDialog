@@ -15,6 +15,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -1106,7 +1107,8 @@ public class TangramDialog extends DialogBase {
             if (this.context instanceof FragmentActivity) {
                 dialog.show((FragmentActivity) this.context);
             } else {
-                throw new IllegalArgumentException("content must be FragmentActivity.");
+                //throw new IllegalArgumentException("content must be FragmentActivity.");
+                Log.e(TAG, "content must be FragmentActivity.");
             }
 
             return dialog;
