@@ -317,6 +317,14 @@ public class TangramDialog extends DialogBase {
             return this;
         }
 
+        private String getStringWrapper(int res) {
+            if (context == null) {
+                onError(TAG, "getString content is NULL.");
+                return "";
+            }
+            return context.getString(res);
+        }
+
         /**
          * 设置标题
          *
@@ -324,7 +332,7 @@ public class TangramDialog extends DialogBase {
          * @return
          */
         public Builder title(@StringRes int titleRes) {
-            this.title = context.getString(titleRes);
+            this.title = getStringWrapper(titleRes);
             return this;
         }
 
@@ -379,7 +387,7 @@ public class TangramDialog extends DialogBase {
          * @return
          */
         public Builder content(@StringRes int contentRes) {
-            this.content = context.getString(contentRes);
+            this.content = getStringWrapper(contentRes);
             return this;
         }
 
@@ -444,7 +452,7 @@ public class TangramDialog extends DialogBase {
          * @return
          */
         public Builder tips(@StringRes int contentRes) {
-            this.tips = context.getString(contentRes);
+            this.tips = getStringWrapper(contentRes);
             return this;
         }
 
@@ -535,7 +543,7 @@ public class TangramDialog extends DialogBase {
          * @return
          */
         public Builder negativeText(@StringRes int messageRes) {
-            this.negativeText = context.getString(messageRes);
+            this.negativeText = getStringWrapper(messageRes);
             return this;
         }
 
@@ -595,7 +603,7 @@ public class TangramDialog extends DialogBase {
          * @return
          */
         public Builder neutralText(@StringRes int messageRes) {
-            this.neutralText = context.getString(messageRes);
+            this.neutralText = getStringWrapper(messageRes);
             return this;
         }
 
@@ -654,7 +662,7 @@ public class TangramDialog extends DialogBase {
          * @return
          */
         public Builder positiveText(@StringRes int messageRes) {
-            this.positiveText = context.getString(messageRes);
+            this.positiveText = getStringWrapper(messageRes);
             return this;
         }
 
