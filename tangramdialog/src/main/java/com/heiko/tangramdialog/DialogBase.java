@@ -31,6 +31,9 @@ public class DialogBase extends DialogFragment implements IDismiss {
     protected View rootView;
     protected List<OnDismissListener> onDismissListeners;
     protected List<OnShowListener> onShowListeners;
+
+    protected static List<OnDismissListener> onGlobalDismissListeners;
+    protected static List<OnShowListener> onGlobalShowListeners;
     protected static final String TAG = "TangramDialog ";
 
     @Override
@@ -192,6 +195,34 @@ public class DialogBase extends DialogFragment implements IDismiss {
         onShowListeners.remove(listener);
     }
 
+    public static void addOnGlobalDismissListener(OnDismissListener listener) {
+        if (onGlobalDismissListeners == null) {
+            onGlobalDismissListeners = new ArrayList<>();
+        }
+        if (!onGlobalDismissListeners.contains(listener)) {
+            onGlobalDismissListeners.add(listener);
+        }
+    }
+
+    public static void removeOnGlobalDismissListener(OnDismissListener listener) {
+        if (onGlobalDismissListeners == null) return;
+        onGlobalDismissListeners.remove(listener);
+    }
+
+    public static void addOnGlobalShowListener(OnShowListener listener) {
+        if (onGlobalShowListeners == null) {
+            onGlobalShowListeners = new ArrayList<>();
+        }
+        if (!onGlobalShowListeners.contains(listener)) {
+            onGlobalShowListeners.add(listener);
+        }
+    }
+
+    public static void removeOnGlobalShowListener(OnShowListener listener) {
+        if (onGlobalShowListeners == null) return;
+        onGlobalShowListeners.remove(listener);
+    }
+
     @Override
     public void dismiss() {
         try {
@@ -199,7 +230,6 @@ public class DialogBase extends DialogFragment implements IDismiss {
         } catch (Exception e) {
             onError(TAG, "dismiss error:" + e.getMessage());
         }
-
     }
 
     public void dismissNotAllowingStateLoss() {
@@ -213,16 +243,28 @@ public class DialogBase extends DialogFragment implements IDismiss {
     }
 
     private void onDismissListeners() {
-        if (onDismissListeners == null) return;
-        for (OnDismissListener onDismissListener : onDismissListeners) {
-            onDismissListener.onDismiss(this);
+        if (onGlobalDismissListeners != null) {
+            for (OnDismissListener onGlobalDismissListener : onGlobalDismissListeners) {
+                onGlobalDismissListener.onDismiss(this);
+            }
+        }
+        if (onDismissListeners != null) {
+            for (OnDismissListener onDismissListener : onDismissListeners) {
+                onDismissListener.onDismiss(this);
+            }
         }
     }
 
     private void onShowListeners() {
-        if (onShowListeners == null) return;
-        for (OnShowListener onShowListener : onShowListeners) {
-            onShowListener.onShow(this);
+        if (onGlobalShowListeners != null) {
+            for (OnShowListener onShowListener : onGlobalShowListeners) {
+                onShowListener.onShow(this);
+            }
+        }
+        if (onShowListeners != null) {
+            for (OnShowListener onShowListener : onShowListeners) {
+                onShowListener.onShow(this);
+            }
         }
     }
 
