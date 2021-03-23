@@ -125,6 +125,20 @@ public class TangramDialog extends DialogBase {
                 if (builder.tipsTextStyle != null) {
                     tvTips.setTypeface(Typeface.defaultFromStyle(builder.tipsTextStyle));
                 }
+                if (builder.onTipsCallback != null) {
+                    tvTips.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (checkEmptyInput()) return;
+                            if (builder.onTipsCallback != null) {
+                                builder.onTipsCallback.onClick(TangramDialog.this, tvTips);
+                            }
+                            if (builder.autoDismiss) {
+                                dismiss();
+                            }
+                        }
+                    });
+                }
             }
         }
         if (imgInfo != null) {
@@ -783,6 +797,17 @@ public class TangramDialog extends DialogBase {
         }
 
         /**
+         * Tips文本 点击回调
+         *
+         * @param callback
+         * @return
+         */
+        public Builder onTips(@NonNull ButtonCallback callback) {
+            this.onTipsCallback = callback;
+            return this;
+        }
+
+        /**
          * 对话框外围 点击是否可隐藏
          *
          * @param canceledOnTouchOutside
@@ -1141,9 +1166,9 @@ public class TangramDialog extends DialogBase {
                                     ViewCompat.setTranslationY(view, 0);  //回到初始位置
                                 } else {
                                     *//*
-                                     *关闭View
-                                     *注：这里dismiss是DialogFragment中的一个方法，用于关闭DialogFragment
-                                     *//*
+             *关闭View
+             *注：这里dismiss是DialogFragment中的一个方法，用于关闭DialogFragment
+             *//*
                                     dialog.dismiss();
                                 }
                             }

@@ -56,6 +56,7 @@ public class BaseBuilder {
     protected ButtonCallback onPositiveCallback;
     protected ButtonCallback onNegativeCallback;
     protected ButtonCallback onNeutralCallback;
+    protected ButtonCallback onTipsCallback;
 
     //input
     protected CharSequence inputHint;
