@@ -1,6 +1,7 @@
 package com.heiko.tangramdialog;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -43,6 +44,7 @@ public class TangramDialog extends DialogBase {
     private ViewGroup layoutNegative;
     private ViewGroup layoutPositive;
     private ViewGroup layoutNeutral;
+    private ImageView imgClose;
 
     public EditText getInputEditText() {
         return etInput;
@@ -66,6 +68,7 @@ public class TangramDialog extends DialogBase {
         tvNeutral = root.findViewById(R.id.tv_neutral_tangram);
         layoutNeutral = root.findViewById(R.id.layout_neutral_tangram);
         etInput = root.findViewById(R.id.et_input_tangram);
+        imgClose = root.findViewById(R.id.img_close_tangram);
 
         if (builder == null) return root;
         if (builder.paddingLeft != 0 || builder.paddingTop != 0
@@ -279,6 +282,15 @@ public class TangramDialog extends DialogBase {
                     });
                 }
             }
+            if (imgClose != null) {
+                imgClose.setVisibility(builder.imgCloseVisibility);
+                imgClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dismiss();
+                    }
+                });
+            }
         }
         return root;
     }
@@ -318,6 +330,12 @@ public class TangramDialog extends DialogBase {
     public static class Builder extends BaseBuilder {
         public Builder(Context context) {
             this.context = context;
+            Resources resources = context.getResources();
+            if (resources.getInteger(R.integer.tangram_img_close_visibility) == 1) {
+                this.imgCloseVisibility = View.VISIBLE;
+            } else {
+                this.imgCloseVisibility = View.GONE;
+            }
         }
 
         /**
@@ -1111,6 +1129,17 @@ public class TangramDialog extends DialogBase {
             return this;
         }
 
+        /**
+         * 关闭按钮是否可见
+         *
+         * @param visibility
+         * @return
+         */
+        public Builder imgCloseVisibility(int visibility) {
+            this.imgCloseVisibility = visibility;
+            return this;
+        }
+
         public TangramDialog show() {
             final TangramDialog dialog = new TangramDialog();
             dialog.builder = this;
@@ -1142,42 +1171,6 @@ public class TangramDialog extends DialogBase {
                 //throw new IllegalArgumentException("content must be FragmentActivity.");
                 onError(TAG, "content must be FragmentActivity.");
             }
-
-            /*final View view = rootView;
-            rootView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    float y = event.getRawY();
-                    float lastY = 0;
-                    float offsetY = 0;
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            lastY = event.getRawY(); //记录手指按下位置
-                            break;
-                        case MotionEvent.ACTION_MOVE:
-                            offsetY = y - lastY;  //记录Y轴移动的距离
-                            if (offsetY > 0) {
-                                ViewCompat.setTranslationY(view, offsetY); //跟随手指滑动，向下移动View
-                            }
-                            break;
-                        case MotionEvent.ACTION_UP://手指离开
-                            if (offsetY > 0) {
-                                if (offsetY < view.getHeight() / 3) {//移动距离 < View高度 / 3
-                                    ViewCompat.setTranslationY(view, 0);  //回到初始位置
-                                } else {
-                                    *//*
-             *关闭View
-             *注：这里dismiss是DialogFragment中的一个方法，用于关闭DialogFragment
-             *//*
-                                    dialog.dismiss();
-                                }
-                            }
-                            break;
-                        default:
-                    }
-                    return true;
-                }
-            });*/
             return dialog;
         }
     }

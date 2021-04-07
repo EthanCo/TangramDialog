@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--背景昏暗度 0-100-->
-    <integer name="dim_amount">60</integer>
+    <integer name="tangram_dim_amount">60</integer>
+    <!--关闭按钮是否可见，0不可见，1可见-->
+    <integer name="tangram_img_close_visibility">0</integer>
 </resources>

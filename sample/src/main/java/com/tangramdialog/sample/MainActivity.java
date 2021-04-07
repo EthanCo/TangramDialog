@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         .content("这是具体内容")
                         .positiveText("确定")
                         .negativeText("取消")
+                        .imgCloseVisibility(View.VISIBLE)
                         .canceledOnTouchOutside(false)
                         .onPositive(new ButtonCallback() {
                             @Override
@@ -223,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
                 new TangramDialog.Builder(MainActivity.this)
                         .title("标题")
                         .content(content)
+                        .imgCloseVisibility(View.VISIBLE)
                         .contentTextGraviry(Gravity.LEFT)
                         .negativeText("取消")
                         .positiveText("确定")
@@ -256,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
                         .customTopView(R.layout.dialog_custom_top)
                         .customView(R.layout.dialog_custom)
                         .customBottomView(R.layout.dialog_custom_bottom)
+                        .backgroundColor(R.color.transparent)
                         .canceledOnTouchOutside(true)
                         .positiveText("确定")
                         .negativeText("取消")

@@ -1,174 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/layout_root_tangram"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical">
-
-    <View
-        android:id="@+id/tv_top_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tangram_primary_solid_height"
-        android:layout_marginBottom="25dp"
-        android:background="@color/tangramColorPrimary" />
+    android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/layout_tangram_custom_top"
-        android:visibility="gone"
+        android:id="@+id/layout_root_tangram"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" />
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/img_info_tangram"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        android:visibility="gone" />
+        <View
+            android:id="@+id/tv_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tangram_primary_solid_height"
+            android:layout_marginBottom="25dp"
+            android:background="@color/tangramColorPrimary" />
 
-    <TextView
-        android:id="@+id/tv_title_tangram"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/tangramColorTextPrimary"
-        android:textSize="18sp"
-        tools:text="Title" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp" >
-
-        <TextView
-            android:id="@+id/tv_content_tangram"
+        <LinearLayout
+            android:id="@+id/layout_tangram_custom_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/img_info_tangram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_title_tangram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/tangramColorTextPrimary"
+            android:textSize="18sp"
+            tools:text="Title" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_content_tangram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:lineSpacingExtra="5dp"
+                android:paddingLeft="35dp"
+                android:paddingRight="35dp"
+                android:textColor="@color/tangramColorTextSecond"
+                android:textSize="15sp"
+                tools:text="Content" />
+
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/tv_tips_tangram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:lineSpacingExtra="5dp"
             android:paddingLeft="35dp"
             android:paddingRight="35dp"
             android:textColor="@color/tangramColorTextSecond"
-            android:textSize="15sp"
-            tools:text="Content" />
+            android:textSize="13sp"
+            tools:text="tips" />
 
-    </ScrollView>
+        <EditText
+            android:id="@+id/et_input_tangram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="16dp" />
 
-    <TextView
-        android:id="@+id/tv_tips_tangram"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:lineSpacingExtra="5dp"
-        android:paddingLeft="35dp"
-        android:paddingRight="35dp"
-        android:textColor="@color/tangramColorTextSecond"
-        android:textSize="13sp"
-        tools:text="tips" />
+        <LinearLayout
+            android:id="@+id/layout_tangram_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:visibility="gone" />
 
-    <EditText
-        android:id="@+id/et_input_tangram"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="16dp" />
+        <View
+            android:id="@+id/view_line_horizontal_tangram"
+            style="@style/TangramLineHorizontal"
+            android:layout_marginTop="20dp" />
 
-    <LinearLayout
-        android:id="@+id/layout_tangram_custom"
-        android:layout_marginTop="15dp"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
+        <LinearLayout
+            android:id="@+id/layout_buttons_tangram"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-    <View
-        android:id="@+id/view_line_horizontal_tangram"
-        style="@style/TangramLineHorizontal"
-        android:layout_marginTop="20dp" />
-
-    <LinearLayout
-        android:id="@+id/layout_buttons_tangram"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:id="@+id/layout_negative_tangram"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground">
-
-            <TextView
-                android:id="@+id/tv_negative_tangram"
-                android:layout_width="match_parent"
+            <FrameLayout
+                android:id="@+id/layout_negative_tangram"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="@color/tangramColorTextNegative"
-                android:textSize="16sp"
-                tools:text="Cancel" />
+                android:layout_weight="1"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground">
 
-        </FrameLayout>
+                <TextView
+                    android:id="@+id/tv_negative_tangram"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/tangramColorTextNegative"
+                    android:textSize="16sp"
+                    tools:text="Cancel" />
 
-        <FrameLayout
-            android:id="@+id/layout_neutral_tangram"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground">
+            </FrameLayout>
 
-            <TextView
-                android:id="@+id/tv_neutral_tangram"
-                android:layout_width="match_parent"
+            <FrameLayout
+                android:id="@+id/layout_neutral_tangram"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="@color/tangramColorTextNeutral"
-                android:textSize="16sp"
-                tools:text="Info" />
+                android:layout_weight="1"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground">
 
-            <View
-                android:id="@+id/view_line_vertical_1_tangram"
-                style="@style/TangramLineVertical" />
+                <TextView
+                    android:id="@+id/tv_neutral_tangram"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/tangramColorTextNeutral"
+                    android:textSize="16sp"
+                    tools:text="Info" />
 
-        </FrameLayout>
+                <View
+                    android:id="@+id/view_line_vertical_1_tangram"
+                    style="@style/TangramLineVertical" />
 
-        <FrameLayout
-            android:id="@+id/layout_positive_tangram"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground">
+            </FrameLayout>
 
-            <TextView
-                android:id="@+id/tv_positive_tangram"
-                android:layout_width="match_parent"
+            <FrameLayout
+                android:id="@+id/layout_positive_tangram"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="@color/tangramColorTextPositive"
-                android:textSize="16sp"
-                tools:text="OK" />
+                android:layout_weight="1"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground">
 
-            <View
-                android:id="@+id/view_line_vertical_2_tangram"
-                style="@style/TangramLineVertical" />
+                <TextView
+                    android:id="@+id/tv_positive_tangram"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/tangramColorTextPositive"
+                    android:textSize="16sp"
+                    tools:text="OK" />
 
-        </FrameLayout>
+                <View
+                    android:id="@+id/view_line_vertical_2_tangram"
+                    style="@style/TangramLineVertical" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_tangram_custom_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/layout_tangram_custom_bottom"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
-</LinearLayout>
+    <ImageView
+        android:id="@+id/img_close_tangram"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_gravity="right|top"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:padding="12dp"
+        android:src="@mipmap/ic_close_gray_tangram" />
+</FrameLayout>

@@ -10,6 +10,7 @@ import android.view.View;
  * @date 2019/3/6
  */
 public class BaseBuilder {
+    public int imgCloseVisibility = View.GONE;
     protected Context context;
     protected CharSequence title;
     protected Integer titleTextStyle;

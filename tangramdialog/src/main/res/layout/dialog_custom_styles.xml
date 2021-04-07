@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/layout_root_tangram"
-    android:background="@drawable/shape_white_solid_4"
+    android:background="@drawable/shape_white_solid_12"
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
@@ -19,7 +19,6 @@
         android:id="@+id/tv_title_tangram"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/shape_gray_solid_4"
         android:gravity="center"
         android:text="标题"
         android:textSize="16sp"

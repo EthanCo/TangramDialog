@@ -14,4 +14,5 @@
     <color name="tangramColorPrimary">@color/colorPrimary</color>
 
     <color name="color_black_90">#90000000</color>
+    <color name="transparent">#00000000</color>
 </resources>
