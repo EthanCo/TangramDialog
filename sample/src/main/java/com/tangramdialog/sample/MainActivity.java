@@ -94,8 +94,14 @@ public class MainActivity extends AppCompatActivity {
                         .content("这是具体内容")
                         .positiveText("确定")
                         .negativeText("取消")
-                        .imgCloseVisibility(View.VISIBLE)
                         .canceledOnTouchOutside(false)
+                        .imgCloseVisibility(View.VISIBLE)
+                        .onImgClose(new ButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View v) {
+                                Toast.makeText(MainActivity.this, "关闭了弹框", Toast.LENGTH_SHORT).show();
+                            }
+                        })
                         .onPositive(new ButtonCallback() {
                             @Override
                             public void onClick(@NonNull DialogBase dialog, @NonNull View view) {

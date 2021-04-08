@@ -287,7 +287,12 @@ public class TangramDialog extends DialogBase {
                 imgClose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dismiss();
+                        if (builder.onImgCloseCallback != null) {
+                            builder.onImgCloseCallback.onClick(TangramDialog.this, imgClose);
+                        }
+                        if (builder.autoDismiss) {
+                            dismiss();
+                        }
                     }
                 });
             }
