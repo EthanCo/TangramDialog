@@ -262,6 +262,7 @@ public class MainActivity extends AppCompatActivity {
                         .canceledOnTouchOutside(true)
                         .positiveText("确定")
                         .negativeText("取消")
+                        .margin(40)
                         .onPositive(new ButtonCallback() {
                             @Override
                             public void onClick(@NonNull DialogBase dialog, @NonNull View v) {

@@ -1140,6 +1140,17 @@ public class TangramDialog extends DialogBase {
             return this;
         }
 
+        /**
+         * 当点击关闭按钮
+         *
+         * @param callback
+         * @return
+         */
+        public Builder onImgClose(ButtonCallback callback) {
+            this.onImgCloseCallback = callback;
+            return this;
+        }
+
         public TangramDialog show() {
             final TangramDialog dialog = new TangramDialog();
             dialog.builder = this;
