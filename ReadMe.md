@@ -739,6 +739,8 @@ public void onClick(View v) {
 
 ##### 关闭按钮默认是否可见
 
+在`integer.xml`中添加
+
 ```xml
 <!--关闭按钮默认是否可见，0不可见，1可见-->
 <integer name="tangram_img_close_visibility">0</integer>
