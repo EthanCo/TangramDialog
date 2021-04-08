@@ -8,7 +8,7 @@ Android 对话框，基于DialogFragment，可自定义布局及动画，可指�
 ### 添加依赖
 #### Step 1. Add the JitPack repository to your build file
 Add it in your root build.gradle at the end of repositories:  
-```
+```groovy
 allprojects {
 	repositories {
 		...
@@ -17,14 +17,14 @@ allprojects {
 }  
 ```
 #### Step 2. Add the dependency
-```
+```groovy
 dependencies {
-	implementation 'com.github.EthanCo:TangramDialog:v1.5.7'
+	implementation 'com.github.EthanCo:TangramDialog:v1.6.9'
 }
 ```
 ### 使用
 #### 基本使用
-```
+```java
 TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
 	.title("标题")
 	.content("这是具体内容")
@@ -46,7 +46,7 @@ TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
 	.show();
 ```
 #### 具体方法
-```
+```java
 /**
  * 设置标题
  *
@@ -543,6 +543,30 @@ public Builder padding(int padding)
  * @return
  */
 public Builder padding(int paddingLeft, int paddingTop, int paddingRight, int paddingBottom)
+
+/**
+* 顶部横条是否可见
+*
+* @param visibility
+* @return
+*/
+public Builder topBarVisibility(int visibility)
+
+/**
+* 关闭按钮是否可见
+*
+* @param visibility
+* @return
+*/
+public Builder imgCloseVisibility(int visibility)
+
+/**
+* 当点击关闭按钮
+*
+* @param callback
+* @return
+*/
+public Builder onImgClose(ButtonCallback callback)
 ```
 #### 自定义样式对话框  
 针对对话框样式需要自定义，但是对话框功能基本相同(标题、确定按钮、取消按钮等)，可更改默认布局为自定义布局，与默认布局id保持一致。  
@@ -554,7 +578,7 @@ public Builder padding(int paddingLeft, int paddingTop, int paddingRight, int pa
 ![custom_styles](custom_styles.webp)  
 
 我们需要新建一个布局文件，比如dialog_custom_styles  
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -642,7 +666,7 @@ android:id="@+id/layout_root_tangram"
 </LinearLayout>
 ```
 接着，我们把layoutId指定为dialog_custom_styles，即可照常使用TangramDialog  
-```
+```java
 TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
 .layoutId(R.layout.dialog_custom_styles)
 .title("设置")
@@ -660,7 +684,7 @@ TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
 ```
 #### 自定义布局
 对于需要自定义样式，且对话框功能不是基础功能(标题、确定按钮、取消按钮等)，可使用自定义布局，此模式下需手动findViewById来设置UI及相关点击回调  
-```
+```java
 TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
     .customView(R.layout.dialog_custom)
     .canceledOnTouchOutside(true)
@@ -679,7 +703,7 @@ public void onClick(View v) {
 ```
 #### 设置自定义的主题色
 在colors.xml中添加  
-```
+```xml
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
@@ -697,11 +721,30 @@ public void onClick(View v) {
 ```
 
 ##### 不显示顶部颜色条
-在colors.xml中添加  
-```
+在`colors.xml`中添加  
+```xml
 <color name="tangramColorPrimary">@android:color/transparent</color>
 ```
 
+#### 设置默认配置
+
+##### 背景昏暗度
+
+在`integer.xml`中添加
+
+```xml
+<!--背景昏暗度 0-100-->
+<integer name="tangram_dim_amount">60</integer>
+```
+
+##### 关闭按钮默认是否可见
+
+```xml
+<!--关闭按钮默认是否可见，0不可见，1可见-->
+<integer name="tangram_img_close_visibility">0</integer>
+```
+
 #### 自定义全局对话框动画
+
 以`tagram_dialog_center_in.xml`为例，复制该文件到app项目中，然后修改即可。其他动画也类似。
 
