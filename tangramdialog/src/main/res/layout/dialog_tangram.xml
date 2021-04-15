@@ -185,5 +185,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
         android:padding="12dp"
+        android:visibility="gone"
         android:src="@mipmap/ic_close_gray_tangram" />
 </FrameLayout>

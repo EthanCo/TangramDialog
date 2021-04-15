@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 169
-        versionName "1.6.9"
+        versionCode 170
+        versionName "1.7.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -27,7 +27,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.+'
 }
 
-//ext.GROUP="com.kit"
-//ext.VERSION_NAME=android.defaultConfig.versionName
-//ext.POM_ARTIFACT_ID="tangramdialog"
-//apply from: "${project.rootDir}/gradle_maven.gradle"
+ext.GROUP="com.kit"
+ext.VERSION_NAME=android.defaultConfig.versionName
+ext.POM_ARTIFACT_ID="tangramdialog"
+apply from: "${project.rootDir}/gradle_maven.gradle"
