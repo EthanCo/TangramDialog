@@ -67,6 +67,12 @@
             android:text="自定义样式对话框" />
 
         <Button
+            android:id="@+id/btn_dialog_single_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="单按钮指定宽度" />
+
+        <Button
             android:id="@+id/btn_dialog_top_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

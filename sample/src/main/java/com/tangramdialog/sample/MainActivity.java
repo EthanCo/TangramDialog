@@ -348,9 +348,31 @@ public class MainActivity extends AppCompatActivity {
                         .layoutId(R.layout.dialog_custom_styles)
                         .title("设置")
                         .titleTextSize(18)
+                        //.buttonsPadding(50, 0, 50, 0)
                         //.padding(15)
                         .input("hint", "1234567890", null)
                         .negativeText("取消")
+                        .positiveText("保存")
+                        .onPositive(new ButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull DialogBase dialog, @NonNull View v) {
+                                Toast.makeText(MainActivity.this, "保存完毕", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        findViewById(R.id.btn_dialog_single_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final TangramDialog dialog = new TangramDialog.Builder(MainActivity.this)
+                        .layoutId(R.layout.dialog_single_button)
+                        .title("设置")
+                        .titleTextSize(18)
+                        .singleButtonWidth(151)
+                        .input("hint", "1234567890", null)
+                        //.negativeText("取消")
                         .positiveText("保存")
                         .onPositive(new ButtonCallback() {
                             @Override

@@ -10,7 +10,12 @@ import android.view.View;
  * @date 2019/3/6
  */
 public class BaseBuilder {
-    public int imgCloseVisibility = View.GONE;
+    protected int imgCloseVisibility = View.GONE;
+    protected int buttonsPaddingLeft;
+    protected int buttonsPaddingRight;
+    protected int buttonsPaddingTop;
+    protected int buttonsPaddingBottom;
+    protected Integer singleButtonWidth; //只有一个按钮的模式下，按钮宽度
     protected Context context;
     protected CharSequence title;
     protected Integer titleTextStyle;

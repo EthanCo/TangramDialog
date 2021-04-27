@@ -45,6 +45,7 @@ public class TangramDialog extends DialogBase {
     private ViewGroup layoutPositive;
     private ViewGroup layoutNeutral;
     private ImageView imgClose;
+    private LinearLayout layoutButtons;
 
     public EditText getInputEditText() {
         return etInput;
@@ -69,6 +70,7 @@ public class TangramDialog extends DialogBase {
         layoutNeutral = root.findViewById(R.id.layout_neutral_tangram);
         etInput = root.findViewById(R.id.et_input_tangram);
         imgClose = root.findViewById(R.id.img_close_tangram);
+        layoutButtons = root.findViewById(R.id.layout_buttons_tangram);
 
         if (builder == null) return root;
         if (builder.paddingLeft != 0 || builder.paddingTop != 0
@@ -162,9 +164,14 @@ public class TangramDialog extends DialogBase {
                 etInput.addTextChangedListener(new DialogTextWatcher(TangramDialog.this, builder));
             }
         }
+
+        if (layoutButtons != null) {
+            layoutButtons.setPadding(builder.buttonsPaddingLeft, builder.buttonsPaddingTop,
+                    builder.buttonsPaddingRight, builder.buttonsPaddingBottom);
+        }
+
         if (isNoButton()) {
             View viewDividerHorizontal = root.findViewById(R.id.view_line_horizontal_tangram);
-            View layoutButtons = root.findViewById(R.id.layout_buttons_tangram);
             if (viewDividerHorizontal != null) {
                 viewDividerHorizontal.setVisibility(View.INVISIBLE);
             }
@@ -172,10 +179,12 @@ public class TangramDialog extends DialogBase {
                 layoutButtons.setVisibility(View.GONE);
             }
         } else {
+            int visibleCount = 0;
             if (layoutNegative != null) {
                 if (TextUtils.isEmpty(builder.negativeText)) {
                     layoutNegative.setVisibility(View.GONE);
                 } else {
+                    visibleCount++;
                     if (tvNegative != null) {
                         tvNegative.setText(builder.negativeText);
                     }
@@ -212,6 +221,7 @@ public class TangramDialog extends DialogBase {
                     }
                     layoutNeutral.setVisibility(View.GONE);
                 } else {
+                    visibleCount++;
                     if (lineVertical1 != null) {
                         lineVertical1.setVisibility(View.VISIBLE);
                     }
@@ -251,6 +261,7 @@ public class TangramDialog extends DialogBase {
                     }
                     layoutPositive.setVisibility(View.GONE);
                 } else {
+                    visibleCount++;
                     if (lineVertical2 != null) {
                         lineVertical2.setVisibility(View.VISIBLE);
                     }
@@ -281,6 +292,24 @@ public class TangramDialog extends DialogBase {
                         }
                     });
                 }
+            }
+            if (visibleCount == 1 && builder.singleButtonWidth != null) {
+                ViewGroup target = null;
+                if (layoutPositive.getVisibility() == View.VISIBLE) {
+                    target = layoutPositive;
+                } else if (layoutNegative.getVisibility() == View.VISIBLE) {
+                    target = layoutNegative;
+                } else if (layoutNeutral.getVisibility() == View.VISIBLE) {
+                    target = layoutNeutral;
+                }
+
+                if (target != null) {
+                    LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) target.getLayoutParams();
+                    lp.width = builder.singleButtonWidth;
+                    lp.weight = 0;
+                    target.setLayoutParams(lp);
+                }
+
             }
             if (imgClose != null) {
                 imgClose.setVisibility(builder.imgCloseVisibility);
@@ -1153,6 +1182,34 @@ public class TangramDialog extends DialogBase {
          */
         public Builder onImgClose(ButtonCallback callback) {
             this.onImgCloseCallback = callback;
+            return this;
+        }
+
+        /**
+         * 按钮区域 Padding
+         *
+         * @param paddingLeft   单位为DP
+         * @param paddingTop    单位为DP
+         * @param paddingRight  单位为DP
+         * @param paddingBottom 单位为DP
+         * @return
+         */
+        public Builder buttonsPadding(int paddingLeft, int paddingTop, int paddingRight, int paddingBottom) {
+            this.buttonsPaddingLeft = DialogUtils.dp2px(this.context, paddingLeft);
+            this.buttonsPaddingTop = DialogUtils.dp2px(this.context, paddingTop);
+            this.buttonsPaddingRight = DialogUtils.dp2px(this.context, paddingRight);
+            this.buttonsPaddingBottom = DialogUtils.dp2px(this.context, paddingBottom);
+            return this;
+        }
+
+        /**
+         * 单按钮情况下，按钮指定宽度
+         *
+         * @param width
+         * @return
+         */
+        public Builder singleButtonWidth(int width){
+            this.singleButtonWidth = DialogUtils.dp2px(this.context, width);
             return this;
         }
 
