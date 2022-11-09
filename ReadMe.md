@@ -750,3 +750,19 @@ public void onClick(View v) {
 
 以`tagram_dialog_center_in.xml`为例，复制该文件到app项目中，然后修改即可。其他动画也类似。
 
+### License
+```
+Copyright 2022 Heiko
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
